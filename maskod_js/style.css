@@ -38,38 +38,43 @@ header {
   text-align: center;
   background-color: #296ca8;
   color: #fff;
-  padding-bottom: 20px;
 }
 
 header h1 {
   letter-spacing: 3px;
-  font-size: 40px;
+  font-size: 50px;
   margin-bottom: 0px;
 }
-header h4 {
+header p {
   letter-spacing: 1px;
-  margin-top: 0px;
+  margin-bottom:10px;
 }
-header h4 strong {
+header p strong {
   color: #66cccc;
 }
 
+header div p {
+  margin: 0px;
+}
 rt {
-  color: #888;
+  color: #66cccc;
+  font-size: 13px;
 }
 
 .filter {
-  margin: 10px;
   display: flex;
   justify-content: center;
+  margin: 20px 0;
 }
+
 .filter input {
   border: 0;
-  width: 60vw;
+  width: 40vw;
   padding: 5px 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+
 .filter button {
   cursor: pointer;
   background-color: #66cccc;
@@ -81,22 +86,38 @@ rt {
   padding: 5px 10px;
   font-weight: bold;
 }
-
-.stock-info {
+.stock-info ul {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.stock-info ul li {
+  border: 2px solid #66cccc;
+  background-color: #fff;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 8px;
+  padding: 3px 6px;
+  border-radius: 20px;
+  width: 100px;
+}
 
 .stock-box {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .stock-circle {
-  width: 20px;
+  width: 15px;
   height: 15px;
   border-radius: 8px;
+  margin-right: 5px
+}
+.stock-text {
+  letter-spacing: 1px;
 }
 .icon {
   color: #66cccc;
@@ -117,27 +138,29 @@ rt {
 .search-list {
   position: relative;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 7px;
-  padding: 5px 15px;
-  margin: 5px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 15px 0;
   display: flex;
   flex-direction: column;
   width: 80vw;
   max-width: 800px;
+  border: 2px solid;
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
-.plenty{
-  border: 3px solid var(--plenty-color);
+.plenty {
+  border-color: var(--plenty-color);
 }
-.some{
-  border: 3px solid var(--some-color);
+.some {
+  border-color: var(--some-color);
 }
-.few{
-  border: 3px solid var(--few-color);
+.few {
+  border-color: var(--few-color);
 }
-.empty{
-  border: 3px solid var(--empty-color);
+.empty {
+  border-color: var(--empty-color);
 }
 
 .first-line {
@@ -147,22 +170,38 @@ rt {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 5px;
   font-weight: bold;
+  font-size: 13px;
 }
+
+p.name {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
 .second-line {
   text-align: left;
+  padding: 0 5px;
 }
 .third-line {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin: 20px 0 5px 0; 
 }
 
 p.category {
   width: 10%;
   text-align: center;
+  font-size: 14px;
+  padding: 2px;
+  border: 1px solid #66cccc;
+  border-radius: 2px
 }
 
 p.content {
   width: 23%;
   text-align: center;
+  font-size: 13px;
+  margin: 0 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.5)
 }

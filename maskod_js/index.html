@@ -20,75 +20,95 @@
         </ruby>
         ?
       </h1>
-      <h4><strong>Mask O</strong>r <strong>D</strong>isease</h4>
+      <p>< <strong>Mask O</strong>r <strong>D</strong>isease ></p>
       <div>
         <p>
           주소를 기준으로 해당 지역에 존재하는 판매처 및 재고 상태 등의 정보
           제공.
         </p>
-        <p>예- '서울특별시 강남구' or '서울특별시 강남구 논현동'</p>
+        <p>예시: '서울특별시 강남구' or '서울특별시 강남구 논현동'</p>
         <p>('서울특별시' 와 같이 '시'단위만 입력하는 것은 불가능합니다.)</p>
       </div>
-      <div class="filter-container">
-        <div class="filter">
-          <input
-            type="text"
-            id="address"
-            class="address"
-            placeholder="'구'나 '동' 단위까지 입력하세요."
-          />
-          <button id="search">검색</button>
-        </div>
-        <div class="stock-info">
-          <div>
-            전체보기
-          </div>
-          <div class="stock-box">
-            <div class="stock-circle" id="plenty"></div>
-            <div class="stock-text">
-              100개
-              <span class="icon"
-                ><i class="fa fa-arrow-circle-up fa-lg"></i
-              ></span>
+
+      <div class="filter">
+        <input
+          type="text"
+          id="address"
+          class="address"
+          placeholder="'구'나 '동' 단위까지 입력하세요."
+        />
+        <button id="search">검색</button>
+      </div>
+
+      <div class="stock-info">
+        <ul>
+          <li>
+            <div class="stock-box">
+              <div id="all">
+                전 체 보 기
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="stock-box">
+              <div class="stock-circle" id="plenty"></div>
+              <div class="stock-text">
+                100개
+                <span class="icon"
+                  ><i class="fa fa-arrow-circle-up fa-lg"></i
+                ></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="stock-box">
+              <div class="stock-circle" id="some"></div>
+              <div class="stock-text">
+                30개
+                <span class="icon"
+                  ><i class="fa fa-arrow-circle-up fa-lg"></i
+                ></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="stock-box">
+              <div class="stock-circle" id="few"></div>
+              <div class="stock-text">
+                1개
+                <span class="icon"
+                  ><i class="fa fa-arrow-circle-up fa-lg"></i
+                ></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="stock-box">
+              <div class="stock-circle" id="empty"></div>
+              <div class="stock-text">
+                0개
+                <span class="icon"
+                  ><i class="fa fa-times-circle fa-lg"></i
+                ></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="stock-box">
+            <div id="sort">
+              재고 순 정렬
             </div>
           </div>
-  
-          <div class="stock-box">
-            <div class="stock-circle" id="some"></div>
-            <div class="stock-text">
-              30개
-              <span class="icon"
-                ><i class="fa fa-arrow-circle-up fa-lg"></i
-              ></span>
-            </div>
-          </div>
-  
-          <div class="stock-box">
-            <div class="stock-circle" id="few"></div>
-            <div class="stock-text">
-              1개
-              <span class="icon"
-                ><i class="fa fa-arrow-circle-up fa-lg"></i
-              ></span>
-            </div>
-          </div>
-          <div class="stock-box">
-            <div class="stock-circle" id="empty"></div>
-            <div class="stock-text">
-              0개
-              <span class="icon"><i class="fa fa-times-circle fa-lg"></i></span>
-            </div>
-          </div>
-          <div>
-            정렬
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </header>
 
-    <div id="list-container">
-    </div>
+    <div id="list-container"></div>
 
+    <footer>
+      <p>Footer Contents Area 입니다.</p>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

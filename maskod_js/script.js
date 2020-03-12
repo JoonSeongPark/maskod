@@ -6,6 +6,14 @@ const addressInputEl = document.getElementById("address");
 const searchBtn = document.getElementById("search");
 const listContainer = document.getElementById("list-container");
 
+const allMast = document.getElementById('all')
+const plentyMast = document.getElementById('plenty')
+const someMast = document.getElementById('some')
+const fewMast = document.getElementById('few')
+const emptyMast = document.getElementById('empty')
+const sortMast = document.getElementById('sort')
+
+
 const store_type = { "01": "약국", "02": "우체국", "03": "농협" };
 const mask_stock = {
   plenty: "100개 이상",
@@ -16,16 +24,20 @@ const mask_stock = {
 
 async function getMaskInfo() {
   let address = addressInputEl.value;
-
+  
   const res = await fetch(
-    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
+    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json`
   );
+  // const res = await fetch(
+  //   `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
+  // );
   const data = await res.json();
 
   return data.stores;
 }
 
 async function renderList() {
+  console.log('render')
   const maskInfos = await getMaskInfo();
   
   maskInfos.forEach(info => {
@@ -58,4 +70,8 @@ async function renderList() {
     listContainer.appendChild(infoEl);
   });
 }
+
+
+renderList()
+
 searchBtn.addEventListener("click", renderList);
