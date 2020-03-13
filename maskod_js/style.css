@@ -14,10 +14,12 @@
 }
 
 :root {
+  --main-color: #0f4c81;
+  --submain-color: #006B6D;
   --plenty-color: #2ecc71;
-  --some-color: #f7e600;
+  --some-color: #f7d117;
   --few-color: #e74c3c;
-  --empty-color: #777;
+  --empty-color: #999;
 }
 p {
   margin: 0;
@@ -36,7 +38,7 @@ body {
 header {
   width: 100%;
   text-align: center;
-  background-color: #296ca8;
+  background-color: var(--main-color);
   color: #fff;
 }
 
@@ -47,7 +49,7 @@ header h1 {
 }
 header p {
   letter-spacing: 1px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 header p strong {
   color: #66cccc;
@@ -55,10 +57,6 @@ header p strong {
 
 header div p {
   margin: 0px;
-}
-rt {
-  color: #66cccc;
-  font-size: 13px;
 }
 
 .filter {
@@ -69,7 +67,7 @@ rt {
 
 .filter input {
   border: 0;
-  width: 40vw;
+  width: 30vw;
   padding: 5px 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -77,13 +75,13 @@ rt {
 
 .filter button {
   cursor: pointer;
-  background-color: #66cccc;
-  border: 2px solid #66cccc;
+  background-color: var(--submain-color);
+  border: 2px solid var(--submain-color);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #fff;
   font-size: 16px;
-  padding: 5px 10px;
+  padding: 5px 15px;
   font-weight: bold;
 }
 .stock-info ul {
@@ -92,47 +90,49 @@ rt {
   justify-content: center;
 }
 .stock-info ul li {
-  border: 2px solid #66cccc;
-  background-color: #fff;
-  color: black;
+  
+  color: #f9fafb;
   font-size: 12px;
   font-weight: bold;
   display: inline-block;
   margin: 0 8px;
-  padding: 3px 6px;
   border-radius: 20px;
-  width: 100px;
+  width: 80px;
 }
-
+#all {
+  background-color: #000;
+  border: 1px solid #000
+}
+#plenty {
+  background-color: var(--plenty-color);
+  border-color: var(--plenty-color);
+}
+#some {
+  background-color: var(--some-color);
+  border-color: var(--some-color);
+}
+#few {
+  background-color: var(--few-color);
+  border-color: var(--few-color);
+}
+#empty {
+  background-color: var(--empty-color);
+  border-color: var(--empty-color);
+}
 .stock-box {
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3px 6px;
+  border-radius: 20px;
 }
-.stock-circle {
-  width: 15px;
-  height: 15px;
-  border-radius: 8px;
-  margin-right: 5px
-}
+
 .stock-text {
   letter-spacing: 1px;
 }
 .icon {
-  color: #66cccc;
-}
-#plenty {
-  background-color: var(--plenty-color);
-}
-#some {
-  background-color: var(--some-color);
-}
-#few {
-  background-color: var(--few-color);
-}
-#empty {
-  background-color: var(--empty-color);
+  color: #fff;
 }
 
 .search-list {
@@ -152,15 +152,20 @@ rt {
 
 .plenty {
   border-color: var(--plenty-color);
+  /* background-color: ; */
 }
 .some {
   border-color: var(--some-color);
+  /* background-color: ; */
 }
 .few {
   border-color: var(--few-color);
+  /* border:0;
+  background-color: rgb(231, 77, 60,0.3); */
 }
 .empty {
   border-color: var(--empty-color);
+  /* background-color: rgb(153, 153, 153,0.2); */
 }
 
 .first-line {
@@ -186,7 +191,7 @@ p.name {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin: 20px 0 5px 0; 
+  margin: 20px 0 5px 0;
 }
 
 p.category {
@@ -194,8 +199,8 @@ p.category {
   text-align: center;
   font-size: 14px;
   padding: 2px;
-  border: 1px solid #66cccc;
-  border-radius: 2px
+  border: 1px solid var(--submain-color);
+  border-radius: 2px;
 }
 
 p.content {
@@ -203,5 +208,5 @@ p.content {
   text-align: center;
   font-size: 13px;
   margin: 0 18px;
-  border-bottom: 1px solid rgba(0,0,0,0.5)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }

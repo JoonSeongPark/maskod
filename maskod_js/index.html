@@ -14,11 +14,7 @@
   <body>
     <header>
       <h1>
-        마스크
-        <ruby>
-          어<rp>(</rp><rt>O</rt><rp>)</rp>디<rp>(</rp><rt>D</rt><rp>)</rp>
-        </ruby>
-        ?
+        마스크 어디?
       </h1>
       <p>< <strong>Mask O</strong>r <strong>D</strong>isease ></p>
       <div>
@@ -37,68 +33,64 @@
           class="address"
           placeholder="'구'나 '동' 단위까지 입력하세요."
         />
-        <button id="search">검색</button>
+        <button id="search"><i class="fa fa-search fa-lg"></i></button>
       </div>
 
       <div class="stock-info">
         <ul>
-          <li>
+          <li id="all">
             <div class="stock-box">
-              <div id="all">
-                전 체 보 기
+              <div class="stock-text">
+                전체보기
               </div>
             </div>
           </li>
-          <li>
+          <li id="plenty">
             <div class="stock-box">
-              <div class="stock-circle" id="plenty"></div>
               <div class="stock-text">
-                100개
+                100 개
                 <span class="icon"
                   ><i class="fa fa-arrow-circle-up fa-lg"></i
                 ></span>
               </div>
             </div>
           </li>
-          <li>
+          <li id="some">
             <div class="stock-box">
-              <div class="stock-circle" id="some"></div>
               <div class="stock-text">
-                30개
+                30 개
                 <span class="icon"
                   ><i class="fa fa-arrow-circle-up fa-lg"></i
                 ></span>
               </div>
             </div>
           </li>
-          <li>
+          <li id="few">
             <div class="stock-box">
-              <div class="stock-circle" id="few"></div>
               <div class="stock-text">
-                1개
+                1 개
                 <span class="icon"
                   ><i class="fa fa-arrow-circle-up fa-lg"></i
                 ></span>
               </div>
             </div>
           </li>
-          <li>
+          <li id="empty">
             <div class="stock-box">
-              <div class="stock-circle" id="empty"></div>
               <div class="stock-text">
-                0개
+                0 개
                 <span class="icon"
                   ><i class="fa fa-times-circle fa-lg"></i
                 ></span>
               </div>
             </div>
           </li>
-          <li>
+          <li id="sort">
             <div class="stock-box">
-            <div id="sort">
-              재고 순 정렬
+              <div class="stock-text">
+                재고순정렬
+              </div>
             </div>
-          </div>
           </li>
         </ul>
       </div>
