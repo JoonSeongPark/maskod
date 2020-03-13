@@ -13,7 +13,7 @@ const fewMask = document.getElementById("few");
 const emptyMask = document.getElementById("empty");
 const sortMask = document.getElementById("sort");
 
-const store_type = { "01": "약국", "02": "우체국", "03": "농협" };
+const store_type = { "01": "pharmacy.png", "02": "post_office.png", "03": "nonghyup.png" };
 const mask_stock = {
   plenty: "100개 이상",
   some: "30개 이상",
@@ -23,122 +23,140 @@ const mask_stock = {
   null: "정보 없음"
 };
 
+
 async function getMaskInfo() {
   let address = addressInputEl.value;
 
-  const res = await fetch(
-    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json`
-  );
   // const res = await fetch(
-  //   `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
+  //   `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json`
   // );
+  const res = await fetch(
+    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
+  );
   const data = await res.json();
 
   return data.stores;
 }
-
+renderList()
 async function renderList() {
   const maskInfos = await getMaskInfo();
 
-  const sellMaskInfos = maskInfos.filter(info => info.remain_stat !== "break");
-
+  const sellMaskInfos = maskInfos.filter(info => (info.remain_stat !== "break") && (info.remain_stat !== null));
+  
   localStorage.setItem("searchedInfos", JSON.stringify(sellMaskInfos));
+
+  listContainer.innerHTML = `
+        <div class="info-category">
+          <div id="info-name">
+            <p>이름</p>
+          </div>
+          <div id="info-address">
+            <p>주소</p>
+          </div>
+          <div id="info-stockat">
+            <p>입고시간</p>
+          </div>
+          <div id="info-createdat">
+            <p>갱신시간</p>
+          </div>
+        </div>
+          `;
 
   sellMaskInfos.forEach(info => {
     const infoEl = document.createElement("div");
-    infoEl.classList.add(`search-list`);
-    infoEl.classList.add(`${info.remain_stat}`);
+    infoEl.classList.add(`info-list`);
 
     infoEl.innerHTML = `
-    <div class="first-line">
-      <p class="name">${info.name}</p>
-      <p class="type">${store_type[`${info.type}`]}</p>
-    </div>
-    <div class="second-line">
-      <p><strong>주소</strong>: ${info.addr}</p>
-    </div>
-    <div class="third-line">
-      <p class="category"><strong>재고량</strong></p>
-      <p class="content">${mask_stock[`${info.remain_stat}`]}</p>
-
-      <p class="category"><strong>입고시간</strong></p>
-      <p class="content">${info.stock_at}</p>
-
-      <p class="category"><strong>정보갱신</strong></p>
-      <p class="content">${info.created_at}</p>
-    </div>
-  </div>
+        <div class="info-name">
+          <p>${info.name}</p>
+        </div>
+        <div class="info-address">
+          <p>${info.addr}</p>
+        </div>
+        <div class="info-stockat">
+          <p>${info.stock_at}</p>
+        </div>
+        <div class="info-createdat">
+          <p>${info.created_at}</p>
+        </div>
+        <div class="store-type">
+          <img src="/images/${store_type[`${info.type}`]}" class="store-img">
+        </div>
     `;
-
+    const circle = infoEl.querySelector('.store-type')
+    circle.classList.add(`${info.remain_stat}`)
+    
     listContainer.appendChild(infoEl);
   });
+  // const circle = document.querySelectorAll('.store-type')
+  // console.log(circle)
+  // circle.forEach(item => item.classList.add(`${item.innerText}`))
 }
 
 function filterMaskStock() {
-  console.log(this.id);
-
   const totalStock = JSON.parse(localStorage.getItem("searchedInfos"));
   let filteredStock;
   if (this.id === "all") {
     filteredStock = totalStock;
-  } else if (this.id === 'sort') {
-
+  } else if (this.id === "sort") {
   } else {
     filteredStock = totalStock.filter(info => info.remain_stat == this.id);
   }
 
-  // let filteredStock;
-
-  // if (this.id === "all") {
-  //   filteredStock = totalStock;
-  // } else if (this.id === "sort") {
-  //   // 수정 필요
-  //   filteredStock = totalStock;
-  // } else {
-  //   filteredStock = totalStock.filter(info => {
-  //     info.remain_stat == this.id;
-  //   });
-  // }
-  console.log(filteredStock);
-
-  // if (filteredStock == undefined) {
-  //   return false;
-  // }
-
-  listContainer.innerHTML = "";
-  filteredStock.forEach(info => {
-    const infoEl = document.createElement("div");
-    infoEl.classList.add(`search-list`);
-    infoEl.classList.add(`${info.remain_stat}`);
-
-    infoEl.innerHTML = `
-    <div class="first-line">
-      <p class="name">${info.name}</p>
-      <p class="type">${store_type[`${info.type}`]}</p>
+  listContainer.innerHTML = `
+  <div class="info-category">
+    <div id="info-name">
+      <p>이름</p>
     </div>
-    <div class="second-line">
-      <p><strong>주소</strong>: ${info.addr}</p>
+    <div id="info-address">
+      <p>주소</p>
     </div>
-    <div class="third-line">
-      <p class="category"><strong>재고량</strong></p>
-      <p class="content">${mask_stock[`${info.remain_stat}`]}</p>
-
-      <p class="category"><strong>입고시간</strong></p>
-      <p class="content">${info.stock_at}</p>
-
-      <p class="category"><strong>정보갱신</strong></p>
-      <p class="content">${info.created_at}</p>
+    <div id="info-stockat">
+      <p>입고시간</p>
+    </div>
+    <div id="info-createdat">
+      <p>갱신시간</p>
     </div>
   </div>
     `;
+  filteredStock.forEach(info => {
+    const infoEl = document.createElement("div");
+    infoEl.classList.add(`info-list`);
+    
+    // ${store_type[`${info.type}`]}
+    infoEl.innerHTML = `
+      <div class="info-name">
+        <p>${info.name}</p>
+      </div>
+      <div class="info-address">
+        <p>${info.addr}</p>
+      </div>
+      <div class="info-stockat">
+        <p>${info.stock_at}</p>
+      </div>
+      <div class="info-createdat">
+        <p>${info.created_at}</p>
+      </div>
+      <div class="store-type">
+        ${info.remain_stat}
+      </div>
+    `;
+    
+    const circle = infoEl.querySelector('.store-type')
+    circle.classList.add(`${info.remain_stat}`)
 
     listContainer.appendChild(infoEl);
   });
 }
 
-renderList();
+// renderList();
 
 searchBtn.addEventListener("click", renderList);
+addressInputEl.addEventListener("keypress", function(e) {
+  if (e.key == "Enter") {
+    searchBtn.click();
+  }
+});
 
 allMask.addEventListener("click", filterMaskStock);
 plentyMask.addEventListener("click", filterMaskStock);
