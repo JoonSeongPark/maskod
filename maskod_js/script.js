@@ -5,7 +5,7 @@ document.cookie = "safeCookie3=foo; SameSite=None; Secure";
 const addressInputEl = document.getElementById("address");
 const searchBtn = document.getElementById("search");
 const listContainer = document.getElementById("list-container");
-const navLogoEl = document.getElementById('nav-left')
+const navLogoEl = document.getElementById("nav-left");
 const headerEl = document.getElementById("header");
 const footerEl = document.getElementById("footer");
 
@@ -30,8 +30,26 @@ const mask_stock = {
   null: "정보 없음"
 };
 
-localStorage.clear()
+localStorage.clear();
 
+function setTimeDiff(time) {
+  const now = Date.parse(new Date());
+  const date = Date.parse(`${time}`);
+  const timeDiff = (now - date) / 1000;
+  const sec = 60
+  const min = sec*60
+  const hour = min*24
+  
+  if (timeDiff < sec){
+    return `${timeDiff} 초 전`
+  } else if (timeDiff < min) {
+    return `${Math.floor(timeDiff / sec)} 분 전`
+  } else if (timeDiff < hour) {
+    return `${Math.floor(timeDiff / min)} 시간 전`
+  } else {
+    return `${Math.floor(timeDiff / hour)} 일 전`
+  }
+}
 
 function setInfoCategory() {
   listContainer.innerHTML = `
@@ -55,7 +73,7 @@ function setInfoCategory() {
 function getInfoElinnerHTML(info) {
   const infoEl = document.createElement("div");
   infoEl.classList.add(`info-list`);
-  infoEl.setAttribute('id', 'info-list')
+  infoEl.setAttribute("id", "info-list");
 
   infoEl.innerHTML = `
   <div class="info-name">
@@ -65,10 +83,10 @@ function getInfoElinnerHTML(info) {
     <p>${info.addr}</p>
   </div>
   <div class="info-stockat">
-    <p>${info.stock_at}</p>
+    <p>${setTimeDiff(info.stock_at)}</p>
   </div>
   <div class="info-createdat">
-    <p>${info.created_at}</p>
+    <p>${setTimeDiff(info.created_at)}</p>
   </div>
   <div class="store-type">
     <img src="/images/${store_type[`${info.type}`]}" class="store-img">
@@ -87,20 +105,18 @@ function getInfoElinnerHTML(info) {
 
 // renderList();
 
-
 function setFooterPosition() {
   const windowHeight = window.innerHeight;
   const navHeight = 60;
   const headerHeight = headerEl.offsetHeight;
   const footerHeight = footerEl.offsetHeight;
   const listHeight = listContainer.offsetHeight;
-  
-  if (windowHeight-navHeight-headerHeight-footerHeight < listHeight) {
-    footerEl.style.position = 'relative';
-  } else {
-    footerEl.style.position = 'absolute';
-  }
 
+  if (windowHeight - navHeight - headerHeight - footerHeight < listHeight) {
+    footerEl.style.position = "relative";
+  } else {
+    footerEl.style.position = "absolute";
+  }
 }
 
 async function getMaskInfo() {
@@ -118,12 +134,12 @@ async function getMaskInfo() {
 }
 
 async function renderList() {
-  if (addressInputEl.value == '') {
-    return false
+  if (addressInputEl.value == "") {
+    return false;
   }
 
   const maskInfos = await getMaskInfo();
-  
+
   const sellMaskInfos = maskInfos.filter(
     info => info.remain_stat !== "break" && info.remain_stat !== null
   );
@@ -136,27 +152,24 @@ async function renderList() {
     getInfoElinnerHTML(info);
   });
 
-  setFooterPosition()
+  setFooterPosition();
 
   if (maskInfos != null) {
-    
-    const listEl = document.querySelectorAll('.go-map')
-    
+    const listEl = document.querySelectorAll(".go-map");
+
     listEl.forEach(el => {
-      el.addEventListener('click', e=> {
-        const searchText = e.target.getAttribute('searchtext')
-        window.open(`https://map.naver.com/v5/search/${searchText}`)
-      })
-    })
-    
+      el.addEventListener("click", e => {
+        const searchText = e.target.getAttribute("searchtext");
+        window.open(`https://map.naver.com/v5/search/${searchText}`);
+      });
+    });
   }
-  
 }
 
 function filterMaskStock() {
   const totalStock = JSON.parse(localStorage.getItem("searchedInfos"));
   if (totalStock == null) {
-    return false
+    return false;
   }
   let filteredStock;
   if (this.id === "all") {
@@ -172,7 +185,7 @@ function filterMaskStock() {
     getInfoElinnerHTML(info);
   });
 
-  setFooterPosition()
+  setFooterPosition();
 }
 
 searchBtn.addEventListener("click", renderList);
@@ -182,13 +195,12 @@ addressInputEl.addEventListener("keypress", function(e) {
   }
 });
 
-navLogoEl.addEventListener('click',() => {
-  window.location.reload()
-})
+navLogoEl.addEventListener("click", () => {
+  window.location.reload();
+});
 
 allMask.addEventListener("click", filterMaskStock);
 plentyMask.addEventListener("click", filterMaskStock);
 someMask.addEventListener("click", filterMaskStock);
 fewMask.addEventListener("click", filterMaskStock);
 emptyMask.addEventListener("click", filterMaskStock);
-// sortMask.addEventListener('click',sortMaskStock)
