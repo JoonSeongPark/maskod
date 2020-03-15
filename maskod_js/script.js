@@ -89,7 +89,7 @@ function getInfoElinnerHTML(info) {
     <p>${setTimeDiff(info.created_at)}</p>
   </div>
   <div class="store-type">
-    <img src="/images/${store_type[`${info.type}`]}" class="store-img">
+    <img src="images/${store_type[`${info.type}`]}" class="store-img">
   </div>
   <div class="go-map" searchtext="${info.addr}, ${info.name}">
     <h3>지도에서 위치보기</h3>
