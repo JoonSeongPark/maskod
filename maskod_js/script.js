@@ -29,6 +29,9 @@ const mask_stock = {
   null: "정보 없음"
 };
 
+localStorage.clear()
+
+
 function setInfoCategory() {
   listContainer.innerHTML = `
   <div class="info-category">
@@ -79,13 +82,13 @@ function getInfoElinnerHTML(info) {
 // renderList();
 
 function setFooterPosition() {
-  const scrollHeight = document.body.scrollHeight;
+  const windowHeight = window.innerHeight;
   const navHeight = 60;
   const headerHeight = headerEl.offsetHeight;
   const footerHeight = footerEl.offsetHeight;
   const listHeight = listContainer.offsetHeight;
-
-  if (scrollHeight-navHeight-headerHeight-footerHeight < listHeight) {
+  
+  if (windowHeight-navHeight-headerHeight-footerHeight < listHeight) {
     footerEl.style.position = 'relative';
   } else {
     footerEl.style.position = 'absolute';
