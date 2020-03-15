@@ -1,0 +1,30 @@
+nav {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  padding: 15px 25px;
+  color: #000;
+  background-color: rgb(244, 244, 244, 0.1);
+  border-bottom: 1px solid #ddd;
+  height: 60px;
+  width: 100%;
+  float: left;
+  z-index: 10000;
+}
+
+nav .nav-left {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav .nav-logo {
+  height: 100%;
+  width: auto;
+  margin-right: 11px;
+}
+
+nav span {
+  font-size: 20px;
+  color: #000
+}

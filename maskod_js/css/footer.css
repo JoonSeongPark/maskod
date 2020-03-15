@@ -1,0 +1,39 @@
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--main-color);
+  width: 100%;
+}
+
+footer .inner-foot {
+  position: relative;
+  padding: 38px 0 10px 0;
+  width: 960px;
+  max-width: 80vw;
+  margin: 0 auto;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #f4f4f4;
+}
+
+footer .footer-title {
+  border-bottom: 1px solid #f4f4f4;
+  padding: 10px;
+  font-size: 18px;
+}
+
+footer .footer-contents {
+  padding: 20px 5px;
+  line-height: 1.6;
+}
+footer span {
+  color: #81ceff;
+}
+footer a {
+  color: #f4f4f4;
+}
+footer a:hover {
+  color: #81ceff;
+}
+
