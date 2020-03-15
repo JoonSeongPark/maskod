@@ -8,6 +8,11 @@
       type="text/css"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="images/maskod_favicon.png"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>마스크어디?</title>
   </head>
@@ -20,7 +25,7 @@
       <span>목</span>
       <span>금</span> -->
     </nav>
-    <header>
+    <header id='header'>
       <h1>
         마스크 어디?
       </h1>
@@ -41,77 +46,70 @@
           class="address"
           placeholder="'구'나 '동' 단위까지 입력하세요."
         />
-        <button id="search"><i class="fa fa-search fa-lg"></i></button>
+        <button id="search"><i class="fa fa-search"></i></button>
       </div>
 
       <div class="stock-info">
         <ul>
           <li id="all">
             <div class="stock-box">
-              <div class="stock-text">
-                전체보기
-              </div>
+              전체보기
             </div>
           </li>
           <li id="plenty">
             <div class="stock-box">
-              <div class="stock-text">
-                100 개
-                <span class="icon"
-                  ><i class="fa fa-arrow-circle-up fa-lg"></i
-                ></span>
-              </div>
+              100 개
+              <i class="fa fa-arrow-circle-up fa-lg icon"></i>
             </div>
           </li>
           <li id="some">
             <div class="stock-box">
-              <div class="stock-text">
-                30 개
-                <span class="icon"
-                  ><i class="fa fa-arrow-circle-up fa-lg"></i
-                ></span>
-              </div>
+              30 개
+              <i class="fa fa-arrow-circle-up fa-lg icon"></i>
             </div>
           </li>
           <li id="few">
             <div class="stock-box">
-              <div class="stock-text">
-                1 개
-                <span class="icon"
-                  ><i class="fa fa-arrow-circle-up fa-lg"></i
-                ></span>
-              </div>
+              1 개
+              <i class="fa fa-arrow-circle-up fa-lg icon"></i>
             </div>
           </li>
           <li id="empty">
             <div class="stock-box">
-              <div class="stock-text">
-                0 개
-                <span class="icon"
-                  ><i class="fa fa-times-circle fa-lg"></i
-                ></span>
-              </div>
+              0 개 <i class="fa fa-times-circle fa-lg icon"></i>
             </div>
           </li>
           <li id="sort">
             <div class="stock-box">
-              <div class="stock-text">
-                재고순정렬
-              </div>
+              재고순정렬
             </div>
           </li>
         </ul>
       </div>
     </header>
 
-    <hr style="width: 90vw; max-width: 1200px;">
+    <hr style="width: 90vw; max-width: 1200px;" />
 
-    <div id="list-container">
+    <div class="list-container" id="list-container"></div>
+
+    <footer id="footer">
+      <div class="inner-foot">
+        <div class="footer-title">
+          2020 MASK OD
+        </div>
+        <div class="footer-contents">
+          <p>Built by. <span>JoonSeong Park</span></p>
+          <p>email : rytt@yonsei.ac.kr</p>
+          <p>
+            github :
+            <a href="https://github.com/joonseongpark"
+              >https://github.com/joonseongpark</a
+            >
+          </p>
+        </div>
       </div>
-
-    <footer>
-      <p>Footer Contents Area 입니다.</p>
     </footer>
+
     <script src="script.js"></script>
   </body>
 </html>

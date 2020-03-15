@@ -5,6 +5,8 @@ document.cookie = "safeCookie3=foo; SameSite=None; Secure";
 const addressInputEl = document.getElementById("address");
 const searchBtn = document.getElementById("search");
 const listContainer = document.getElementById("list-container");
+const headerEl = document.getElementById("header");
+const footerEl = document.getElementById("footer");
 
 const allMask = document.getElementById("all");
 const plentyMask = document.getElementById("plenty");
@@ -13,7 +15,11 @@ const fewMask = document.getElementById("few");
 const emptyMask = document.getElementById("empty");
 const sortMask = document.getElementById("sort");
 
-const store_type = { "01": "pharmacy.png", "02": "post_office.png", "03": "nonghyup.png" };
+const store_type = {
+  "01": "pharmacy.png",
+  "02": "post_office.png",
+  "03": "nonghyup.png"
+};
 const mask_stock = {
   plenty: "100개 이상",
   some: "30개 이상",
@@ -23,86 +29,7 @@ const mask_stock = {
   null: "정보 없음"
 };
 
-
-async function getMaskInfo() {
-  let address = addressInputEl.value;
-
-  // const res = await fetch(
-  //   `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json`
-  // );
-  const res = await fetch(
-    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
-  );
-  const data = await res.json();
-
-  return data.stores;
-}
-renderList()
-async function renderList() {
-  const maskInfos = await getMaskInfo();
-
-  const sellMaskInfos = maskInfos.filter(info => (info.remain_stat !== "break") && (info.remain_stat !== null));
-  
-  localStorage.setItem("searchedInfos", JSON.stringify(sellMaskInfos));
-
-  listContainer.innerHTML = `
-        <div class="info-category">
-          <div id="info-name">
-            <p>이름</p>
-          </div>
-          <div id="info-address">
-            <p>주소</p>
-          </div>
-          <div id="info-stockat">
-            <p>입고시간</p>
-          </div>
-          <div id="info-createdat">
-            <p>갱신시간</p>
-          </div>
-        </div>
-          `;
-
-  sellMaskInfos.forEach(info => {
-    const infoEl = document.createElement("div");
-    infoEl.classList.add(`info-list`);
-
-    infoEl.innerHTML = `
-        <div class="info-name">
-          <p>${info.name}</p>
-        </div>
-        <div class="info-address">
-          <p>${info.addr}</p>
-        </div>
-        <div class="info-stockat">
-          <p>${info.stock_at}</p>
-        </div>
-        <div class="info-createdat">
-          <p>${info.created_at}</p>
-        </div>
-        <div class="store-type">
-          <img src="/images/${store_type[`${info.type}`]}" class="store-img">
-        </div>
-    `;
-    const circle = infoEl.querySelector('.store-type')
-    circle.classList.add(`${info.remain_stat}`)
-    
-    listContainer.appendChild(infoEl);
-  });
-  // const circle = document.querySelectorAll('.store-type')
-  // console.log(circle)
-  // circle.forEach(item => item.classList.add(`${item.innerText}`))
-}
-
-function filterMaskStock() {
-  const totalStock = JSON.parse(localStorage.getItem("searchedInfos"));
-  let filteredStock;
-  if (this.id === "all") {
-    filteredStock = totalStock;
-  } else if (this.id === "sort") {
-  } else {
-    filteredStock = totalStock.filter(info => info.remain_stat == this.id);
-  }
-
+function setInfoCategory() {
   listContainer.innerHTML = `
   <div class="info-category">
     <div id="info-name">
@@ -119,37 +46,103 @@ function filterMaskStock() {
     </div>
   </div>
     `;
-  filteredStock.forEach(info => {
-    const infoEl = document.createElement("div");
-    infoEl.classList.add(`info-list`);
-    
-    // ${store_type[`${info.type}`]}
-    infoEl.innerHTML = `
-      <div class="info-name">
-        <p>${info.name}</p>
-      </div>
-      <div class="info-address">
-        <p>${info.addr}</p>
-      </div>
-      <div class="info-stockat">
-        <p>${info.stock_at}</p>
-      </div>
-      <div class="info-createdat">
-        <p>${info.created_at}</p>
-      </div>
-      <div class="store-type">
-        ${info.remain_stat}
-      </div>
-    `;
-    
-    const circle = infoEl.querySelector('.store-type')
-    circle.classList.add(`${info.remain_stat}`)
+}
 
-    listContainer.appendChild(infoEl);
-  });
+function getInfoElinnerHTML(info) {
+  const infoEl = document.createElement("div");
+  infoEl.classList.add(`info-list`);
+
+  infoEl.innerHTML = `
+  <div class="info-name">
+    <p>${info.name}</p>
+  </div>
+  <div class="info-address">
+    <p>${info.addr}</p>
+  </div>
+  <div class="info-stockat">
+    <p>${info.stock_at}</p>
+  </div>
+  <div class="info-createdat">
+    <p>${info.created_at}</p>
+  </div>
+  <div class="store-type">
+    <img src="/images/${store_type[`${info.type}`]}" class="store-img">
+  </div>
+  `;
+
+  const circle = infoEl.querySelector(".store-type");
+  circle.classList.add(`${info.remain_stat}`);
+
+  listContainer.appendChild(infoEl);
 }
 
 // renderList();
+
+function setFooterPosition() {
+  const scrollHeight = document.body.scrollHeight;
+  const navHeight = 60;
+  const headerHeight = headerEl.offsetHeight;
+  const footerHeight = footerEl.offsetHeight;
+  const listHeight = listContainer.offsetHeight;
+
+  if (scrollHeight-navHeight-headerHeight-footerHeight < listHeight) {
+    footerEl.style.position = 'relative';
+  } else {
+    footerEl.style.position = 'absolute';
+  }
+
+}
+
+async function getMaskInfo() {
+  let address = addressInputEl.value;
+
+  // const res = await fetch(
+  //   `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json`
+  // );
+  const res = await fetch(
+    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
+  );
+  const data = await res.json();
+
+  return data.stores;
+}
+
+async function renderList() {
+  const maskInfos = await getMaskInfo();
+
+  const sellMaskInfos = maskInfos.filter(
+    info => info.remain_stat !== "break" && info.remain_stat !== null
+  );
+
+  localStorage.setItem("searchedInfos", JSON.stringify(sellMaskInfos));
+
+  setInfoCategory();
+
+  sellMaskInfos.forEach(info => {
+    getInfoElinnerHTML(info);
+  });
+
+  setFooterPosition()
+}
+
+function filterMaskStock() {
+  const totalStock = JSON.parse(localStorage.getItem("searchedInfos"));
+  let filteredStock;
+  if (this.id === "all") {
+    filteredStock = totalStock;
+  } else if (this.id === "sort") {
+  } else {
+    filteredStock = totalStock.filter(info => info.remain_stat == this.id);
+  }
+
+  setInfoCategory();
+
+  filteredStock.forEach(info => {
+    getInfoElinnerHTML(info);
+  });
+
+  setFooterPosition()
+}
 
 searchBtn.addEventListener("click", renderList);
 addressInputEl.addEventListener("keypress", function(e) {
