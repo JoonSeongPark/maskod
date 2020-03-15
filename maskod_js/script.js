@@ -5,6 +5,7 @@ document.cookie = "safeCookie3=foo; SameSite=None; Secure";
 const addressInputEl = document.getElementById("address");
 const searchBtn = document.getElementById("search");
 const listContainer = document.getElementById("list-container");
+const navLogoEl = document.getElementById('nav-left')
 const headerEl = document.getElementById("header");
 const footerEl = document.getElementById("footer");
 
@@ -54,6 +55,7 @@ function setInfoCategory() {
 function getInfoElinnerHTML(info) {
   const infoEl = document.createElement("div");
   infoEl.classList.add(`info-list`);
+  infoEl.setAttribute('id', 'info-list')
 
   infoEl.innerHTML = `
   <div class="info-name">
@@ -71,6 +73,10 @@ function getInfoElinnerHTML(info) {
   <div class="store-type">
     <img src="/images/${store_type[`${info.type}`]}" class="store-img">
   </div>
+  <div class="go-map" searchtext="${info.addr}, ${info.name}">
+    <h3>지도에서 위치보기</h3>
+  </div>
+  </div>
   `;
 
   const circle = infoEl.querySelector(".store-type");
@@ -80,6 +86,7 @@ function getInfoElinnerHTML(info) {
 }
 
 // renderList();
+
 
 function setFooterPosition() {
   const windowHeight = window.innerHeight;
@@ -111,8 +118,12 @@ async function getMaskInfo() {
 }
 
 async function renderList() {
-  const maskInfos = await getMaskInfo();
+  if (addressInputEl.value == '') {
+    return false
+  }
 
+  const maskInfos = await getMaskInfo();
+  
   const sellMaskInfos = maskInfos.filter(
     info => info.remain_stat !== "break" && info.remain_stat !== null
   );
@@ -126,10 +137,27 @@ async function renderList() {
   });
 
   setFooterPosition()
+
+  if (maskInfos != null) {
+    
+    const listEl = document.querySelectorAll('.go-map')
+    
+    listEl.forEach(el => {
+      el.addEventListener('click', e=> {
+        const searchText = e.target.getAttribute('searchtext')
+        window.open(`https://map.naver.com/v5/search/${searchText}`)
+      })
+    })
+    
+  }
+  
 }
 
 function filterMaskStock() {
   const totalStock = JSON.parse(localStorage.getItem("searchedInfos"));
+  if (totalStock == null) {
+    return false
+  }
   let filteredStock;
   if (this.id === "all") {
     filteredStock = totalStock;
@@ -153,6 +181,10 @@ addressInputEl.addEventListener("keypress", function(e) {
     searchBtn.click();
   }
 });
+
+navLogoEl.addEventListener('click',() => {
+  window.location.reload()
+})
 
 allMask.addEventListener("click", filterMaskStock);
 plentyMask.addEventListener("click", filterMaskStock);
