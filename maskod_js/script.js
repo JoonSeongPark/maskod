@@ -8,9 +8,9 @@ const listContainer = document.getElementById("list-container");
 const navLogoEl = document.getElementById("nav-left");
 const headerEl = document.getElementById("header");
 const footerEl = document.getElementById("footer");
-const mapModalEl = document.getElementById('map-modal-container')
-const mapHeader = document.getElementById('map-header')
-const mapCloseBtn = document.getElementById('map-close-btn')
+const mapModalEl = document.getElementById("map-modal-container");
+const mapHeader = document.getElementById("map-header");
+const mapCloseBtn = document.getElementById("map-close-btn");
 
 const allMask = document.getElementById("all");
 const plentyMask = document.getElementById("plenty");
@@ -18,6 +18,9 @@ const someMask = document.getElementById("some");
 const fewMask = document.getElementById("few");
 const emptyMask = document.getElementById("empty");
 const sortMask = document.getElementById("sort");
+
+const screenHeight = screen.height
+
 
 const store_type = {
   "01": "pharmacy.png",
@@ -39,16 +42,16 @@ localStorage.clear();
 function setInfoCategory() {
   listContainer.innerHTML = `
   <div class="info-category">
-  <div id="info-name">
+  <div class="info-name">
       <p>이름</p>
     </div>
-    <div id="info-address">
+    <div class="info-address">
       <p>주소</p>
       </div>
-    <div id="info-stockat">
+    <div class="info-stockat">
     <p>입고시간</p>
     </div>
-    <div id="info-createdat">
+    <div class="info-createdat">
     <p>갱신시간</p>
     </div>
     </div>
@@ -77,9 +80,9 @@ function getInfoElinnerHTML(info) {
   <div class="store-type">
     <img src="images/${store_type[`${info.type}`]}" class="store-img">
   </div>
-  <div class="go-map" name="${info.name}" searchtext="${info.addr}, ${info.name}" lat="${
-    info.lat
-  }" lng="${info.lng}">
+  <div class="go-map" name="${info.name}" searchtext="${info.addr}, ${
+    info.name
+  }" lat="${info.lat}" lng="${info.lng}">
     <h3>지도에서 위치보기</h3>
   </div>
     `;
@@ -114,38 +117,39 @@ function setTimeDiff(time) {
 
 // See on a map
 function openMap(element) {
-
   element.forEach(el => {
     el.addEventListener("click", e => {
       const lat = e.target.getAttribute("lat");
       const lng = e.target.getAttribute("lng");
       const name = e.target.getAttribute("name");
-      const position = new naver.maps.LatLng(lat, lng)
+      const position = new naver.maps.LatLng(lat, lng);
       const mapOptions = {
-        center: position.destinationPoint(270,555),
-        zoom: 15
+        center: position,
+        // center: position.destinationPoint(270, 555),
+        zoom: 16
       };
-      
-      const mapDiv = document.getElementById('map-body')
-      mapDiv.innerHTML =''
+
+      const mapDiv = document.getElementById("map-body");
+      mapDiv.innerHTML = "";
       const map = new naver.maps.Map(mapDiv, mapOptions);
 
       const markerOptions = {
         position: position,
         map: map,
         icon: {
-          content: '<img src="images/map-marker.png" alt="marker" class="map-marker">',
+          content:
+            '<img src="images/map-marker.png" alt="marker" class="map-marker">',
           size: new naver.maps.Size(22, 35),
           anchor: new naver.maps.Point(11, 35)
-      }
-    }
-      const marker = new naver.maps.Marker(markerOptions)
-      mapHeader.innerHTML = `<h3>${name}</h3>`
-      mapModalEl.classList.add('show-map-modal')
+        }
+      };
+      const marker = new naver.maps.Marker(markerOptions);
+      mapHeader.innerHTML = `<h3>${name}</h3>`;
+      mapModalEl.classList.add("show-map-modal");
     });
   });
 }
-
+setFooterPosition();
 // Footer position setting
 function setFooterPosition() {
   const windowHeight = window.innerHeight;
@@ -155,6 +159,12 @@ function setFooterPosition() {
   const listHeight = listContainer.offsetHeight;
 
   if (windowHeight - navHeight - headerHeight - footerHeight < listHeight) {
+    footerEl.style.position = "relative";
+  } else {
+    footerEl.style.position = "fixed";
+  }
+
+  if (navHeight + headerHeight + footerHeight > windowHeight) {
     footerEl.style.position = "relative";
   } else {
     footerEl.style.position = "fixed";
@@ -201,8 +211,7 @@ async function renderList() {
   if (maskInfos != null) {
     const listEl = document.querySelectorAll(".go-map");
 
-    openMap(listEl)
-
+    openMap(listEl);
   }
 }
 
@@ -229,7 +238,6 @@ function filterMaskStock() {
   setFooterPosition();
 }
 
-
 // EventListners
 
 searchBtn.addEventListener("click", renderList);
@@ -238,6 +246,12 @@ addressInputEl.addEventListener("keypress", function(e) {
     searchBtn.click();
   }
 });
+
+window.addEventListener('resize', () =>{
+  if (screenHeight == screen.height){
+    setFooterPosition()
+  }
+})
 
 navLogoEl.addEventListener("click", () => {
   window.location.reload();
@@ -253,6 +267,6 @@ window.addEventListener("click", e =>
   e.target == mapModalEl ? mapModalEl.classList.remove("show-map-modal") : false
 );
 
-mapCloseBtn.addEventListener('click', () =>{
-  mapModalEl.classList.remove('show-map-modal')
-})
+mapCloseBtn.addEventListener("click", () => {
+  mapModalEl.classList.remove("show-map-modal");
+});

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon:Regular');
+@import url("https://fonts.googleapis.com/css?family=Do+Hyeon:Regular");
 
 * {
   box-sizing: border-box;
@@ -62,6 +62,7 @@ header div p {
 .filter input {
   border: 1px solid rgba(0, 0, 0, 0.2);
   width: 30vw;
+  min-width: 350px;
   padding: 5px 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -94,7 +95,6 @@ header div p {
 .stock-info ul li {
   color: #f4f4f4;
   font-size: 12px;
-  font-weight: bold;
   display: inline-block;
   margin: 0 8px;
   border-radius: 20px;
@@ -147,29 +147,6 @@ header div p {
   padding-left: 5px;
 }
 
-.search-list {
-  position: relative;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin: 15px 0;
-  display: flex;
-  flex-direction: column;
-  width: 80vw;
-  max-width: 800px;
-  border: 2px solid;
-  background-color: rgba(0, 0, 0, 0.01);
-}
-
-p.content {
-  width: 23%;
-  text-align: center;
-  font-size: 13px;
-  margin: 0 18px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-}
-
 .list-container {
   display: flex;
   flex-direction: column;
@@ -179,8 +156,9 @@ p.content {
 .info-category {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: relative;
-  padding: 10px 20px;
+  padding: 10px 18px;
   margin-bottom: 30px;
   width: 80vw;
   max-width: 800px;
@@ -191,7 +169,7 @@ p.content {
 
 .info-list {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   position: relative;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -209,7 +187,7 @@ p.content {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,29 +204,28 @@ p.content {
   opacity: 1;
 }
 
-#info-name {
+
+.info-category .info-name {
   width: 20%;
   padding: 0 3px;
 }
-#info-address {
+.info-category .info-address {
   width: 50%;
   padding: 0 3px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
-#info-stockat {
+.info-category .info-stockat {
   width: 15%;
-  text-align: center;
 }
-#info-createdat {
+.info-category .info-createdat {
   width: 15%;
-  text-align: center;
 }
 .info-name {
   width: 20%;
   padding: 0 3px;
   padding-left: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .info-address {
   width: 50%;
@@ -297,4 +274,83 @@ p.content {
 }
 .empty {
   border-color: var(--empty-color);
+}
+@media (max-width: 900px) {
+  .list-container {
+    font-size: 14px;
+  }
+  .info-category {
+    letter-spacing: 2px;
+  }
+}
+@media (max-width: 700px) {
+  .list-container {
+    font-size: 12px;
+  }
+  .info-category {
+    padding: 8px 8px;
+  }
+  .info-list {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  header p {
+    padding: 0 20px;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+  }
+  header div p {
+    font-size: 14px;
+  }
+  .filter input {
+    min-width: 0;
+    width: 60vw;
+  }
+  .stock-info ul {
+    margin: 6px 0;
+  }
+  .stock-info ul li {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+  .icon {
+    padding: 1px 0 0 1px;
+  }
+  .list-container {
+    font-size: 10px;
+  }
+  .info-category {
+    letter-spacing: 1px;
+    padding: 6px 4px;
+  }
+  .info-category .info-address {
+    width: 40%;
+  }
+  .info-category .stockat {
+    padding-left: 5px;
+  }
+  .info-list {
+    padding: 6px;
+  }
+  .info-address{
+    width: 40%;
+  }
+  .info-stockat {
+    padding-left: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  header div p {
+    font-size: 12px;
+  }
+  .stock-info ul {
+    margin: 4px 0;
+  }
+  .stock-info ul li {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
 }

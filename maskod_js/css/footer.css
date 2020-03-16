@@ -37,3 +37,19 @@ footer a:hover {
   color: #81ceff;
 }
 
+@media (max-width: 500px){
+  footer .inner-foot {
+    padding: 10px 0 5px 0;
+    font-size:12px;
+  }
+
+  footer .footer-title {
+    font-size: 16px;
+  }
+  
+  footer .footer-contents {
+    padding: 10px 5px;
+    line-height: 1.3;
+  }
+}
+
