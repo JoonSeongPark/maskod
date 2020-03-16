@@ -15,7 +15,10 @@
     />
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/mapModal.css" />
     <link rel="stylesheet" href="css/style.css" />
+
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4xqibgw4if"></script>
     <title>마스크 어디?</title>
   </head>
   <body>
@@ -91,6 +94,18 @@
     <hr style="width: 90vw; max-width: 1200px;" />
 
     <div class="list-container" id="list-container"></div>
+
+    <div class="map-modal-container" id="map-modal-container">
+      <div class='map-modal'>
+        <button class="map-close-btn" id="map-close-btn">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="map-header" id="map-header">
+        </div>
+        <div class="map-body" id="map-body">
+        </div>
+      </div>
+    </div>
 
     <footer id="footer">
       <div class="inner-foot">

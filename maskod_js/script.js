@@ -8,6 +8,9 @@ const listContainer = document.getElementById("list-container");
 const navLogoEl = document.getElementById("nav-left");
 const headerEl = document.getElementById("header");
 const footerEl = document.getElementById("footer");
+const mapModalEl = document.getElementById('map-modal-container')
+const mapHeader = document.getElementById('map-header')
+const mapCloseBtn = document.getElementById('map-close-btn')
 
 const allMask = document.getElementById("all");
 const plentyMask = document.getElementById("plenty");
@@ -32,44 +35,27 @@ const mask_stock = {
 
 localStorage.clear();
 
-function setTimeDiff(time) {
-  const now = Date.parse(new Date());
-  const date = Date.parse(`${time}`);
-  const timeDiff = (now - date) / 1000;
-  const sec = 60
-  const min = sec*60
-  const hour = min*24
-  
-  if (timeDiff < sec){
-    return `${timeDiff} 초 전`
-  } else if (timeDiff < min) {
-    return `${Math.floor(timeDiff / sec)} 분 전`
-  } else if (timeDiff < hour) {
-    return `${Math.floor(timeDiff / min)} 시간 전`
-  } else {
-    return `${Math.floor(timeDiff / hour)} 일 전`
-  }
-}
-
+// Category part setting
 function setInfoCategory() {
   listContainer.innerHTML = `
   <div class="info-category">
-    <div id="info-name">
+  <div id="info-name">
       <p>이름</p>
     </div>
     <div id="info-address">
       <p>주소</p>
-    </div>
+      </div>
     <div id="info-stockat">
-      <p>입고시간</p>
+    <p>입고시간</p>
     </div>
     <div id="info-createdat">
-      <p>갱신시간</p>
+    <p>갱신시간</p>
     </div>
-  </div>
+    </div>
     `;
 }
 
+// list form setting
 function getInfoElinnerHTML(info) {
   const infoEl = document.createElement("div");
   infoEl.classList.add(`info-list`);
@@ -91,11 +77,12 @@ function getInfoElinnerHTML(info) {
   <div class="store-type">
     <img src="images/${store_type[`${info.type}`]}" class="store-img">
   </div>
-  <div class="go-map" searchtext="${info.addr}, ${info.name}">
+  <div class="go-map" name="${info.name}" searchtext="${info.addr}, ${info.name}" lat="${
+    info.lat
+  }" lng="${info.lng}">
     <h3>지도에서 위치보기</h3>
   </div>
-  </div>
-  `;
+    `;
 
   const circle = infoEl.querySelector(".store-type");
   circle.classList.add(`${info.remain_stat}`);
@@ -103,8 +90,50 @@ function getInfoElinnerHTML(info) {
   listContainer.appendChild(infoEl);
 }
 
-// renderList();
+renderList();
 
+// Time expression
+function setTimeDiff(time) {
+  const now = Date.parse(new Date());
+  const date = Date.parse(`${time}`);
+  const timeDiff = (now - date) / 1000;
+  const sec = 60;
+  const min = sec * 60;
+  const hour = min * 24;
+
+  if (timeDiff < sec) {
+    return `${timeDiff} 초 전`;
+  } else if (timeDiff < min) {
+    return `${Math.floor(timeDiff / sec)} 분 전`;
+  } else if (timeDiff < hour) {
+    return `${Math.floor(timeDiff / min)} 시간 전`;
+  } else {
+    return `${Math.floor(timeDiff / hour)} 일 전`;
+  }
+}
+
+// See on a map
+function openMap(element) {
+
+  element.forEach(el => {
+    el.addEventListener("click", e => {
+      const lat = e.target.getAttribute("lat");
+      const lng = e.target.getAttribute("lng");
+      const name = e.target.getAttribute("name");
+      const mapOptions = {
+        center: new naver.maps.LatLng(lat, lng),
+        zoom: 15
+      };
+      const mapDiv = document.getElementById('map-body')
+      mapDiv.innerHTML =''
+      const map = new naver.maps.Map(mapDiv, mapOptions);
+      mapHeader.innerHTML = `<h3>${name}</h3>`
+      mapModalEl.classList.add('show-map-modal')
+    });
+  });
+}
+
+// Footer position setting
 function setFooterPosition() {
   const windowHeight = window.innerHeight;
   const navHeight = 60;
@@ -115,10 +144,11 @@ function setFooterPosition() {
   if (windowHeight - navHeight - headerHeight - footerHeight < listHeight) {
     footerEl.style.position = "relative";
   } else {
-    footerEl.style.position = "absolute";
+    footerEl.style.position = "fixed";
   }
 }
 
+// Mask information data request
 async function getMaskInfo() {
   let address = addressInputEl.value;
 
@@ -133,6 +163,7 @@ async function getMaskInfo() {
   return data.stores;
 }
 
+// Render data list
 async function renderList() {
   if (addressInputEl.value == "") {
     return false;
@@ -157,15 +188,12 @@ async function renderList() {
   if (maskInfos != null) {
     const listEl = document.querySelectorAll(".go-map");
 
-    listEl.forEach(el => {
-      el.addEventListener("click", e => {
-        const searchText = e.target.getAttribute("searchtext");
-        window.open(`https://map.naver.com/v5/search/${searchText}`);
-      });
-    });
+    openMap(listEl)
+
   }
 }
 
+// Filter mask list
 function filterMaskStock() {
   const totalStock = JSON.parse(localStorage.getItem("searchedInfos"));
   if (totalStock == null) {
@@ -188,6 +216,9 @@ function filterMaskStock() {
   setFooterPosition();
 }
 
+
+// EventListners
+
 searchBtn.addEventListener("click", renderList);
 addressInputEl.addEventListener("keypress", function(e) {
   if (e.key == "Enter") {
@@ -204,3 +235,11 @@ plentyMask.addEventListener("click", filterMaskStock);
 someMask.addEventListener("click", filterMaskStock);
 fewMask.addEventListener("click", filterMaskStock);
 emptyMask.addEventListener("click", filterMaskStock);
+
+window.addEventListener("click", e =>
+  e.target == mapModalEl ? mapModalEl.classList.remove("show-map-modal") : false
+);
+
+mapCloseBtn.addEventListener('click', () =>{
+  mapModalEl.classList.remove('show-map-modal')
+})
