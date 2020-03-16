@@ -120,13 +120,26 @@ function openMap(element) {
       const lat = e.target.getAttribute("lat");
       const lng = e.target.getAttribute("lng");
       const name = e.target.getAttribute("name");
+      const position = new naver.maps.LatLng(lat, lng)
       const mapOptions = {
-        center: new naver.maps.LatLng(lat, lng),
+        center: position.destinationPoint(270,555),
         zoom: 15
       };
+      
       const mapDiv = document.getElementById('map-body')
       mapDiv.innerHTML =''
       const map = new naver.maps.Map(mapDiv, mapOptions);
+
+      const markerOptions = {
+        position: position,
+        map: map,
+        icon: {
+          content: '<img src="images/map-marker.png" alt="marker" class="map-marker">',
+          size: new naver.maps.Size(22, 35),
+          anchor: new naver.maps.Point(11, 35)
+      }
+    }
+      const marker = new naver.maps.Marker(markerOptions)
       mapHeader.innerHTML = `<h3>${name}</h3>`
       mapModalEl.classList.add('show-map-modal')
     });

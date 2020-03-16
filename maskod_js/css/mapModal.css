@@ -1,8 +1,8 @@
 .map-modal-container {
-  background-color: rgba(0,0,0,0.6);
-  display:none;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -10,18 +10,18 @@
 }
 
 .map-modal-container.show-map-modal {
-  display:block;
+  display: block;
 }
 
 .map-modal {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   position: absolute;
   overflow: hidden;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   max-width: 100%;
   width: 400px;
   animation-name: modalopen;
@@ -37,34 +37,45 @@
   margin: 0;
 }
 
-
 .map-modal-container .map-body {
-  width:100%;
+  width: 100%;
   height: 400px;
 }
 
 .map-modal-container .map-close-btn {
   cursor: pointer;
   border: 0;
-  background: transparent;
   position: absolute;
-  right:0;
-  top:0;
+  right: 0;
+  top: 0;
+  padding: 12px;
+  background: transparent;
   font-size: 20px;
   color: #fff;
-  padding: 15px 16px;
   outline: none;
 }
+
 .map-modal-container .map-close-btn:active {
   font-size: 22px;
-  padding: 14px 15px;
+  padding: 11px;
 }
 
+.map-marker {
+  margin: 0px;
+  padding: 0px;
+  border: 0px solid transparent;
+  display: block;
+  -webkit-user-select: none;
+  position: absolute;
+  width: auto;
+  height: 45px;
+  left: 0px;
+  top: 0px;
+}
 @keyframes modalopen {
   from {
     opacity: 0;
   }
-  
   to {
     opacity: 1;
   }
