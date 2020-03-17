@@ -270,6 +270,12 @@ function filterMaskStock() {
   });
 
   setFooterPosition();
+
+  if (filteredStock != null) {
+    const listEl = document.querySelectorAll(".go-map");
+
+    openMap(listEl);
+  }
 }
 
 // EventListners
@@ -281,7 +287,6 @@ addressInputEl.addEventListener("keypress", function(e) {
   }
 });
 
-// addressInputEl.addEventListener('focus',setTimeOut(setFooterPosition(),1000))
 addressInputEl.addEventListener("focus", () => {
   setTimeout(setFooterPosition, 1000);
 });
