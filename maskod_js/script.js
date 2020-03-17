@@ -172,7 +172,7 @@ firstFooterPosition();
 
 // Footer position setting at first
 function firstFooterPosition() {
-  const windowHeight = screen.height;
+  const windowHeight = window.innerHeight
   const navHeight = 60;
   const headerHeight = headerEl.offsetHeight;
   const hrHeight = 10;
@@ -188,7 +188,7 @@ function firstFooterPosition() {
 
 // Footer position setting at rendering
 function setFooterPosition() {
-  const windowHeight = screen.height;
+  const windowHeight = window.innerHeight
   const navHeight = 60;
   const headerHeight = headerEl.offsetHeight;
   const hrHeight = 10;
@@ -196,8 +196,7 @@ function setFooterPosition() {
   const listHeight = listContainer.offsetHeight;
   const heightSum =
     navHeight + headerHeight + footerHeight + hrHeight + listHeight;
-  console.log(windowHeight);
-  console.log(heightSum);
+  
   if (windowHeight < heightSum) {
     footerEl.style.position = "relative";
   } else {
