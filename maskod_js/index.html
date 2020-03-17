@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="css/mapModal.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4xqibgw4if"></script>
+    <script
+      type="text/javascript"
+      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4xqibgw4if"
+    ></script>
     <title>마스크 어디?</title>
   </head>
   <body>
@@ -93,17 +96,72 @@
 
     <hr style="width: 90vw; max-width: 1200px;" />
 
-    <div class="list-container" id="list-container"></div>
+    <div class="list-container" id="list-container">
+      <h1>마스크 5부제</h1>
+      <div class="fifth-day-mask">
+        <div class="days">
+          <div class="days-header">
+            <p>월</p>
+          </div>
+          <div class="days-content" id="mon">
+            <h3>1·6</h3>
+          </div>
+        </div>
+        <div class="days">
+          <div class="days-header">
+            <p>화</p>
+          </div>
+          <div class="days-content" id="tue">
+            <h3>2·7</h3>
+          </div>
+        </div>
+        <div class="days">
+          <div class="days-header">
+            <p>수</p>
+          </div>
+          <div class="days-content" id="wed">
+            <h3>3·8</h3>
+          </div>
+        </div>
+        <div class="days">
+          <div class="days-header">
+            <p>목</p>
+          </div>
+          <div class="days-content" id="thu">
+            <h3>4·9</h3>
+          </div>
+        </div>
+        <div class="days">
+          <div class="days-header">
+            <p>금</p>
+          </div>
+          <div class="days-content" id="fri">
+            <h3>5·0</h3>
+          </div>
+        </div>
+        <div class="days">
+          <div class="days-header" id="weekend">
+            <p>토·일</p>
+          </div>
+          <div class="days-content" id="sat-sun">
+            <p>주간</p>
+            <p>미구매자</p>
+          </div>
+        </div>
+      </div>
+      <div class="fifth-explain">
+        <p>※출생연도 끝자리 기준, 신분증 지참 필수</p>
+        <p>모든 영업소에서 요일별로 1주일에 1인당 2매씩 마스크 구입을 제한</p>
+      </div>
+    </div>
 
     <div class="map-modal-container" id="map-modal-container">
-      <div class='map-modal'>
+      <div class="map-modal">
         <button class="map-close-btn" id="map-close-btn">
           <i class="fa fa-times"></i>
         </button>
-        <div class="map-header" id="map-header">
-        </div>
-        <div class="map-body" id="map-body">
-        </div>
+        <div class="map-header" id="map-header"></div>
+        <div class="map-body" id="map-body"></div>
       </div>
     </div>
 

@@ -19,8 +19,12 @@ const fewMask = document.getElementById("few");
 const emptyMask = document.getElementById("empty");
 const sortMask = document.getElementById("sort");
 
-const screenHeight = screen.height
-
+const mon = document.getElementById("mon");
+const tue = document.getElementById("tue");
+const wed = document.getElementById("wed");
+const thu = document.getElementById("thu");
+const fri = document.getElementById("fri");
+const satSun = document.getElementById("sat-sun");
 
 const store_type = {
   "01": "pharmacy.png",
@@ -124,8 +128,7 @@ function openMap(element) {
       const name = e.target.getAttribute("name");
       const position = new naver.maps.LatLng(lat, lng);
       const mapOptions = {
-        center: position,
-        // center: position.destinationPoint(270, 555),
+        center: position.destinationPoint(270, 555),
         zoom: 16
       };
 
@@ -149,22 +152,53 @@ function openMap(element) {
     });
   });
 }
-setFooterPosition();
-// Footer position setting
-function setFooterPosition() {
-  const windowHeight = window.innerHeight;
+
+fifthdays();
+
+// fifth days mask
+function fifthdays() {
+  const today = new Date();
+  const day = today.getDay();
+  const days = { 0: satSun, 1: mon, 2: tue, 3: wed, 4: thu, 5: fri, 6: satSun };
+  
+  const contentChange =
+    "font-size:larger; color:#000; border-bottom-left-radius:4px;border-bottom-right-radius:4px;";
+  const boxChange = "transform:translate(0,-10%);"
+  days[day].style.cssText = contentChange;
+  days[day].parentElement.style.cssText = boxChange;
+}
+
+firstFooterPosition();
+
+// Footer position setting at first
+function firstFooterPosition() {
+  const windowHeight = screen.height;
   const navHeight = 60;
   const headerHeight = headerEl.offsetHeight;
+  const hrHeight = 10;
   const footerHeight = footerEl.offsetHeight;
   const listHeight = listContainer.offsetHeight;
+  const heightSum =
+    navHeight + headerHeight + footerHeight + hrHeight + listHeight;
 
-  if (windowHeight - navHeight - headerHeight - footerHeight < listHeight) {
-    footerEl.style.position = "relative";
-  } else {
+  if (windowHeight > heightSum) {
     footerEl.style.position = "fixed";
   }
+}
 
-  if (navHeight + headerHeight + footerHeight > windowHeight) {
+// Footer position setting at rendering
+function setFooterPosition() {
+  const windowHeight = screen.height;
+  const navHeight = 60;
+  const headerHeight = headerEl.offsetHeight;
+  const hrHeight = 10;
+  const footerHeight = footerEl.offsetHeight;
+  const listHeight = listContainer.offsetHeight;
+  const heightSum =
+    navHeight + headerHeight + footerHeight + hrHeight + listHeight;
+  console.log(windowHeight);
+  console.log(heightSum);
+  if (windowHeight < heightSum) {
     footerEl.style.position = "relative";
   } else {
     footerEl.style.position = "fixed";
@@ -247,11 +281,11 @@ addressInputEl.addEventListener("keypress", function(e) {
   }
 });
 
-window.addEventListener('resize', () =>{
-  if (screenHeight == screen.height){
-    setFooterPosition()
-  }
-})
+// addressInputEl.addEventListener('focus',setTimeOut(setFooterPosition(),1000))
+addressInputEl.addEventListener("focus", () => {
+  setTimeout(setFooterPosition, 1000);
+});
+addressInputEl.addEventListener("focusout", setFooterPosition);
 
 navLogoEl.addEventListener("click", () => {
   window.location.reload();
