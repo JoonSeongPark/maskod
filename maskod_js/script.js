@@ -44,7 +44,7 @@ localStorage.clear();
 
 // Category part setting
 function setInfoCategory() {
-  listContainer.innerHTML = `
+  listContainer.innerHTML += `
   <div class="info-category">
   <div class="info-name">
       <p>이름</p>
@@ -160,10 +160,10 @@ function fifthdays() {
   const today = new Date();
   const day = today.getDay();
   const days = { 0: satSun, 1: mon, 2: tue, 3: wed, 4: thu, 5: fri, 6: satSun };
-  
+
   const contentChange =
     "font-size:larger; color:#000; border-bottom-left-radius:4px;border-bottom-right-radius:4px;";
-  const boxChange = "transform:translate(0,-10%);"
+  const boxChange = "transform:translate(0,-10%);";
   days[day].style.cssText = contentChange;
   days[day].parentElement.style.cssText = boxChange;
 }
@@ -172,7 +172,7 @@ setFooterPosition();
 
 // Footer position setting at rendering
 function setFooterPosition() {
-  const windowHeight = window.innerHeight
+  const windowHeight = window.innerHeight;
   const navHeight = 60;
   const headerHeight = headerEl.offsetHeight;
   const hrHeight = 10;
@@ -180,7 +180,7 @@ function setFooterPosition() {
   const listHeight = listContainer.offsetHeight;
   const heightSum =
     navHeight + headerHeight + footerHeight + hrHeight + listHeight;
-  
+
   if (windowHeight <= heightSum) {
     footerEl.style.position = "relative";
   } else {
@@ -206,6 +206,7 @@ async function getMaskInfo() {
 // Render data list
 async function renderList() {
   if (addressInputEl.value == "") {
+    setFooterPosition();
     return false;
   }
 
@@ -214,9 +215,14 @@ async function renderList() {
   const sellMaskInfos = maskInfos.filter(
     info => info.remain_stat !== "break" && info.remain_stat !== null
   );
-
+  if (sellMaskInfos == "") {
+    listContainer.innerHTML = "<h2>검색결과가 없습니다.</h2>";
+    setFooterPosition();
+    return false;
+  }
   localStorage.setItem("searchedInfos", JSON.stringify(sellMaskInfos));
 
+  listContainer.innerHTML = `<p class='search-result'><span>${sellMaskInfos.length}</span> 개의 장소가 검색되었습니다.</p>`;
   setInfoCategory();
 
   sellMaskInfos.forEach(info => {
@@ -236,6 +242,7 @@ async function renderList() {
 function filterMaskStock() {
   const totalStock = JSON.parse(localStorage.getItem("searchedInfos"));
   if (totalStock == null) {
+    setFooterPosition();
     return false;
   }
   let filteredStock;
@@ -244,6 +251,14 @@ function filterMaskStock() {
   } else if (this.id === "sort") {
   } else {
     filteredStock = totalStock.filter(info => info.remain_stat == this.id);
+  }
+
+  if (filteredStock.length == 0) {
+    listContainer.innerHTML = `<p class='search-result'>정렬 결과가 존재하지 않습니다.</p>`;
+    setFooterPosition();
+    return false;
+  } else {
+    listContainer.innerHTML = `<p class='search-result'><span>${filteredStock.length}</span> 개의 장소가 정렬되었습니다.</p>`;
   }
 
   setInfoCategory();
@@ -270,15 +285,7 @@ addressInputEl.addEventListener("keypress", function(e) {
   }
 });
 
-
-// addressInputEl.addEventListener("focus", () => {
-//   setTimeout(setFooterPosition, 100);
-// });
-// addressInputEl.addEventListener("focusout", () => {
-//   setTimeout(setFooterPosition, 100);
-// });
-
-window.addEventListener('resize', setFooterPosition)
+window.addEventListener("resize", setFooterPosition);
 
 navLogoEl.addEventListener("click", () => {
   window.location.reload();
