@@ -1,6 +1,6 @@
 nav {
   position: fixed;
-  top:0;
+  top: 0;
   padding: 15px 25px;
   color: #000;
   background-color: rgb(244, 244, 244, 0.9);
@@ -26,5 +26,32 @@ nav .nav-logo {
 
 nav span {
   font-size: 20px;
-  color: #000
+}
+
+@media (max-width: 500px) {
+  nav {
+    padding: 10px 20px;
+    height: 40px;
+  }
+  nav .nav-logo {
+    margin-right: 7px;
+  }
+
+  nav span {
+    font-size: 14px;
+  }
+
+  @media (max-width: 400px) {
+    nav {
+      padding: 8px 10px;
+      height: 35px;
+    }
+    nav .nav-logo {
+      margin-right: 7px;
+    }
+
+    nav span {
+      font-size: 12px;
+    }
+  }
 }

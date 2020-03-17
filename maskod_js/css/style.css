@@ -344,6 +344,9 @@ header div p {
   }
 }
 @media (max-width: 700px) {
+  header h1 {
+    margin-top: 12px;
+  }
   .list-container {
     font-size: 12px;
   }
@@ -369,6 +372,9 @@ header div p {
 }
 
 @media (max-width: 500px) {
+  header {
+    margin-top: 40px;
+  }
   header p {
     padding: 0 20px;
     letter-spacing: 0;
@@ -376,6 +382,9 @@ header div p {
   }
   header div p {
     font-size: 14px;
+  }
+  .filter {
+    margin: 10px 0;
   }
   .filter input {
     min-width: 0;
@@ -433,11 +442,18 @@ header div p {
 }
 
 @media (max-width: 400px) {
+  header {
+    margin-top:35px;
+  }
   header div p {
     font-size: 12px;
   }
   .filter input {
     font-size: 11px;
+    padding: 2px 10px;
+  }
+  .filter button {
+    padding: 2px 10px;
   }
   .stock-info ul li {
     font-size: 11px;
