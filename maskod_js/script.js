@@ -168,23 +168,7 @@ function fifthdays() {
   days[day].parentElement.style.cssText = boxChange;
 }
 
-firstFooterPosition();
-
-// Footer position setting at first
-function firstFooterPosition() {
-  const windowHeight = window.innerHeight
-  const navHeight = 60;
-  const headerHeight = headerEl.offsetHeight;
-  const hrHeight = 10;
-  const footerHeight = footerEl.offsetHeight;
-  const listHeight = listContainer.offsetHeight;
-  const heightSum =
-    navHeight + headerHeight + footerHeight + hrHeight + listHeight;
-
-  if (windowHeight > heightSum) {
-    footerEl.style.position = "fixed";
-  }
-}
+setFooterPosition();
 
 // Footer position setting at rendering
 function setFooterPosition() {
@@ -197,7 +181,7 @@ function setFooterPosition() {
   const heightSum =
     navHeight + headerHeight + footerHeight + hrHeight + listHeight;
   
-  if (windowHeight < heightSum) {
+  if (windowHeight <= heightSum) {
     footerEl.style.position = "relative";
   } else {
     footerEl.style.position = "fixed";
@@ -286,10 +270,15 @@ addressInputEl.addEventListener("keypress", function(e) {
   }
 });
 
-addressInputEl.addEventListener("focus", () => {
-  setTimeout(setFooterPosition, 1000);
-});
-addressInputEl.addEventListener("focusout", setFooterPosition);
+
+// addressInputEl.addEventListener("focus", () => {
+//   setTimeout(setFooterPosition, 100);
+// });
+// addressInputEl.addEventListener("focusout", () => {
+//   setTimeout(setFooterPosition, 100);
+// });
+
+window.addEventListener('resize', setFooterPosition)
 
 navLogoEl.addEventListener("click", () => {
   window.location.reload();
