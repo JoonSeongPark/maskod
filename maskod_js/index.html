@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/mapModal.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <script
       type="text/javascript"
@@ -28,7 +28,7 @@
     <nav>
       <div class="nav-left" id="nav-left">
         <img src="images/maskod_logo.png" alt="Logo" class="nav-logo" />
-        <span>Mask Or Disease</span>
+        <span>Mask OD</span>
       </div>
     </nav>
     <header id="header">
@@ -36,67 +36,80 @@
         마스크 어디?
       </h1>
       <p>< <strong>Mask O</strong>r <strong>D</strong>isease ></p>
-      <div>
-        <p>
-          주소를 기준으로 해당 지역에 존재하는 판매처 및 재고 상태 등의 정보
-          제공.
-        </p>
-        <p>예시: '서울특별시 강남구' or '서울특별시 강남구 논현동'</p>
-        <p>('서울특별시' 와 같이 '시'단위만 입력하는 것은 불가능합니다.)</p>
+      <div class="header-content"></div>
+
+      <div class="address-select">
+        <div class="select-head">
+          <h3>1. 주소 선택하기</h3>
+          <p>
+            : 선택된 주소를 기준으로 정보 제공.
+          </p>
+        </div>
+        <div class="select-content">
+          <select class="top-area" id="top-area"> </select>
+          <select class="second-area" id="second-area"> </select>
+          <select class="third-area" id="third-area"> </select>
+          <select class="fourth-area" id="fourth-area"> </select>
+          <button id="select-search"><i class="fa fa-search"></i></button>
+        </div>
       </div>
 
-      <div class="filter">
+      <!-- <div class="search-box">
         <input
           type="text"
           id="address"
           class="address"
           placeholder="예시: 서울특별시 강남구 논현동"
         />
-        <button id="search"><i class="fa fa-search"></i></button>
-      </div>
+        <button id="typing-search"><i class="fa fa-search"></i></button>
+      </div> -->
 
-      <div class="stock-info">
-        <ul>
-          <li id="all">
-            <div class="stock-box">
-              전체보기
-            </div>
-          </li>
-          <li id="plenty">
-            <div class="stock-box">
-              100개
-              <i class="fa fa-arrow-circle-up fa-lg icon"></i>
-            </div>
-          </li>
-          <li id="some">
-            <div class="stock-box">
-              30개
-              <i class="fa fa-arrow-circle-up fa-lg icon"></i>
-            </div>
-          </li>
-          <li id="few">
-            <div class="stock-box">
-              1개
-              <i class="fa fa-arrow-circle-up fa-lg icon"></i>
-            </div>
-          </li>
-          <li id="empty">
-            <div class="stock-box">
-              0개 <i class="fa fa-times-circle fa-lg icon"></i>
-            </div>
-          </li>
-          <li id="sort">
-            <div class="stock-box">
-              재고순정렬
-            </div>
-          </li>
-        </ul>
-      </div>
     </header>
-
+    
     <hr style="width: 90vw; max-width: 1200px;" />
 
+    <div class="stock-info" id="stock-info">
+      <p>마스크 개수 기준 정렬</p>
+      
+      <ul>
+        <li id="all">
+          <div class="stock-box">
+            전체보기
+          </div>
+        </li>
+        <li id="plenty">
+          <div class="stock-box">
+            100개
+            <i class="fa fa-arrow-circle-up fa-lg icon"></i>
+          </div>
+        </li>
+        <li id="some">
+          <div class="stock-box">
+            30개
+            <i class="fa fa-arrow-circle-up fa-lg icon"></i>
+          </div>
+        </li>
+        <li id="few">
+          <div class="stock-box">
+            1개
+            <i class="fa fa-arrow-circle-up fa-lg icon"></i>
+          </div>
+        </li>
+        <li id="empty">
+          <div class="stock-box">
+            0개 <i class="fa fa-times-circle fa-lg icon"></i>
+          </div>
+        </li>
+        <li id="sort">
+          <div class="stock-box">
+            재고순정렬
+          </div>
+        </li>
+      </ul>
+    </div>    
+
     <div class="list-container" id="list-container">
+
       <h1>마스크 5부제</h1>
       <div class="fifth-day-mask">
         <div class="days">
@@ -183,6 +196,11 @@
       </div>
     </footer>
 
+    <script src="js/constants.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/fifthDays.js"></script>
+    <script src="js/mapModal.js"></script>
+    <script src="js/timeDiff.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

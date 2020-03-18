@@ -3,15 +3,12 @@ document.cookie = "safeCookie2=foo";
 document.cookie = "safeCookie3=foo; SameSite=None; Secure";
 
 const addressInputEl = document.getElementById("address");
-const searchBtn = document.getElementById("search");
-const listContainer = document.getElementById("list-container");
+const selectSearchBtn = document.getElementById("select-search");
+const typingSearchBtn = document.getElementById("typing-search");
+// listContainer in footer.js
 const navLogoEl = document.getElementById("nav-left");
-const headerEl = document.getElementById("header");
-const footerEl = document.getElementById("footer");
-const mapModalEl = document.getElementById("map-modal-container");
-const mapHeader = document.getElementById("map-header");
-const mapCloseBtn = document.getElementById("map-close-btn");
 
+const stockInfoEl = document.getElementById("stock-info");
 const allMask = document.getElementById("all");
 const plentyMask = document.getElementById("plenty");
 const someMask = document.getElementById("some");
@@ -19,28 +16,88 @@ const fewMask = document.getElementById("few");
 const emptyMask = document.getElementById("empty");
 const sortMask = document.getElementById("sort");
 
-const mon = document.getElementById("mon");
-const tue = document.getElementById("tue");
-const wed = document.getElementById("wed");
-const thu = document.getElementById("thu");
-const fri = document.getElementById("fri");
-const satSun = document.getElementById("sat-sun");
-
-const store_type = {
-  "01": "pharmacy.png",
-  "02": "post_office.png",
-  "03": "nonghyup.png"
-};
-const mask_stock = {
-  plenty: "100개 이상",
-  some: "30개 이상",
-  few: "1개 이상",
-  empty: "재고 없음",
-  break: "판매 중지",
-  null: "정보 없음"
-};
+const topAreaEl = document.getElementById("top-area");
+const secondAreaEl = document.getElementById("second-area");
+const thirdAreaEl = document.getElementById("third-area");
+const fourthAreaEl = document.getElementById("fourth-area");
 
 localStorage.clear();
+
+// topArea setting
+setTopArea();
+function setTopArea() {
+  topAreaEl.innerHTML = "<option value=''>주소선택</option>";
+  for (let tArea in adArea) {
+    topAreaEl.innerHTML += `<option value="${tArea}" class="options">${tArea}</option>`;
+  }
+}
+
+// secondArea setting
+function setSecondArea(e) {
+  thirdAreaEl.value = ''
+  fourthAreaEl.value = ''
+
+  thirdAreaEl.style.display = "none";
+  fourthAreaEl.style.display = "none";
+
+  const secondArea = adArea[e.target.value].subArea;
+  if (Array.isArray(secondArea)) {
+    secondAreaEl.innerHTML =
+      "<option value='' class='options'>전체검색</option>";
+    secondArea.forEach(item => {
+      secondAreaEl.innerHTML += `<option value="${item}" class="options">${item}</option>`;
+    });
+  } else {
+    secondAreaEl.innerHTML = "<option value=''>주소선택</option>";
+    for (let sArea in secondArea) {
+      secondAreaEl.innerHTML += `<option value="${sArea}" class="options">${sArea}</option>`;
+    }
+  }
+  secondAreaEl.style.display = "block";
+}
+// thirdArea setting
+function setThirdArea(e) {
+  fourthAreaEl.value = ''
+
+  fourthAreaEl.style.display = "none";
+
+  let arrCheck = adArea[topAreaEl.value].subArea;
+  if (Array.isArray(arrCheck)) {
+    return false;
+  }
+
+  const thirdArea = adArea[topAreaEl.value].subArea[e.target.value].subArea;
+  if (Array.isArray(thirdArea)) {
+    thirdAreaEl.innerHTML =
+      "<option value='' class='options'>전체검색</option>";
+    thirdArea.forEach(item => {
+      thirdAreaEl.innerHTML += `<option value="${item}" class="options">${item}</option>`;
+    });
+  } else {
+    thirdAreaEl.innerHTML = "<option value=''>주소선택</option>";
+    for (let sArea in thirdArea) {
+      thirdAreaEl.innerHTML += `<option value="${sArea}" class="options">${sArea}</option>`;
+    }
+  }
+  thirdAreaEl.style.display = "block";
+}
+// fourthArea setting
+function setFourthArea(e) {
+  let arrCheck = adArea[topAreaEl.value].subArea[secondAreaEl.value].subArea;
+  if (Array.isArray(arrCheck)) {
+    return false;
+  } else {
+    const fourthArea =
+      adArea[topAreaEl.value].subArea[secondAreaEl.value].subArea[
+        e.target.value
+      ].subArea;
+    fourthAreaEl.innerHTML = "<option>전체검색</option>";
+    fourthArea.forEach(item => {
+      fourthAreaEl.innerHTML += `<option>${item}</option>`;
+    });
+  }
+  fourthAreaEl.style.display = "block";
+}
 
 // Category part setting
 function setInfoCategory() {
@@ -97,100 +154,9 @@ function getInfoElinnerHTML(info) {
   listContainer.appendChild(infoEl);
 }
 
-renderList();
-
-// Time expression
-function setTimeDiff(time) {
-  const now = Date.parse(new Date());
-  const date = Date.parse(`${time}`);
-  const timeDiff = (now - date) / 1000;
-  const sec = 60;
-  const min = sec * 60;
-  const hour = min * 24;
-
-  if (timeDiff < sec) {
-    return `${timeDiff} 초 전`;
-  } else if (timeDiff < min) {
-    return `${Math.floor(timeDiff / sec)} 분 전`;
-  } else if (timeDiff < hour) {
-    return `${Math.floor(timeDiff / min)} 시간 전`;
-  } else {
-    return `${Math.floor(timeDiff / hour)} 일 전`;
-  }
-}
-
-// See on a map
-function openMap(element) {
-  element.forEach(el => {
-    el.addEventListener("click", e => {
-      const lat = e.target.getAttribute("lat");
-      const lng = e.target.getAttribute("lng");
-      const name = e.target.getAttribute("name");
-      const position = new naver.maps.LatLng(lat, lng);
-      const mapOptions = {
-        center: position.destinationPoint(270, 555),
-        zoom: 16
-      };
-
-      const mapDiv = document.getElementById("map-body");
-      mapDiv.innerHTML = "";
-      const map = new naver.maps.Map(mapDiv, mapOptions);
-
-      const markerOptions = {
-        position: position,
-        map: map,
-        icon: {
-          content:
-            '<img src="images/map-marker.png" alt="marker" class="map-marker">',
-          size: new naver.maps.Size(22, 35),
-          anchor: new naver.maps.Point(11, 35)
-        }
-      };
-      const marker = new naver.maps.Marker(markerOptions);
-      mapHeader.innerHTML = `<h3>${name}</h3>`;
-      mapModalEl.classList.add("show-map-modal");
-    });
-  });
-}
-
-fifthdays();
-
-// fifth days mask
-function fifthdays() {
-  const today = new Date();
-  const day = today.getDay();
-  const days = { 0: satSun, 1: mon, 2: tue, 3: wed, 4: thu, 5: fri, 6: satSun };
-
-  const contentChange =
-    "font-size:larger; color:#000; border-bottom-left-radius:4px;border-bottom-right-radius:4px;";
-  const boxChange = "transform:translate(0,-10%);";
-  days[day].style.cssText = contentChange;
-  days[day].parentElement.style.cssText = boxChange;
-}
-
-setFooterPosition();
-
-// Footer position setting at rendering
-function setFooterPosition() {
-  const windowHeight = window.innerHeight;
-  const navHeight = 60;
-  const headerHeight = headerEl.offsetHeight;
-  const hrHeight = 10;
-  const footerHeight = footerEl.offsetHeight;
-  const listHeight = listContainer.offsetHeight;
-  const heightSum =
-    navHeight + headerHeight + footerHeight + hrHeight + listHeight;
-
-  if (windowHeight <= heightSum) {
-    footerEl.style.position = "relative";
-  } else {
-    footerEl.style.position = "fixed";
-  }
-}
-
 // Mask information data request
-async function getMaskInfo() {
-  let address = addressInputEl.value;
+async function getMaskInfo(addinput) {
+  let address = addinput;
 
   // const res = await fetch(
   //   `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json`
@@ -204,25 +170,34 @@ async function getMaskInfo() {
 }
 
 // Render data list
-async function renderList() {
-  if (addressInputEl.value == "") {
+async function renderList(e) {
+  let addressInput
+  if (this.id == "select-search") {
+    addressInput = `${topAreaEl.value} ${secondAreaEl.value} ${thirdAreaEl.value} ${fourthAreaEl.value}`.trim();
+  } else if (this.id == "typing-search") {
+    addressInput = addressInputEl.value;
+  }
+  console.log(addressInput)
+  if (addressInput == "") {
     setFooterPosition();
     return false;
   }
 
-  const maskInfos = await getMaskInfo();
+  const maskInfos = await getMaskInfo(addressInput);
 
   const sellMaskInfos = maskInfos.filter(
     info => info.remain_stat !== "break" && info.remain_stat !== null
   );
   if (sellMaskInfos == "") {
+    stockInfoEl.style.display = "none";
     listContainer.innerHTML = "<h2>검색결과가 없습니다.</h2>";
     setFooterPosition();
     return false;
   }
   localStorage.setItem("searchedInfos", JSON.stringify(sellMaskInfos));
 
-  listContainer.innerHTML = `<p class='search-result'><span>${sellMaskInfos.length}</span> 개의 장소가 검색되었습니다.</p>`;
+  stockInfoEl.style.display = "block";
+  listContainer.innerHTML = `<h2 class='search-result'><span>${sellMaskInfos.length}</span> 개의 장소가 검색되었습니다.</h2>`;
   setInfoCategory();
 
   sellMaskInfos.forEach(info => {
@@ -254,11 +229,11 @@ function filterMaskStock() {
   }
 
   if (filteredStock.length == 0) {
-    listContainer.innerHTML = `<p class='search-result'>정렬 결과가 존재하지 않습니다.</p>`;
+    listContainer.innerHTML = `<h2 class='search-result'>정렬 결과가 존재하지 않습니다.</h2>`;
     setFooterPosition();
     return false;
   } else {
-    listContainer.innerHTML = `<p class='search-result'><span>${filteredStock.length}</span> 개의 장소가 정렬되었습니다.</p>`;
+    listContainer.innerHTML = `<h2 class='search-result'><span>${filteredStock.length}</span> 개의 장소가 정렬되었습니다.</h2>`;
   }
 
   setInfoCategory();
@@ -278,29 +253,29 @@ function filterMaskStock() {
 
 // EventListners
 
-searchBtn.addEventListener("click", renderList);
-addressInputEl.addEventListener("keypress", function(e) {
-  if (e.key == "Enter") {
-    searchBtn.click();
-  }
-});
-
-window.addEventListener("resize", setFooterPosition);
-
+// nav
 navLogoEl.addEventListener("click", () => {
   window.location.reload();
 });
 
+// search
+topAreaEl.addEventListener("change", setSecondArea);
+secondAreaEl.addEventListener("change", setThirdArea);
+thirdAreaEl.addEventListener("change", setFourthArea);
+
+selectSearchBtn.addEventListener("click", renderList);
+
+// typingSearchBtn.addEventListener("click", renderList);
+
+// addressInputEl.addEventListener("keypress", function(e) {
+//   if (e.key == "Enter") {
+//     typingSearchBtn.click();
+//   }
+// });
+
+// sorting
 allMask.addEventListener("click", filterMaskStock);
 plentyMask.addEventListener("click", filterMaskStock);
 someMask.addEventListener("click", filterMaskStock);
 fewMask.addEventListener("click", filterMaskStock);
 emptyMask.addEventListener("click", filterMaskStock);
-
-window.addEventListener("click", e =>
-  e.target == mapModalEl ? mapModalEl.classList.remove("show-map-modal") : false
-);
-
-mapCloseBtn.addEventListener("click", () => {
-  mapModalEl.classList.remove("show-map-modal");
-});
