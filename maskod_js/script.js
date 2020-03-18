@@ -8,7 +8,7 @@ const typingSearchBtn = document.getElementById("typing-search");
 // listContainer in footer.js
 const navLogoEl = document.getElementById("nav-left");
 
-const stockInfoEl = document.getElementById("stock-info");
+// stockInfoEl in footer.js
 const allMask = document.getElementById("all");
 const plentyMask = document.getElementById("plenty");
 const someMask = document.getElementById("some");
