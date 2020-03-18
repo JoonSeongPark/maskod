@@ -28,72 +28,79 @@ setTopArea();
 function setTopArea() {
   topAreaEl.innerHTML = "<option value=''>주소선택</option>";
   for (let tArea in adArea) {
-    topAreaEl.innerHTML += `<option value="${tArea}" class="options">${tArea}</option>`;
+    topAreaEl.innerHTML += `<option value="${tArea}" >${tArea}</option>`;
   }
 }
 
 // secondArea setting
 function setSecondArea(e) {
-  thirdAreaEl.value = ''
-  fourthAreaEl.value = ''
+  thirdAreaEl.value = "";
+  fourthAreaEl.value = "";
 
   thirdAreaEl.style.display = "none";
   fourthAreaEl.style.display = "none";
 
-  const secondArea = adArea[e.target.value].subArea;
-  if (Array.isArray(secondArea)) {
-    secondAreaEl.innerHTML =
-      "<option value='' class='options'>전체검색</option>";
-    secondArea.forEach(item => {
-      secondAreaEl.innerHTML += `<option value="${item}" class="options">${item}</option>`;
+  if (e.target.value == "") {
+    secondAreaEl.value = "";
+    secondAreaEl.style.display = "none";
+    return false;
+  }
+
+  const secondArea = adArea[e.target.value];
+  if (Array.isArray(secondArea.subArea)) {
+    secondAreaEl.innerHTML = "<option value='' >전체검색</option>";
+    secondArea.subArea.forEach(item => {
+      secondAreaEl.innerHTML += `<option value="${item}" >${item}</option>`;
     });
   } else {
     secondAreaEl.innerHTML = "<option value=''>주소선택</option>";
     for (let sArea in secondArea) {
-      secondAreaEl.innerHTML += `<option value="${sArea}" class="options">${sArea}</option>`;
+      secondAreaEl.innerHTML += `<option value="${sArea}" >${sArea}</option>`;
     }
   }
   secondAreaEl.style.display = "block";
 }
 // thirdArea setting
 function setThirdArea(e) {
-  fourthAreaEl.value = ''
+  fourthAreaEl.value = "";
 
   fourthAreaEl.style.display = "none";
 
-  let arrCheck = adArea[topAreaEl.value].subArea;
-  if (Array.isArray(arrCheck)) {
+  if (e.target.value == "") {
+    thirdAreaEl.value = "";
+    thirdAreaEl.style.display = "none";
+    return false;
+  }
+  let arrCheck = adArea[topAreaEl.value];
+  if (Array.isArray(arrCheck.subArea)) {
     return false;
   }
 
-  const thirdArea = adArea[topAreaEl.value].subArea[e.target.value].subArea;
-  if (Array.isArray(thirdArea)) {
-    thirdAreaEl.innerHTML =
-      "<option value='' class='options'>전체검색</option>";
-    thirdArea.forEach(item => {
-      thirdAreaEl.innerHTML += `<option value="${item}" class="options">${item}</option>`;
+  const thirdArea = adArea[topAreaEl.value][e.target.value];
+  if (Array.isArray(thirdArea.subArea)) {
+    thirdAreaEl.innerHTML = "<option value='' >전체검색</option>";
+    thirdArea.subArea.forEach(item => {
+      thirdAreaEl.innerHTML += `<option value="${item}" >${item}</option>`;
     });
   } else {
     thirdAreaEl.innerHTML = "<option value=''>주소선택</option>";
-    for (let sArea in thirdArea) {
-      thirdAreaEl.innerHTML += `<option value="${sArea}" class="options">${sArea}</option>`;
+    for (let tArea in thirdArea) {
+      thirdAreaEl.innerHTML += `<option value="${tArea}" >${tArea}</option>`;
     }
   }
   thirdAreaEl.style.display = "block";
 }
 // fourthArea setting
 function setFourthArea(e) {
-  let arrCheck = adArea[topAreaEl.value].subArea[secondAreaEl.value].subArea;
+  let arrCheck = adArea[topAreaEl.value][secondAreaEl.value].subArea;
   if (Array.isArray(arrCheck)) {
     return false;
   } else {
     const fourthArea =
-      adArea[topAreaEl.value].subArea[secondAreaEl.value].subArea[
-        e.target.value
-      ].subArea;
-    fourthAreaEl.innerHTML = "<option>전체검색</option>";
+      adArea[topAreaEl.value][secondAreaEl.value][e.target.value].subArea;
+    fourthAreaEl.innerHTML = "<option value=''>전체검색</option>";
     fourthArea.forEach(item => {
-      fourthAreaEl.innerHTML += `<option>${item}</option>`;
+      fourthAreaEl.innerHTML += `<option value="${item}" >${item}</option>`;
     });
   }
   fourthAreaEl.style.display = "block";
@@ -170,18 +177,18 @@ async function getMaskInfo(addinput) {
 }
 
 // Render data list
-async function renderList(e) {
-  let addressInput
+async function renderList() {
+  let addressInput;
   if (this.id == "select-search") {
     addressInput = `${topAreaEl.value} ${secondAreaEl.value} ${thirdAreaEl.value} ${fourthAreaEl.value}`.trim();
   } else if (this.id == "typing-search") {
     addressInput = addressInputEl.value;
   }
-  console.log(addressInput)
   if (addressInput == "") {
     setFooterPosition();
     return false;
   }
+  console.log(addressInput);
 
   const maskInfos = await getMaskInfo(addressInput);
 
