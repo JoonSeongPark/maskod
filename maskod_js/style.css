@@ -579,3 +579,15 @@ header .header-content p {
     letter-spacing: 0;
   }
 }
+
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-10%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+}
