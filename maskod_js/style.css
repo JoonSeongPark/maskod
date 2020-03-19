@@ -487,6 +487,7 @@ header .header-content p {
   .list-container {
     font-size: 10px;
   }
+  
   .list-container h1 {
     font-size: 20px;
   }
@@ -499,14 +500,12 @@ header .header-content p {
   .days .days-header {
     font-size: 14px;
   }
-
+  
   .info-category {
     letter-spacing: 1px;
     padding: 6px 4px;
   }
-  .info-category .info-address {
-    width: 40%;
-  }
+
   .info-category .stockat {
     padding-left: 5px;
   }
@@ -519,6 +518,10 @@ header .header-content p {
   }
   .info-stockat {
     padding-left: 5px;
+    width: 17%;
+  }
+  .info-createdat {
+    width: 17%;
   }
 }
 
@@ -554,6 +557,7 @@ header .header-content p {
     margin: 0 3px;
     letter-spacing: 0;
   }
+
   .list-container h1 {
     font-size: 20px;
   }
@@ -580,6 +584,15 @@ header .header-content p {
   }
 }
 
+@media (max-width: 360px) {
+  .info-stockat {
+    padding-left: 5px;
+    width: 19%;
+  }
+  .info-createdat {
+    width: 19%;
+  }
+}
 
 @keyframes bounce {
   0%,

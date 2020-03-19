@@ -8,12 +8,12 @@ function setTimeDiff(time) {
   const hour = min * 24;
 
   if (timeDiff < sec) {
-    return `${timeDiff} 초 전`;
+    return `${timeDiff}초 전`;
   } else if (timeDiff < min) {
-    return `${Math.floor(timeDiff / sec)} 분 전`;
+    return `${Math.floor(timeDiff / sec)}분 전`;
   } else if (timeDiff < hour) {
-    return `${Math.floor(timeDiff / min)} 시간 전`;
+    return `${Math.floor(timeDiff / min)}시간 전`;
   } else {
-    return `${Math.floor(timeDiff / hour)} 일 전`;
+    return `${Math.floor(timeDiff / hour)}일 전`;
   }
 }
