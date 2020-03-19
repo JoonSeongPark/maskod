@@ -153,7 +153,10 @@ async function getMaskSelectInfo() {
 // Mask information data request (selector)
 async function getMaskTypeInfo() {
   const [lat, lng] = await getLatLngFromAddress();
-
+  if (lat == -1) {
+    return ''
+  }
+  
   const res = await fetch(
     `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=500`
   );
@@ -175,8 +178,12 @@ async function getLatLngFromAddress() {
     }
   );
   const data = await res.json();
-
-  return [data.documents[0].y, data.documents[0].x];
+  
+  if (data.meta.total_count != 0) {
+    return [data.documents[0].y, data.documents[0].x];
+  } else {
+    return [-1,-1]
+  }
 }
 
 // Render data list
@@ -215,7 +222,7 @@ async function renderList() {
   setFooterPosition();
 
   if (maskInfos != null) {
-    openMap()
+    openMap();
   }
 }
 
