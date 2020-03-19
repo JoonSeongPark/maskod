@@ -155,7 +155,7 @@ async function getMaskTypeInfo() {
   const [lat, lng] = await getLatLngFromAddress()
   
   const res = await fetch(
-    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=200`
+    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=500`
   );
   const data = await res.json();
 
