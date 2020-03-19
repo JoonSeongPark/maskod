@@ -34,12 +34,12 @@ function setTopArea() {
 
 // select button render setting
 function setSelectArea(e) {
-  let arrCheck
+  let arrCheck;
   let nthArea;
   let nthAreaEl;
-  
+
   if (this.id === "top-area") {
-    arrCheck = adArea
+    arrCheck = adArea;
     nthArea = adArea[e.target.value];
     nthAreaEl = secondAreaEl;
 
@@ -47,15 +47,13 @@ function setSelectArea(e) {
     fourthAreaEl.value = "";
     thirdAreaEl.style.display = "none";
     fourthAreaEl.style.display = "none";
-
   } else if (this.id === "second-area") {
-    arrCheck = adArea[topAreaEl.value]
+    arrCheck = adArea[topAreaEl.value];
     nthArea = adArea[topAreaEl.value][e.target.value];
     nthAreaEl = thirdAreaEl;
 
     fourthAreaEl.value = "";
     fourthAreaEl.style.display = "none";
-
   } else if (this.id === "third-area") {
     arrCheck = adArea[topAreaEl.value][secondAreaEl.value];
     nthArea = adArea[topAreaEl.value][secondAreaEl.value][e.target.value];
@@ -67,7 +65,7 @@ function setSelectArea(e) {
     nthAreaEl.style.display = "none";
     return false;
   }
-  console.log(arrCheck)
+
   if (Array.isArray(arrCheck.subArea)) {
     return false;
   }
@@ -141,13 +139,10 @@ function getInfoElinnerHTML(info) {
   listContainer.appendChild(infoEl);
 }
 
-// Mask information data request
-async function getMaskInfo(addinput) {
-  let address = addinput;
+// Mask information data request (selector)
+async function getMaskSelectInfo() {
+  let address = `${topAreaEl.value} ${secondAreaEl.value} ${thirdAreaEl.value} ${fourthAreaEl.value}`.trim();
 
-  // const res = await fetch(
-  //   `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json`
-  // );
   const res = await fetch(
     `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
   );
@@ -155,21 +150,46 @@ async function getMaskInfo(addinput) {
 
   return data.stores;
 }
+// Mask information data request (selector)
+async function getMaskTypeInfo() {
+  const [lat, lng] = await getLatLngFromAddress()
+  
+  const res = await fetch(
+    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=200`
+  );
+  const data = await res.json();
+
+  return data.stores;
+}
+
+async function getLatLngFromAddress() {
+  const addr = addressInputEl.value;
+
+  const res = await fetch(`https://dapi.kakao.com/v2/local/search/address.json?query=${addr}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'KakaoAK '+'f965a322d95b3d29f27e28b80af51c51'
+    }
+  });
+  const data = await res.json();
+  
+  return [data.documents[0].y, data.documents[0].x]
+}
 
 // Render data list
 async function renderList() {
-  let addressInput;
+  let maskInfos ='';
+  
   if (this.id == "select-search") {
-    addressInput = `${topAreaEl.value} ${secondAreaEl.value} ${thirdAreaEl.value} ${fourthAreaEl.value}`.trim();
+    maskInfos = await getMaskSelectInfo();
   } else if (this.id == "typing-search") {
-    addressInput = addressInputEl.value;
+    maskInfos = await getMaskTypeInfo();
   }
-  if (addressInput == "") {
+  if (maskInfos == "") {
     setFooterPosition();
     return false;
   }
 
-  const maskInfos = await getMaskInfo(addressInput);
 
   const sellMaskInfos = maskInfos.filter(
     info => info.remain_stat !== "break" && info.remain_stat !== null
@@ -237,6 +257,7 @@ function filterMaskStock() {
   }
 }
 
+
 // EventListners
 
 // nav
@@ -251,13 +272,13 @@ thirdAreaEl.addEventListener("change", setSelectArea);
 
 selectSearchBtn.addEventListener("click", renderList);
 
-// typingSearchBtn.addEventListener("click", renderList);
+typingSearchBtn.addEventListener("click", renderList);
 
-// addressInputEl.addEventListener("keypress", function(e) {
-//   if (e.key == "Enter") {
-//     typingSearchBtn.click();
-//   }
-// });
+addressInputEl.addEventListener("keypress", function(e) {
+  if (e.key == "Enter") {
+    typingSearchBtn.click();
+  }
+});
 
 // sorting
 allMask.addEventListener("click", filterMaskStock);

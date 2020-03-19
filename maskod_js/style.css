@@ -67,7 +67,7 @@ header .header-content p {
   margin: 20px 0;
 }
 .select-head {
-  color:#333
+  color:#333;
 }
 
 .select-content {
@@ -115,9 +115,17 @@ header .header-content p {
 
 /* search-box part */
 .search-box {
+  margin: 20px 0;
+}
+
+.search-head {
+  color:#333;
+}
+
+.search-content {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .search-box input {

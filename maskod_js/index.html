@@ -22,6 +22,12 @@
       type="text/javascript"
       src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4xqibgw4if"
     ></script>
+
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5ad63ac3a7db0b4f1da25b7f8ceb9fdc&libraries=services"
+    ></script>
+
     <title>마스크 어디?</title>
   </head>
   <body>
@@ -54,23 +60,30 @@
         </div>
       </div>
 
-      <!-- <div class="search-box">
-        <input
-          type="text"
-          id="address"
-          class="address"
-          placeholder="예시: 서울특별시 강남구 논현동"
-        />
-        <button id="typing-search"><i class="fa fa-search"></i></button>
-      </div> -->
-
+      <div class="search-box">
+        <div class="search-head">
+          <h3>2. 주소 입력하기</h3>
+          <p>
+            : 입력한 주소를 기준으로 300m 이내의 정보 제공.
+          </p>
+        </div>
+        <div class='search-content'>
+          <input
+            type="text"
+            id="address"
+            class="address"
+            placeholder="원하는 상세주소를 입력하세요."
+          />
+          <button id="typing-search"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
     </header>
-    
+
     <hr style="width: 90vw; max-width: 1200px;" />
 
     <div class="stock-info" id="stock-info">
       <p>마스크 개수 기준 정렬</p>
-      
+
       <ul>
         <li id="all">
           <div class="stock-box">
@@ -106,10 +119,9 @@
           </div>
         </li>
       </ul>
-    </div>    
+    </div>
 
     <div class="list-container" id="list-container">
-
       <h1>마스크 5부제</h1>
       <div class="fifth-day-mask">
         <div class="days">
