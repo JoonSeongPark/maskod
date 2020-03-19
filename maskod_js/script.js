@@ -23,6 +23,7 @@ const fourthAreaEl = document.getElementById("fourth-area");
 
 localStorage.clear();
 
+
 // topArea setting
 setTopArea();
 function setTopArea() {
