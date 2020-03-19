@@ -32,78 +32,58 @@ function setTopArea() {
   }
 }
 
-// secondArea setting
-function setSecondArea(e) {
-  thirdAreaEl.value = "";
-  fourthAreaEl.value = "";
+// select button render setting
+function setSelectArea(e) {
+  let arrCheck
+  let nthArea;
+  let nthAreaEl;
+  
+  if (this.id === "top-area") {
+    arrCheck = adArea
+    nthArea = adArea[e.target.value];
+    nthAreaEl = secondAreaEl;
 
-  thirdAreaEl.style.display = "none";
-  fourthAreaEl.style.display = "none";
-
-  if (e.target.value == "") {
-    secondAreaEl.value = "";
-    secondAreaEl.style.display = "none";
-    return false;
-  }
-
-  const secondArea = adArea[e.target.value];
-  if (Array.isArray(secondArea.subArea)) {
-    secondAreaEl.innerHTML = "<option value='' >전체검색</option>";
-    secondArea.subArea.forEach(item => {
-      secondAreaEl.innerHTML += `<option value="${item}" >${item}</option>`;
-    });
-  } else {
-    secondAreaEl.innerHTML = "<option value=''>주소선택</option>";
-    for (let sArea in secondArea) {
-      secondAreaEl.innerHTML += `<option value="${sArea}" >${sArea}</option>`;
-    }
-  }
-  secondAreaEl.style.display = "block";
-}
-// thirdArea setting
-function setThirdArea(e) {
-  fourthAreaEl.value = "";
-
-  fourthAreaEl.style.display = "none";
-
-  if (e.target.value == "") {
     thirdAreaEl.value = "";
+    fourthAreaEl.value = "";
     thirdAreaEl.style.display = "none";
+    fourthAreaEl.style.display = "none";
+
+  } else if (this.id === "second-area") {
+    arrCheck = adArea[topAreaEl.value]
+    nthArea = adArea[topAreaEl.value][e.target.value];
+    nthAreaEl = thirdAreaEl;
+
+    fourthAreaEl.value = "";
+    fourthAreaEl.style.display = "none";
+
+  } else if (this.id === "third-area") {
+    arrCheck = adArea[topAreaEl.value][secondAreaEl.value];
+    nthArea = adArea[topAreaEl.value][secondAreaEl.value][e.target.value];
+    nthAreaEl = fourthAreaEl;
+  }
+
+  if (e.target.value == "") {
+    nthAreaEl.value = "";
+    nthAreaEl.style.display = "none";
     return false;
   }
-  let arrCheck = adArea[topAreaEl.value];
+  console.log(arrCheck)
   if (Array.isArray(arrCheck.subArea)) {
     return false;
   }
 
-  const thirdArea = adArea[topAreaEl.value][e.target.value];
-  if (Array.isArray(thirdArea.subArea)) {
-    thirdAreaEl.innerHTML = "<option value='' >전체검색</option>";
-    thirdArea.subArea.forEach(item => {
-      thirdAreaEl.innerHTML += `<option value="${item}" >${item}</option>`;
+  if (Array.isArray(nthArea.subArea)) {
+    nthAreaEl.innerHTML = "<option value='' >전체검색</option>";
+    nthArea.subArea.forEach(item => {
+      nthAreaEl.innerHTML += `<option value="${item}" >${item}</option>`;
     });
   } else {
-    thirdAreaEl.innerHTML = "<option value=''>주소선택</option>";
-    for (let tArea in thirdArea) {
-      thirdAreaEl.innerHTML += `<option value="${tArea}" >${tArea}</option>`;
+    nthAreaEl.innerHTML = "<option value=''>주소선택</option>";
+    for (let sArea in nthArea) {
+      nthAreaEl.innerHTML += `<option value="${sArea}" >${sArea}</option>`;
     }
   }
-  thirdAreaEl.style.display = "block";
-}
-// fourthArea setting
-function setFourthArea(e) {
-  let arrCheck = adArea[topAreaEl.value][secondAreaEl.value].subArea;
-  if (Array.isArray(arrCheck)) {
-    return false;
-  } else {
-    const fourthArea =
-      adArea[topAreaEl.value][secondAreaEl.value][e.target.value].subArea;
-    fourthAreaEl.innerHTML = "<option value=''>전체검색</option>";
-    fourthArea.forEach(item => {
-      fourthAreaEl.innerHTML += `<option value="${item}" >${item}</option>`;
-    });
-  }
-  fourthAreaEl.style.display = "block";
+  nthAreaEl.style.display = "block";
 }
 
 // Category part setting
@@ -188,7 +168,6 @@ async function renderList() {
     setFooterPosition();
     return false;
   }
-  console.log(addressInput);
 
   const maskInfos = await getMaskInfo(addressInput);
 
@@ -266,9 +245,9 @@ navLogoEl.addEventListener("click", () => {
 });
 
 // search
-topAreaEl.addEventListener("change", setSecondArea);
-secondAreaEl.addEventListener("change", setThirdArea);
-thirdAreaEl.addEventListener("change", setFourthArea);
+topAreaEl.addEventListener("change", setSelectArea);
+secondAreaEl.addEventListener("change", setSelectArea);
+thirdAreaEl.addEventListener("change", setSelectArea);
 
 selectSearchBtn.addEventListener("click", renderList);
 
