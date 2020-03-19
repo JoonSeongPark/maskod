@@ -152,8 +152,8 @@ async function getMaskSelectInfo() {
 }
 // Mask information data request (selector)
 async function getMaskTypeInfo() {
-  const [lat, lng] = await getLatLngFromAddress()
-  
+  const [lat, lng] = await getLatLngFromAddress();
+
   const res = await fetch(
     `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=500`
   );
@@ -165,21 +165,24 @@ async function getMaskTypeInfo() {
 async function getLatLngFromAddress() {
   const addr = addressInputEl.value;
 
-  const res = await fetch(`https://dapi.kakao.com/v2/local/search/address.json?query=${addr}`, {
-    method: 'GET',
-    headers: {
-      'Authorization': 'KakaoAK '+'f965a322d95b3d29f27e28b80af51c51'
+  const res = await fetch(
+    `https://dapi.kakao.com/v2/local/search/address.json?query=${addr}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: "KakaoAK " + "f965a322d95b3d29f27e28b80af51c51"
+      }
     }
-  });
+  );
   const data = await res.json();
-  
-  return [data.documents[0].y, data.documents[0].x]
+
+  return [data.documents[0].y, data.documents[0].x];
 }
 
 // Render data list
 async function renderList() {
-  let maskInfos ='';
-  
+  let maskInfos = "";
+
   if (this.id == "select-search") {
     maskInfos = await getMaskSelectInfo();
   } else if (this.id == "typing-search") {
@@ -189,7 +192,6 @@ async function renderList() {
     setFooterPosition();
     return false;
   }
-
 
   const sellMaskInfos = maskInfos.filter(
     info => info.remain_stat !== "break" && info.remain_stat !== null
@@ -213,9 +215,7 @@ async function renderList() {
   setFooterPosition();
 
   if (maskInfos != null) {
-    const listEl = document.querySelectorAll(".go-map");
-
-    openMap(listEl);
+    openMap()
   }
 }
 
@@ -251,12 +251,9 @@ function filterMaskStock() {
   setFooterPosition();
 
   if (filteredStock != null) {
-    const listEl = document.querySelectorAll(".go-map");
-
-    openMap(listEl);
+    openMap();
   }
 }
-
 
 // EventListners
 
