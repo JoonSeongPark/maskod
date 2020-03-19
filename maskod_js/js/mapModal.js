@@ -11,7 +11,7 @@ function openMap() {
     } else if (e.target.className == "go-map") {
       targetEl = e.target;
     }
-    
+
     const lat = targetEl.getAttribute("lat");
     const lng = targetEl.getAttribute("lng");
     const name = targetEl.getAttribute("name");
@@ -27,20 +27,9 @@ function openMap() {
     mapDiv.innerHTML = "";
     const map = new kakao.maps.Map(mapDiv, mapOptions);
 
-    // const markerOptions = {
-    //   position: position,
-    //   map: map,
-    //   icon: {
-    //     content:
-    //       '<img src="images/map-marker.png" alt="marker" class="map-marker">',
-    //     size: new naver.maps.Size(22, 35),
-    //     anchor: new naver.maps.Point(11, 35)
-    //   }
-    // };
-    // const marker = new naver.maps.Marker(markerOptions);
     mapHeader.innerHTML = `<h3>${name}</h3>`;
     mapModalEl.classList.add("show-map-modal");
-  })
+  });
 }
 
 // map modal event Listener
