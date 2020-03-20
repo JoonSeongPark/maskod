@@ -2,8 +2,9 @@ document.cookie = "safeCookie1=foo; SameSite=Lax";
 document.cookie = "safeCookie2=foo";
 document.cookie = "safeCookie3=foo; SameSite=None; Secure";
 
-const addressInputEl = document.getElementById("address");
+// addressInputEl in gps.js
 const selectSearchBtn = document.getElementById("select-search");
+
 const typingSearchBtn = document.getElementById("typing-search");
 // listContainer in footer.js
 const navLogoEl = document.getElementById("nav-left");
@@ -21,8 +22,9 @@ const secondAreaEl = document.getElementById("second-area");
 const thirdAreaEl = document.getElementById("third-area");
 const fourthAreaEl = document.getElementById("fourth-area");
 
-localStorage.clear();
+const circleDisantceEl = document.getElementById("circle-distance");
 
+localStorage.clear();
 
 // topArea setting
 setTopArea();
@@ -155,11 +157,11 @@ async function getMaskSelectInfo() {
 async function getMaskTypeInfo() {
   const [lat, lng] = await getLatLngFromAddress();
   if (lat == -1) {
-    return ''
+    return "";
   }
-  
+
   const res = await fetch(
-    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=500`
+    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=${circleDisantceEl.value}`
   );
   const data = await res.json();
 
@@ -179,11 +181,11 @@ async function getLatLngFromAddress() {
     }
   );
   const data = await res.json();
-  
+
   if (data.meta.total_count != 0) {
     return [data.documents[0].y, data.documents[0].x];
   } else {
-    return [-1,-1]
+    return [-1, -1];
   }
 }
 

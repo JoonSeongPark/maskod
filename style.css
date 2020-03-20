@@ -15,7 +15,13 @@
 }
 p {
   font-family: "Noto Sans KR", sans-serif;
-    margin: 0;
+  margin: 0;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 body {
@@ -67,7 +73,7 @@ header .header-content p {
   margin: 20px 0;
 }
 .select-head {
-  color:#333;
+  color: #333;
 }
 
 .select-content {
@@ -77,13 +83,10 @@ header .header-content p {
 }
 .address-select select {
   font-size: 12px;
-  width:80px;
+  width: 80px;
   margin: 0 5px;
   text-align-last: center;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   border-radius: 5px;
   outline: 0;
 }
@@ -112,14 +115,26 @@ header .header-content p {
   outline: none;
 }
 
-
 /* search-box part */
 .search-box {
   margin: 20px 0;
 }
 
 .search-head {
-  color:#333;
+  color: #333;
+}
+
+.search-head select {
+  font-size: 14px;
+  width: 60px;
+  padding: 4px;
+  text-align-last: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: 0;
+}
+.search-head select:focus {
+  box-shadow: 0 0 4px var(--main-color);
 }
 
 .search-content {
@@ -157,7 +172,7 @@ header .header-content p {
   display: none;
   text-align: center;
 }
-.stock-info p{
+.stock-info p {
   font-size: 18px;
   font-weight: bold;
   margin: 10px 0;
@@ -230,6 +245,7 @@ header .header-content p {
 .list-container {
   font-family: "Noto Sans KR", sans-serif;
   margin: 0 auto;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -466,12 +482,19 @@ header .header-content p {
 
   .address-select select {
     font-size: 10px;
-    width:60px;
+    width: 60px;
     margin: 0 2px;
   }
   .address-select button {
     margin: 0 2px;
   }
+
+  .search-head select {
+    font-size: 12px;
+    width: 45px;
+    padding: 3px;
+  }
+
   .search-box {
     margin: 10px 0;
   }
@@ -494,7 +517,7 @@ header .header-content p {
   .list-container {
     font-size: 10px;
   }
-  
+
   .list-container h1 {
     font-size: 20px;
   }
@@ -507,7 +530,7 @@ header .header-content p {
   .days .days-header {
     font-size: 14px;
   }
-  
+
   .info-category {
     letter-spacing: 1px;
     padding: 6px 4px;
@@ -530,6 +553,15 @@ header .header-content p {
   .info-createdat {
     width: 17%;
   }
+  .store-type {
+    top: -15px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+  }
+  .store-img {
+    width: 21px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -542,12 +574,18 @@ header .header-content p {
 
   .address-select select {
     font-size: 8px;
-    width:50px;
+    width: 50px;
     margin: 0 1px;
   }
   .address-select button {
     margin: 0 1px;
     font-size: 14px;
+  }
+
+  .search-head select {
+    font-size: 11px;
+    width: 40px;
+    padding: 2px;
   }
 
   .search-box input {
@@ -564,7 +602,9 @@ header .header-content p {
     margin: 0 3px;
     letter-spacing: 0;
   }
-
+  .list-container .info-category {
+    letter-spacing: 0;
+  }
   .list-container h1 {
     font-size: 20px;
   }
@@ -578,6 +618,7 @@ header .header-content p {
     font-size: 11px;
     letter-spacing: 0;
   }
+  
   .fifth-explain p {
     font-size: smaller;
   }
@@ -604,10 +645,10 @@ header .header-content p {
 @keyframes bounce {
   0%,
   100% {
-    transform: translateY(-10%);
+    transform: translateY(-3%);
   }
 
   50% {
-    transform: translateY(0);
+    transform: translateY(-10%);
   }
 }

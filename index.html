@@ -41,9 +41,9 @@
 
       <div class="address-select">
         <div class="select-head">
-          <h3>1. 주소 선택하기</h3>
+          <h3><i class="fa fa-map-marker fa-lg"></i> &nbsp주소 선택하여 마스크 찾기</h3>
           <p>
-            : 선택된 주소를 기준으로 정보 제공.
+            : 선택한 행정구역을 기준으로 정보 제공.
           </p>
         </div>
         <div class="select-content">
@@ -57,9 +57,28 @@
 
       <div class="search-box">
         <div class="search-head">
-          <h3>2. 주소 입력하기</h3>
+          <h3><i class="fa fa-map-marker fa-lg"></i> &nbsp주변에서 마스크 찾기</h3>
           <p>
-            : 입력한 주소를 기준으로 500m 이내의 정보 제공.
+            : 현재 위치를 기준으로 검색합니다.
+            <br>
+            원하는 주소 입력도 가능합니다.
+            <br>
+          <!-- </p>
+          <p> -->
+            해당주소를 기준으로
+            <select class="circle-distance" id="circle-distance" >
+              <option valuegi="100">100m</option>
+              <option value="200">200m</option>
+              <option value="300">300m</option>
+              <option value="400">400m</option>
+              <option value="500" selected>500m</option>
+              <option value="600">600m</option>
+              <option value="700">700m</option>
+              <option value="800">800m</option>
+              <option value="900">900m</option>
+              <option value="1000">1km</option>
+            </select>
+            이내의 정보 제공.
           </p>
         </div>
         <div class="search-content">
@@ -205,6 +224,7 @@
 
     <script src="js/constants.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/gps.js"></script>
     <script src="js/fifthDays.js"></script>
     <script src="js/mapModal.js"></script>
     <script src="js/timeDiff.js"></script>

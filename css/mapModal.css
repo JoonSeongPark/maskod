@@ -38,8 +38,10 @@
 }
 
 .map-modal-container .map-body {
-  width: 100%;
+  width: 400px;
+  max-width: 100vw;
   height: 400px;
+  max-height: 100vw;
 }
 
 .map-modal-container .map-close-btn {

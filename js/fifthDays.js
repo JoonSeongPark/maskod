@@ -15,8 +15,8 @@ function fifthdays() {
 
   const contentChange =
     "font-size:larger; color:#000; border-bottom-left-radius:4px;border-bottom-right-radius:4px;";
-  // const boxChange = "transform:translate(0,-10%);";
-  const boxChange = "animation: bounce 0.7s ease 5;transform:translate(0,-10%);";
+  
+  const boxChange = "animation: bounce 1s ease-out infinite;";
   days[day].style.cssText = contentChange;
   days[day].parentElement.style.cssText = boxChange;
 }
