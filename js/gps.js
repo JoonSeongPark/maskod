@@ -15,10 +15,13 @@ async function getAddressFromLatLng(lat,lng) {
   const data = await res.json()
   return data.documents[0].address.address_name
 }
+
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       async function(position) {
+        localStorage.setItem("curLatLng", JSON.stringify([position.coords.latitude, position.coords.longitude]));
         const addr = await getAddressFromLatLng(position.coords.latitude, position.coords.longitude);
         addressInputEl.value = addr
       },

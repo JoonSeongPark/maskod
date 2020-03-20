@@ -523,6 +523,9 @@ header .header-content p {
   .days .days-header {
     font-size: 14px;
   }
+  #sat-sun h3 {
+    font-size: 12px;
+  }
 
   .info-category {
     letter-spacing: 1px;
@@ -610,6 +613,9 @@ header .header-content p {
   .days .days-header {
     font-size: 11px;
     letter-spacing: 0;
+  }
+  #sat-sun h3 {
+    font-size: 10px;
   }
   
   .fifth-explain p {
