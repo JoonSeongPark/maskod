@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/mapModal.css" />
+    <link rel="stylesheet" href="css/modals.css" />
     <link rel="stylesheet" href="style.css" />
 
     <script
@@ -41,7 +41,10 @@
 
       <div class="address-select">
         <div class="select-head">
-          <h3><i class="fa fa-map-marker fa-lg"></i> &nbsp주소 선택하여 마스크 찾기</h3>
+          <h3>
+            <i class="fa fa-map-marker fa-lg"></i> &nbsp주소 선택하여 마스크
+            찾기
+          </h3>
           <p>
             : 선택한 행정구역을 기준으로 정보 제공.
           </p>
@@ -57,16 +60,16 @@
 
       <div class="search-box">
         <div class="search-head">
-          <h3><i class="fa fa-map-marker fa-lg"></i> &nbsp주변에서 마스크 찾기</h3>
+          <h3>
+            <i class="fa fa-map-marker fa-lg"></i> &nbsp주변에서 마스크 찾기
+          </h3>
           <p>
             : 현재 위치를 기준으로 검색합니다.
-            <br>
+            <br />
             원하는 주소 입력도 가능합니다.
-            <br>
-          <!-- </p>
-          <p> -->
+            <br />
             해당주소를 기준으로
-            <select class="circle-distance" id="circle-distance" >
+            <select class="circle-distance" id="circle-distance">
               <option valuegi="100">100m</option>
               <option value="200">200m</option>
               <option value="300">300m</option>
@@ -106,25 +109,22 @@
         </li>
         <li id="plenty">
           <div class="stock-box">
-            100개
-            <i class="fa fa-arrow-circle-up fa-lg icon"></i>
+            100개 이상
           </div>
         </li>
         <li id="some">
           <div class="stock-box">
-            30개
-            <i class="fa fa-arrow-circle-up fa-lg icon"></i>
+            30~99개
           </div>
         </li>
         <li id="few">
           <div class="stock-box">
-            1개
-            <i class="fa fa-arrow-circle-up fa-lg icon"></i>
+            2~29개
           </div>
         </li>
         <li id="empty">
           <div class="stock-box">
-            0개 <i class="fa fa-times-circle fa-lg icon"></i>
+            0~1개
           </div>
         </li>
         <li id="sort">
@@ -183,14 +183,34 @@
             <p>토·일</p>
           </div>
           <div class="days-content" id="sat-sun">
-            <p>주간</p>
-            <p>미구매자</p>
+            <h3>주간</h3>
+            <h3>미구매자</h3>
           </div>
         </div>
       </div>
       <div class="fifth-explain">
         <p>※출생연도 끝자리 기준, 신분증 지참 필수</p>
         <p>모든 영업소에서 요일별로 1주일에 1인당 2매씩 마스크 구입을 제한</p>
+      </div>
+    </div>
+
+    <div class="main-modal-container" id="main-modal-container">
+      <div class="main-modal">
+        <h2>서비스 정보</h2>
+        <p>* 판매처 앞의 대기인원은 고려되지 않습니다.</p>
+        <p>* 제공되는 정보는 5~10분 정도의 반영시간 차이가 있습니다.</p>
+        <p>* 인근 반경 거리에 오차가 발생할 수 있습니다.</p>
+        <p>* 세종특별자치시는 주소 선택 기능에서 전체검색만 제공됩니다.</p>
+        <br />
+        <p>정보제공: 건강보험심사평가원</p>
+        <br />
+        <br />
+        <p>대한민국 약국, 우체국, 농협 관계자님들께 감사의 인사를 전합니다.</p>
+
+        <br />
+        <p>문의사항이나 버그는 이메일로 보내주세요!</p>
+
+        <button class="main-close-btn" id="main-close-btn">확인</button>
       </div>
     </div>
 
@@ -226,7 +246,7 @@
     <script src="js/footer.js"></script>
     <script src="js/gps.js"></script>
     <script src="js/fifthDays.js"></script>
-    <script src="js/mapModal.js"></script>
+    <script src="js/modals.js"></script>
     <script src="js/timeDiff.js"></script>
     <script src="script.js"></script>
   </body>

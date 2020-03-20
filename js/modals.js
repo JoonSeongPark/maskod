@@ -1,10 +1,12 @@
+const mainModalEl = document.getElementById("main-modal-container");
+const mainCloseBtn = document.getElementById("main-close-btn");
+
 const mapModalEl = document.getElementById("map-modal-container");
 const mapHeader = document.getElementById("map-header");
 const mapCloseBtn = document.getElementById("map-close-btn");
 
 // See on a map
 function openMap() {
-  
   let targetEl;
   listContainer.addEventListener("click", e => {
     if (e.target.tagName == "H3") {
@@ -12,11 +14,11 @@ function openMap() {
     } else if (e.target.className == "go-map") {
       targetEl = e.target;
     }
-    
+
     const lat = targetEl.getAttribute("lat");
     const lng = targetEl.getAttribute("lng");
     const name = targetEl.getAttribute("name");
-    
+
     mapHeader.innerHTML = `<h3>${name}</h3>`;
     mapModalEl.classList.add("show-map-modal");
 
@@ -54,6 +56,11 @@ function openMap() {
     }, 0);
   });
 }
+
+// main modal event Listener
+mainCloseBtn.addEventListener("click", () => {
+  mainModalEl.style.display = "none";
+});
 
 // map modal event Listener
 window.addEventListener("click", e =>

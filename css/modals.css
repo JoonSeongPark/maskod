@@ -1,3 +1,55 @@
+.main-modal-container {
+  box-sizing: content-box;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+}
+
+.main-modal {
+  font-size: 12px;
+  padding: 25px 35px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 400px;
+  height: 400px;
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+.main-modal-container .main-close-btn {
+  cursor: pointer;
+  border: 0;
+  position: absolute;
+  left:50%;
+  bottom:25px;
+  width: 330px;
+  transform: translateX(-50%);
+  padding: 10px;
+  margin: auto;
+  background-color: #0f4c81;
+  font-size: 18px;
+  color: #fff;
+  outline: none;
+  letter-spacing: 5px;
+}
+
+.main-modal-container .main-close-btn:active {
+  font-size: 19px;
+  padding: 9.5px;
+}
+
+
 .map-modal-container {
   background-color: rgba(0, 0, 0, 0.6);
   display: none;
