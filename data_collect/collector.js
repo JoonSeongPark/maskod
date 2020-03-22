@@ -247,18 +247,22 @@ const apiInputList = [
   "제주특별자치도 제주시"
 ];
 
-const now = Date.now();
-const nowString = new Date(now);
-const nowTime = new Date(nowString.toString());
+const moment = require("moment");
+require("moment-timezone");
+moment.tz.setDefault("Asia/Seoul");
+
+const koreaDate = moment().format("YYYY-MM-DD HH:mm:ss");
+
+const nowTime = new Date(koreaDate);
 
 const year = nowTime.getFullYear();
 let month = nowTime.getMonth() + 1;
 if (month < 10) {
   month = `0${month}`;
 }
-let day = nowTime.getDate();
-if (day < 10) {
-  day = `0${day}`;
+let date = nowTime.getDate();
+if (date < 10) {
+  date = `0${date}`;
 }
 let hour = nowTime.getHours();
 if (hour < 10) {
@@ -268,19 +272,49 @@ let minute = nowTime.getMinutes();
 if (minute < 10) {
   minute = `0${minute}`;
 }
+let day = nowTime.getDay();
+dayText = {
+  0: "sun",
+  1: "mon",
+  2: "tue",
+  3: "wed",
+  4: "thu",
+  5: "fri",
+  6: "sat"
+};
 
 const fetch = require("node-fetch");
 
+const dir = `C:/Users/User/Desktop/연세대학교/YBIGTA/Frontend/maskod/data_collect/data/${year}${month}${date}_${dayText[day]}.json`;
 
-const dir = `C:/Users/User/Desktop/연세대학교/YBIGTA/maskod/data_collect/data/${year}${month}${day}.json`
+// slack message
+const Slack = require("slack-node");
+const apiToken =
+  "slackApiKey";
+const slack = new Slack(apiToken);
+const send = async message => {
+  slack.api(
+    "chat.postMessage",
+    {
+      username: "data-collector",
+      text: message,
+      channel: "#server"
+    },
+    function(err) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+};
+
 const fs = require("fs");
-
 let dict;
 try {
   if (fs.existsSync(dir)) {
     dict = require(dir);
   } else {
-    dict = {}
+    dict = {};
   }
 } catch (err) {
   console.error(err);
@@ -297,14 +331,15 @@ async function getMaskSelectInfo(inputVal) {
   return data.stores;
 }
 
-
-var count =1
+var count = 1;
 async function loop(inputlist) {
   for (const element of inputlist) {
-    console.log(count)
+    if (count % 10 == 0 || count == 246) {
+      console.log(count);
+    }
     const dataList = await getMaskSelectInfo(element);
     loop2(dataList);
-    count++
+    count++;
   }
   let size = 0;
   for (key in dict) {
@@ -313,35 +348,33 @@ async function loop(inputlist) {
   console.log(size);
 
   // save as .json
-   fs.writeFile(
-    dir,
-    JSON.stringify(dict),
-    function(err) {
-      if (err) {
-        console.log(err);
-      }
+  fs.writeFile(dir, JSON.stringify(dict), function(err) {
+    if (err) {
+      send(`${year}${month}${date}_${dayText[day]} ${hour}${minute} 실패`)
+      send(err)
+      console.log(err);
+    } else {
+      send(`${year}${month}${date}_${dayText[day]} ${hour}${minute} 생성`)
     }
-  );
+  });
 }
 
 async function loop2(datalist) {
   for (const data of datalist) {
     if (data.code in dict) {
-      dict[data.code]["remain_stat"][`${hour}${minute}`] = data.remain_stat
+      dict[data.code]["remain_stat"][`${hour}${minute}`] = data.remain_stat;
     } else {
       dict[data.code] = {};
-      dict[data.code]["name"] = data.name
-      dict[data.code]["addr"] = data.addr
-      dict[data.code]["lat"] = data.lat
-      dict[data.code]["lng"] = data.lng
-      dict[data.code]["created_at"] = data.created_at
-      dict[data.code]["stock_at"] = data.stock_at
-      dict[data.code]["type"] = data.type
-      dict[data.code]["remain_stat"] = {}
-      dict[data.code]["remain_stat"][`${hour}${minute}`] = data.remain_stat
-
+      dict[data.code]["name"] = data.name;
+      dict[data.code]["addr"] = data.addr;
+      dict[data.code]["lat"] = data.lat;
+      dict[data.code]["lng"] = data.lng;
+      dict[data.code]["created_at"] = data.created_at;
+      dict[data.code]["stock_at"] = data.stock_at;
+      dict[data.code]["type"] = data.type;
+      dict[data.code]["remain_stat"] = {};
+      dict[data.code]["remain_stat"][`${hour}${minute}`] = data.remain_stat;
     }
-    
   }
 }
 
