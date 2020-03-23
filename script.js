@@ -150,7 +150,7 @@ async function getMaskSelectInfo() {
     `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${address}`
   );
   const data = await res.json();
-
+    console.log(data)
   return data.stores;
 }
 // Mask information data request (selector)

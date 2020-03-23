@@ -213,12 +213,6 @@ header .header-content p {
   background-color: var(--empty-color);
   border-color: var(--empty-color);
 }
-#sort {
-  background-color: var(--submain-color);
-  border-color: var(--submain-color);
-  /* 나중에 수정 */
-  display: none;
-}
 
 .stock-box {
   cursor: pointer;
