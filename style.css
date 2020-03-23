@@ -219,7 +219,7 @@ header .header-content p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3px 3px 3px 6px;
+  padding: 3px;
   border-radius: 20px;
   letter-spacing: 1px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -620,7 +620,7 @@ header .header-content p {
     margin: 4px 0;
   }
   .stock-info ul li {
-    font-size: 9px;
+    font-size: 8px;
     letter-spacing: 0;
   }
 }
