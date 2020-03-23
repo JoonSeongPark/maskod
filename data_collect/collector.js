@@ -362,18 +362,18 @@ async function loop(inputlist) {
 async function loop2(datalist) {
   for (const data of datalist) {
     if (data.code in dict) {
-      dict[data.code]["remain_stat"][`${hour}${minute}`] = data.remain_stat;
+      dict[data.code]["remain_stat"][`${hour}${minute}`] = [data.remain_stat,data.created_at];
+      dict[data.code]["stock_at"] = data.stock_at;
     } else {
       dict[data.code] = {};
       dict[data.code]["name"] = data.name;
       dict[data.code]["addr"] = data.addr;
       dict[data.code]["lat"] = data.lat;
       dict[data.code]["lng"] = data.lng;
-      dict[data.code]["created_at"] = data.created_at;
       dict[data.code]["stock_at"] = data.stock_at;
       dict[data.code]["type"] = data.type;
       dict[data.code]["remain_stat"] = {};
-      dict[data.code]["remain_stat"][`${hour}${minute}`] = data.remain_stat;
+      dict[data.code]["remain_stat"][`${hour}${minute}`] = [data.remain_stat,data.created_at];
     }
   }
 }
