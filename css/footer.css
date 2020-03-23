@@ -15,11 +15,11 @@ footer .inner-foot {
   margin: 0 auto;
   font-size: 15px;
   letter-spacing: 1px;
-  color: #f4f4f4;
+  color: #eceff1;
 }
 
 footer .footer-title {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #eceff1;
   padding: 10px;
   font-size: 18px;
 }
@@ -32,7 +32,7 @@ footer span {
   color: #81ceff;
 }
 footer a {
-  color: #f4f4f4;
+  color: #eceff1;
 }
 footer a:hover {
   color: #81ceff;

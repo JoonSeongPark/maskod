@@ -25,7 +25,7 @@ select {
 }
 
 body {
-  background-color: #f4f4f4;
+  background-color: #eceff1;
   font-family: "Do Hyeon", "Noto Sans KR", sans-serif;
   margin: 0;
   display: flex;
@@ -186,7 +186,7 @@ header .header-content p {
   justify-content: center;
 }
 .stock-info ul li {
-  color: #f4f4f4;
+  color: #eceff1;
   font-size: 12px;
   display: inline-block;
   margin: 0 8px;
@@ -275,7 +275,7 @@ header .header-content p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #f4f4f4;
+  color: #eceff1;
   background-color: #0f4c81;
   height: 30%;
   font-size: 21px;
@@ -349,7 +349,7 @@ header .header-content p {
   justify-content: center;
   transition: opacity 0.2s ease-in;
   opacity: 0;
-  color: #f4f4f4;
+  color: #eceff1;
   letter-spacing: 1px;
   font-size: 13px;
 }
