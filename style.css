@@ -10,7 +10,7 @@
   --submain-color: #006b6d;
   --plenty-color: #37bd6f;
   --some-color: #f0c802;
-  --few-color: #e74c3c;
+  --few-color: rgb(231, 76, 60);
   --empty-color: #999;
 }
 p {
@@ -143,7 +143,7 @@ header .header-content p {
   margin: 15px 0;
 }
 
-.search-box input {
+.search-content input {
   border: 1px solid rgba(0, 0, 0, 0.2);
   width: 30vw;
   min-width: 350px;
@@ -151,8 +151,11 @@ header .header-content p {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+.search-content input:focus::placeholder {
+  color: transparent;
+}
 
-.search-box button {
+.search-content button {
   cursor: pointer;
   background-color: var(--submain-color);
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -165,7 +168,7 @@ header .header-content p {
   outline: none;
 }
 
-.search-box button:active {
+.search-content button:active {
   background-color: var(--main-color);
 }
 .stock-info {
@@ -216,6 +219,7 @@ header .header-content p {
 
 .stock-box {
   cursor: pointer;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;

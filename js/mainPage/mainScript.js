@@ -168,51 +168,29 @@ async function getMaskTypeInfo() {
   return data.stores;
 }
 
-async function getLatLngFromAddress() {
-  const addr = addressInputEl.value;
-  if (addr == "") {
-    return [-1, -1];
-  }
-  const res = await fetch(
-    `https://dapi.kakao.com/v2/local/search/address.json?query=${addr}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: "KakaoAK " + "f965a322d95b3d29f27e28b80af51c51"
-      }
-    }
-  );
-  const data = await res.json();
-  localStorage.setItem(
-    "inputLatLng",
-    JSON.stringify([data.documents[0].y, data.documents[0].x])
-  );
-  if (data.meta.total_count != 0) {
-    return [data.documents[0].y, data.documents[0].x];
-  } else {
-    return [-1, -1];
-  }
-}
-
 // Render data list
 async function renderList() {
   let maskInfos = "";
   let lat, lng;
   if (this.id == "select-search") {
-    let data = await getMaskSelectInfo()
-    maskInfos = data.stores
+    let data = await getMaskSelectInfo();
+    maskInfos = data.stores;
     if (JSON.parse(localStorage.getItem("curLatLng"))) {
       lat = JSON.parse(localStorage.getItem("curLatLng"))[0];
       lng = JSON.parse(localStorage.getItem("curLatLng"))[1];
     } else {
-      let pos = await getLatLngFromAddress()
-      lat = pos[0]
-      lng = pos[1]
+      let pos = await getLatLngFromAddress();
+      lat = pos[0];
+      lng = pos[1];
     }
   } else if (this.id == "typing-search") {
     maskInfos = await getMaskTypeInfo();
-    lat = JSON.parse(localStorage.getItem("inputLatLng"))[0];
-    lng = JSON.parse(localStorage.getItem("inputLatLng"))[1];
+    if (maskInfos == "") {
+      return false;
+    } else {
+      lat = JSON.parse(localStorage.getItem("inputLatLng"))[0];
+      lng = JSON.parse(localStorage.getItem("inputLatLng"))[1];
+    }
   }
   if (maskInfos == "" || maskInfos == undefined) {
     stockInfoEl.style.display = "none";

@@ -33,29 +33,47 @@ const openMap = () => {
     mapDiv.innerHTML = "";
     const map = new kakao.maps.Map(mapDiv, mapOptions);
 
-    const imageSrc = "images/map-marker.png";
-    const imageSize = new kakao.maps.Size(44, 49);
-    const imageOption = { offset: new kakao.maps.Point(27, 69) };
 
-    const markerImg = new kakao.maps.MarkerImage(
-      imageSrc,
-      imageSize,
-      imageOption
+    const targetImageSrc = "images/general_marker.png";
+    const targetImageSize = new kakao.maps.Size(36, 56);
+    const targetImageOption = { offset: new kakao.maps.Point(16, 53) };
+
+    const targetMarkerImg = new kakao.maps.MarkerImage(
+      targetImageSrc,
+      targetImageSize,
+      targetImageOption
     );
-    const markerPosition = new kakao.maps.LatLng(lat, lng);
+    const targetMarkerPosition = new kakao.maps.LatLng(lat, lng);
 
-    const marker = new kakao.maps.Marker({
-      position: markerPosition,
-      image: markerImg
+    const targetMarker = new kakao.maps.Marker({
+      position: targetMarkerPosition,
+      image: targetMarkerImg
     });
 
-    marker.setMap(map);
+    const currentImageSrc = "images/current_marker.png";
+    const currentImageSize = new kakao.maps.Size(17, 17);
+
+    const currentMarkerImg = new kakao.maps.MarkerImage(
+      currentImageSrc,
+      currentImageSize
+    );
+    const curr_pos = JSON.parse(localStorage.getItem("inputLatLng"))
+
+    const currentMarkerPosition = new kakao.maps.LatLng(curr_pos[0], curr_pos[1]);
+
+    const currentMarker = new kakao.maps.Marker({
+      position: currentMarkerPosition,
+      image: currentMarkerImg
+    });
+
+    targetMarker.setMap(map);
+    currentMarker.setMap(map);
 
     setTimeout(() => {
       map.relayout();
     }, 0);
   });
-}
+};
 
 // main modal event Listener
 mainCloseBtn.addEventListener("click", () => {
