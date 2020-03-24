@@ -4,9 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/nav.css" />
-    <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/modals.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/mapPage/mapStyle.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="images/maskod_favicon.png"
+    />
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10dd6235e1b5b2f304b07369e20dab8b&libraries=services"
+    ></script>
+
     <title>마스크 어디?</title>
   </head>
   <body>
@@ -15,7 +29,21 @@
         <img src="images/maskod_logo.png" alt="Logo" class="nav-logo" />
         <span>Mask OD</span>
       </div>
-      <div id="map-container"></div>
     </nav>
+
+    <div class="search-content">
+      <input
+        type="text"
+        id="address"
+        class="address"
+        placeholder="도로명 또는 번지 주소를 입력하세요."
+      />
+      <button id="search"><i class="fa fa-search"></i></button>
+    </div>
+
+    <div class="map-container" id="map-container"></div>
+
+    <script src="js/gps.js"></script>
+    <script src="js/mapPage/mapScript.js"></script>
   </body>
 </html>
