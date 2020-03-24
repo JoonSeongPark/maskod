@@ -2,6 +2,32 @@ const addressInputEl = document.getElementById("address");
 
 getLocation();
 
+async function getLatLngFromAddress() {
+  const addr = addressInputEl.value;
+  if (addr == "") {
+    return [-1, -1];
+  }
+  const res = await fetch(
+    `https://dapi.kakao.com/v2/local/search/address.json?query=${addr}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: "KakaoAK " + "f965a322d95b3d29f27e28b80af51c51"
+      }
+    }
+  );
+  const data = await res.json();
+  localStorage.setItem(
+    "inputLatLng",
+    JSON.stringify([data.documents[0].y, data.documents[0].x])
+  );
+  if (data.meta.total_count != 0) {
+    return [data.documents[0].y, data.documents[0].x];
+  } else {
+    return [-1, -1];
+  }
+}
+
 async function getAddressFromLatLng(lat,lng) {
   const res = await fetch(
     `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lng}&y=${lat}`,
