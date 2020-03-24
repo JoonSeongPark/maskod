@@ -20,7 +20,7 @@ const openMap = () => {
     const lat = targetEl.getAttribute("lat");
     const lng = targetEl.getAttribute("lng");
     const name = targetEl.getAttribute("name");
-
+    
     mapHeader.innerHTML = `<h3>${name}</h3>`;
     mapModalEl.classList.add("show-map-modal");
 
@@ -47,7 +47,8 @@ const openMap = () => {
           mapOptions.level = 5;
         }
       }
-      const currentImageSrc = "images/current_marker.png";
+
+      const currentImageSrc = `images/current_marker.png`;
       const currentImageSize = new kakao.maps.Size(17, 17);
 
       const currentMarkerImg = new kakao.maps.MarkerImage(
@@ -69,7 +70,11 @@ const openMap = () => {
     mapDiv.innerHTML = "";
     const map = new kakao.maps.Map(mapDiv, mapOptions);
 
-    const targetImageSrc = "images/general_marker.png";
+    const zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    const stock = targetEl.getAttribute("remainstat")
+    const targetImageSrc = `images/${stock}_marker.png`;
     const targetImageSize = new kakao.maps.Size(36, 56);
     const targetImageOption = { offset: new kakao.maps.Point(16, 53) };
 
@@ -84,8 +89,6 @@ const openMap = () => {
       position: targetMarkerPosition,
       image: targetMarkerImg
     });
-
-
 
     targetMarker.setMap(map);
     if (currentMarker !== undefined) {

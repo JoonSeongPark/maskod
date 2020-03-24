@@ -131,7 +131,7 @@ function getInfoElinnerHTML(info) {
   </div>
   <div class="go-map" name="${info.name}" searchtext="${info.addr}, ${
     info.name
-  }" lat="${info.lat}" lng="${info.lng}">
+  }" lat="${info.lat}" lng="${info.lng}" remainstat="${info.remain_stat}">
     <h3>지도에서 위치보기</h3>
   </div>
     `;
