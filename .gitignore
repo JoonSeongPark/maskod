@@ -1,4 +1,4 @@
 *.txt
 *.pdf
-keys.js
 data_collect/
+.vscode
