@@ -31,25 +31,43 @@ const openMap = () => {
       level: 4
     };
 
-    const curr_pos = JSON.parse(localStorage.getItem("inputLatLng"))
-    const dist = euclideanDist(lat,lng,curr_pos[0],curr_pos[1])
-    
-    if (window.innerWidth >700) {
-      if (dist>400) {
-        mapOptions.level = 5
-      }
-    } else {
-      if( dist >700) {
-        mapOptions.level = 6
-      } else if (dist > 300) {
-        mapOptions.level = 5
-      }
-    }
+    const curr_pos = JSON.parse(localStorage.getItem("inputLatLng"));
+    let currentMarker;
+    if (curr_pos != null) {
+      const dist = euclideanDist(lat, lng, curr_pos[0], curr_pos[1]);
 
+      if (window.innerWidth > 700) {
+        if (dist > 400) {
+          mapOptions.level = 5;
+        }
+      } else {
+        if (dist > 700) {
+          mapOptions.level = 6;
+        } else if (dist > 300) {
+          mapOptions.level = 5;
+        }
+      }
+      const currentImageSrc = "images/current_marker.png";
+      const currentImageSize = new kakao.maps.Size(17, 17);
+
+      const currentMarkerImg = new kakao.maps.MarkerImage(
+        currentImageSrc,
+        currentImageSize
+      );
+
+      const currentMarkerPosition = new kakao.maps.LatLng(
+        curr_pos[0],
+        curr_pos[1]
+      );
+
+      currentMarker = new kakao.maps.Marker({
+        position: currentMarkerPosition,
+        image: currentMarkerImg
+      });
+    }
     const mapDiv = document.getElementById("map-body");
     mapDiv.innerHTML = "";
     const map = new kakao.maps.Map(mapDiv, mapOptions);
-
 
     const targetImageSrc = "images/general_marker.png";
     const targetImageSize = new kakao.maps.Size(36, 56);
@@ -67,25 +85,12 @@ const openMap = () => {
       image: targetMarkerImg
     });
 
-    const currentImageSrc = "images/current_marker.png";
-    const currentImageSize = new kakao.maps.Size(17, 17);
 
-    const currentMarkerImg = new kakao.maps.MarkerImage(
-      currentImageSrc,
-      currentImageSize
-    );
-    
-
-    const currentMarkerPosition = new kakao.maps.LatLng(curr_pos[0], curr_pos[1]);
-
-    const currentMarker = new kakao.maps.Marker({
-      position: currentMarkerPosition,
-      image: currentMarkerImg
-    });
 
     targetMarker.setMap(map);
-    currentMarker.setMap(map);
-
+    if (currentMarker !== undefined) {
+      currentMarker.setMap(map);
+    }
     setTimeout(() => {
       map.relayout();
     }, 0);
