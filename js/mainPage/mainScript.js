@@ -22,7 +22,7 @@ const secondAreaEl = document.getElementById("second-area");
 const thirdAreaEl = document.getElementById("third-area");
 const fourthAreaEl = document.getElementById("fourth-area");
 
-const circleDisantceEl = document.getElementById("circle-distance");
+// circleDistanceEl in modal.js
 
 localStorage.clear();
 
@@ -161,7 +161,7 @@ async function getMaskTypeInfo() {
   }
 
   const res = await fetch(
-    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=${circleDisantceEl.value}`
+    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=${circleDistanceEl.value}`
   );
   const data = await res.json();
 

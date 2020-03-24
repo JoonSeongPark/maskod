@@ -5,6 +5,8 @@ const mapModalEl = document.getElementById("map-modal-container");
 const mapHeader = document.getElementById("map-header");
 const mapCloseBtn = document.getElementById("map-close-btn");
 
+const circleDistanceEl = document.getElementById("circle-distance");
+
 // See on a map
 const openMap = () => {
   let targetEl;
@@ -24,10 +26,22 @@ const openMap = () => {
 
     const position = new kakao.maps.LatLng(lat, lng);
 
-    const mapOptions = {
+    let mapOptions = {
       center: position,
       level: 4
     };
+
+    if (window.innerWidth >700) {
+      if (circleDistanceEl.value>400) {
+        mapOptions.level = 5
+      }
+    } else {
+      if( circleDistanceEl.value >700) {
+        mapOptions.level = 6
+      } else if (circleDistanceEl.value > 300) {
+        mapOptions.level = 5
+      }
+    }
 
     const mapDiv = document.getElementById("map-body");
     mapDiv.innerHTML = "";
