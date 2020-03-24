@@ -7,7 +7,8 @@ nav {
   border-bottom: 1px solid #ddd;
   height: 60px;
   width: 100%;
-  float: left;
+  display: flex;
+  justify-content: space-between;
   z-index: 1500;
 }
 
@@ -29,12 +30,38 @@ nav span {
   font-size: 20px;
 }
 
+nav .nav-right {
+  display: flex;
+  align-items: center;
+}
+nav .nav-right ul {
+  height: 29px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav .nav-right ul li {
+  list-style-type: none;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+nav .nav-right ul li a {
+  text-decoration: transparent;
+  color: #000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 @media (max-width: 500px) {
   nav {
     padding: 10px 20px;
     height: 40px;
   }
-  nav .nav-left{
+  nav .nav-left {
     width: 100px;
   }
   nav .nav-logo {
@@ -45,6 +72,9 @@ nav span {
     font-size: 14px;
   }
 
+  nav .nav-right ul li {
+    padding-top: 3px;
+  }
   @media (max-width: 400px) {
     nav {
       padding: 8px 10px;
