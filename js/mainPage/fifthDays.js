@@ -8,7 +8,7 @@ const satSun = document.getElementById("sat-sun");
 fifthdays();
 
 // fifth days mask
-const fifthdays = () => {
+function fifthdays() {
   const today = new Date();
   const day = today.getDay();
   const days = { 0: satSun, 1: mon, 2: tue, 3: wed, 4: thu, 5: fri, 6: satSun };

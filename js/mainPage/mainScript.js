@@ -214,11 +214,12 @@ async function renderList() {
     lat = JSON.parse(localStorage.getItem("inputLatLng"))[0];
     lng = JSON.parse(localStorage.getItem("inputLatLng"))[1];
   }
-  if (maskInfos == "") {
+  if (maskInfos == "" || maskInfos == undefined) {
+    stockInfoEl.style.display = "none";
+    listContainer.innerHTML = "<h2>검색결과가 없습니다.</h2>";
     setFooterPosition();
     return false;
   }
-
   const sellMaskInfos = maskInfos.filter(
     info => info.remain_stat !== "break" && info.remain_stat !== null
   );
