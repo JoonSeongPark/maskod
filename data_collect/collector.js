@@ -290,7 +290,7 @@ const dir = `C:/Users/User/Desktop/연세대학교/YBIGTA/Frontend/maskod/data_c
 // slack message
 const Slack = require("slack-node");
 const apiToken =
-  "slackApiKey";
+  "xoxp-1004919864322-1017250919060-1019478284487-6ff5a9a55ecb6b7325e072c4c00e23a7";
 const slack = new Slack(apiToken);
 const send = async message => {
   slack.api(
