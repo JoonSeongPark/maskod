@@ -31,14 +31,17 @@ const openMap = () => {
       level: 4
     };
 
+    const curr_pos = JSON.parse(localStorage.getItem("inputLatLng"))
+    const dist = euclideanDist(lat,lng,curr_pos[0],curr_pos[1])
+    
     if (window.innerWidth >700) {
-      if (circleDistanceEl.value>400) {
+      if (dist>400) {
         mapOptions.level = 5
       }
     } else {
-      if( circleDistanceEl.value >700) {
+      if( dist >700) {
         mapOptions.level = 6
-      } else if (circleDistanceEl.value > 300) {
+      } else if (dist > 300) {
         mapOptions.level = 5
       }
     }
@@ -71,7 +74,7 @@ const openMap = () => {
       currentImageSrc,
       currentImageSize
     );
-    const curr_pos = JSON.parse(localStorage.getItem("inputLatLng"))
+    
 
     const currentMarkerPosition = new kakao.maps.LatLng(curr_pos[0], curr_pos[1]);
 
