@@ -25,7 +25,6 @@ select {
 }
 
 body {
-  background-color: #eceff1;
   font-family: "Do Hyeon", "Noto Sans KR", sans-serif;
   margin: 0;
   display: flex;
@@ -40,7 +39,7 @@ body {
   z-index: 100;
   display: flex;
   justify-content: center;
-  border-radius: 5px  ;
+  border-radius: 5px;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -72,16 +71,74 @@ body {
   outline: none;
 }
 
+.stock-info {
+  position: fixed;
+  display: none;
+  top: 155px;
+  left: 20px;
+  z-index: 100;
+}
+
+.stock-info ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.stock-info ul li {
+  color: #eceff1;
+  font-size: 12px;
+  display: inline-block;
+  margin: 0 5px;
+  border-radius: 20px;
+  width: 75px;
+}
+
+#plenty {
+  background-color: var(--plenty-color);
+}
+#some {
+  background-color: var(--some-color);
+}
+#few {
+  background-color: var(--few-color);
+}
+#empty {
+  background-color: var(--empty-color);
+}
+
+.stock-box {
+  cursor: pointer;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.stock-box:active {
+  border: 2px solid rgba(0, 0, 0, 0.4);
+}
 
 .map-container {
   width: 100%;
   height: 100%;
 }
 
-
 @media (max-width: 500px) {
   .search-content {
     top: 55px;
+  }
+  .stock-info {
+    top: 135px;
+  }
+}
+@media (max-width: 450px) {
+  .stock-info ul li {
+    margin: 0 3px;
+    width: 70px;
   }
 }
 
@@ -89,4 +146,14 @@ body {
   .search-content {
     top: 50px;
   }
+  .stock-info {
+    top: 130px;
+  }
+  .stock-info ul li {
+    margin: 0 2px;
+    width: 68px;
+  }
 }
+
+
+

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet" href="css/modals.css" />
+    <link rel="stylesheet" href="css/mapPage/inputRange.css" />
     <link rel="stylesheet" href="css/mapPage/mapStyle.css" />
     <link
       rel="stylesheet"
@@ -49,6 +50,41 @@
         placeholder="도로명 또는 번지 주소를 입력하세요."
       />
       <button id="search"><i class="fa fa-search"></i></button>
+    </div>
+    <div class="range-container">
+      <input
+        type="range"
+        value="500"
+        min="0"
+        max="1000"
+        class="dist-range"
+        id="dist-range"
+      />
+      <div class="dist-value" id="dist-value">500m</div>
+    </div>
+    <div class="stock-info" id="stock-info">
+      <ul>
+        <li id="plenty">
+          <div class="stock-box">
+            100개 이상
+          </div>
+        </li>
+        <li id="some">
+          <div class="stock-box">
+            30~99개
+          </div>
+        </li>
+        <li id="few">
+          <div class="stock-box">
+            2~29개
+          </div>
+        </li>
+        <li id="empty">
+          <div class="stock-box">
+            0~1개
+          </div>
+        </li>
+      </ul>
     </div>
 
     <div class="map-container" id="map-container"></div>
