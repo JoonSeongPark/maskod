@@ -12,6 +12,11 @@ nav {
   z-index: 1500;
 }
 
+a {
+  text-decoration: transparent;
+  color: #000
+}
+
 nav .nav-left {
   cursor: pointer;
   height: 100%;

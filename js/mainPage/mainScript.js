@@ -270,11 +270,6 @@ function filterMaskStock() {
 
 // EventListners
 
-// nav
-navLogoEl.addEventListener("click", () => {
-  window.location.reload();
-});
-
 // search
 topAreaEl.addEventListener("change", setSelectArea);
 secondAreaEl.addEventListener("change", setSelectArea);

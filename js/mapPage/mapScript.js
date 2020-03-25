@@ -15,7 +15,7 @@ if (JSON.parse(localStorage.getItem("curLatLng"))) {
 
 const mapOption = {
   center: new kakao.maps.LatLng(lat, lng),
-  level: 3
+  level: 5
 };
 
 const map = new kakao.maps.Map(mapContainer, mapOption);
@@ -125,6 +125,9 @@ async function showMarker(lat, lng) {
 }
 
 async function newSearch() {
+  if (addressInputEl.value == '') {
+    return false
+  }
   const [lat, lng] = await getLatLngFromAddress();
 
   moveCenter(lat, lng);
