@@ -133,9 +133,13 @@ async function newSearch() {
 }
 
 function changeDist() {
-  const [lat, lng] = JSON.parse(localStorage.getItem("inputLatLng"));
-  makeCircle(lat, lng);
-  showMarker(lat, lng);
+  if (localStorage.inputLatLng) {
+    const [lat, lng] = JSON.parse(localStorage.getItem("inputLatLng"));
+    makeCircle(lat, lng);
+    showMarker(lat, lng);
+  } else {
+    return false
+  }
 }
 
 searchBtn.addEventListener("click", newSearch);
