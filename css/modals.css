@@ -31,8 +31,8 @@
   cursor: pointer;
   border: 0;
   position: absolute;
-  left:50%;
-  bottom:25px;
+  left: 50%;
+  bottom: 25px;
   width: 85%;
   transform: translateX(-50%);
   padding: 10px;
@@ -48,7 +48,6 @@
   font-size: 19px;
   padding: 9.5px;
 }
-
 
 .map-modal-container {
   background-color: rgba(0, 0, 0, 0.6);
@@ -129,8 +128,8 @@
   top: 0px;
 }
 
-@media(max-width:700px) {
-  .map-modal{
+@media (max-width: 700px) {
+  .map-modal {
     width: 400px;
   }
   .map-modal-container .map-body {
@@ -139,8 +138,16 @@
   }
 }
 
-
-@media(max-width:400px) {
+@media (max-width: 500px) {
+  .main-modal {
+    padding: 15px 20px;
+  }
+  .main-modal-container .main-close-btn {
+    bottom: 15px;
+    width: 90%;
+  }
+}
+@media (max-width: 400px) {
   .main-modal {
     font-size: 11px;
   }
