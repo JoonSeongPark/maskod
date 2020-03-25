@@ -166,9 +166,9 @@ async function newSearch() {
   }
   const [lat, lng] = await getLatLngFromAddress();
 
-  moveCenter(lat, lng);
   makeCircle(lat, lng);
   showMarker(lat, lng);
+  moveCenter(lat, lng);
 }
 
 function changeDist() {
