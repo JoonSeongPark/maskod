@@ -20,7 +20,7 @@ a {
 nav .nav-left {
   cursor: pointer;
   height: 100%;
-  width: fit-content;
+  /* width: fit-content; */
   display: flex;
   align-items: center;
 }
@@ -71,6 +71,7 @@ nav .nav-right ul li a {
   }
   nav .nav-logo {
     margin-right: 7px;
+    width: 30px;
   }
 
   nav span {
