@@ -15,10 +15,10 @@ if (JSON.parse(localStorage.getItem("curLatLng"))) {
 
 const mapOption = {
   center: new kakao.maps.LatLng(lat, lng),
-  level: 5
+  level: 4
 };
 
-const map = new kakao.maps.Map(mapContainer, mapOption);
+let map = new kakao.maps.Map(mapContainer, mapOption);
 
 const zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.BOTTOMRIGHT);
@@ -54,9 +54,10 @@ function makeCircle(lat, lng) {
   if (circle) {
     circle.setMap(null);
   }
+  const dist = inputRangeEl.value;
   circle = new kakao.maps.Circle({
     center: new kakao.maps.LatLng(lat, lng),
-    radius: inputRangeEl.value,
+    radius: dist,
     strokeWeight: 3,
     strokeColor: "#5b9bd5",
     strokeOpacity: 1,
@@ -64,6 +65,41 @@ function makeCircle(lat, lng) {
     fillColor: "#5b9bd5",
     fillOpacity: 0.2
   });
+
+  if (window.innerWidth > 700) {
+    if (dist > 700) {
+      mapOption.level = 5;
+    } else if (dist > 300) {
+      mapOption.level = 4;
+    } else {
+      mapOption.level = 3;
+    }
+  } else if (window.innerWidth > 500) {
+    if (dist > 800) {
+      mapOption.level = 6;
+    } else if (dist > 450) {
+      mapOption.level = 5;
+    } else {
+      mapOption.level = 4;
+    }
+  } else if (window.innerWidth > 400) {
+    if (dist > 750) {
+      mapOption.level = 6;
+    } else if (dist > 350) {
+      mapOption.level = 5;
+    } else {
+      mapOption.level = 4;
+    }
+  } else {
+    if (dist > 600) {
+      mapOption.level = 6;
+    } else if (dist > 300) {
+      mapOption.level = 5;
+    } else {
+      mapOption.level = 4;
+    }
+  }
+  map = new kakao.maps.Map(mapContainer, mapOption);
 
   circle.setMap(map);
 }
@@ -125,8 +161,8 @@ async function showMarker(lat, lng) {
 }
 
 async function newSearch() {
-  if (addressInputEl.value == '') {
-    return false
+  if (addressInputEl.value == "") {
+    return false;
   }
   const [lat, lng] = await getLatLngFromAddress();
 
@@ -141,7 +177,7 @@ function changeDist() {
     makeCircle(lat, lng);
     showMarker(lat, lng);
   } else {
-    return false
+    return false;
   }
 }
 
