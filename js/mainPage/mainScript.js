@@ -127,7 +127,7 @@ function getInfoElinnerHTML(info) {
     <p>${setTimeDiff(info.created_at)}</p>
   </div>
   <div class="store-type">
-    <img src="images/${store_type[`${info.type}`]}" class="store-img">
+  
   </div>
   <div class="go-map" name="${info.name}" searchtext="${info.addr}, ${
     info.name
