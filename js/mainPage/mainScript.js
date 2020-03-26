@@ -135,7 +135,7 @@ function getInfoElinnerHTML(info) {
   </div>
     `;
 
-  const circle = infoEl.querySelector(".store-type");
+  const circle = infoEl.querySelector(".stock-amount");
   circle.classList.add(`${info.remain_stat}`);
 
   listContainer.appendChild(infoEl);
