@@ -128,6 +128,10 @@ async function showMarker(lat, lng) {
     stockInfoEl.style.display = "none";
     return false;
   }
+  // marker를 위에서부터 찍어줘야 아래 marker가 위에 그려진다.
+  const sortedStores = onSellStores.sort((a, b) => {
+    return b.lat - a.lat;
+  });
 
   stockInfoEl.style.display = "block";
 
@@ -136,7 +140,7 @@ async function showMarker(lat, lng) {
   });
   markerArr = [];
 
-  onSellStores.forEach(store => {
+  sortedStores.forEach(store => {
     const stock = store.remain_stat;
     const imageSrc = `images/${stock}_marker.png`;
     const imageSize = new kakao.maps.Size(36, 56);
@@ -151,7 +155,32 @@ async function showMarker(lat, lng) {
 
     const marker = new kakao.maps.Marker({
       position: markerPosition,
-      image: markerImg
+      image: markerImg,
+      clickable: true
+    });
+
+    var content = `<div class="customoverlay">
+    <span class="title">${store.name}</span>
+    </div>`;
+
+    // 커스텀 오버레이를 생성합니다
+    var customOverlay = new kakao.maps.CustomOverlay({
+      map: map,
+      position: markerPosition,
+      content: content,
+      yAnchor: 3
+    });
+
+    customOverlay.setVisible(false);
+
+    kakao.maps.event.addListener(marker, "mouseover", () => {
+      customOverlay.setVisible(true);
+    });
+    kakao.maps.event.addListener(marker, "mouseout", () => {
+      customOverlay.setVisible(false);
+    });
+    kakao.maps.event.addListener(marker, "click", () => {
+      customOverlay.setVisible(!customOverlay.getVisible());
     });
 
     markerArr.push(marker);
