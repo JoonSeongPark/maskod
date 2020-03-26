@@ -126,8 +126,7 @@ function getInfoElinnerHTML(info) {
   <div class="info-createdat">
     <p>${setTimeDiff(info.created_at)}</p>
   </div>
-  <div class="store-type">
-  
+  <div class="stock-amount">
   </div>
   <div class="go-map" name="${info.name}" searchtext="${info.addr}, ${
     info.name

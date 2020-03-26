@@ -399,7 +399,7 @@ header .header-content p {
   text-align: center;
 }
 
-.store-type {
+.stock-amount {
   position: absolute;
   left: -12px;
   top: -4px;
@@ -434,7 +434,7 @@ header .header-content p {
   .info-category {
     letter-spacing: 2px;
   }
-  .store-type {
+  .stock-amount {
     left: -10px;
     top: -4px;
     width: 12px;
@@ -479,7 +479,7 @@ header .header-content p {
     width: 17%;
     margin-right: 15px;
   }
-  .store-type {
+  .stock-amount {
     left: -10px;
     top: -4px;
     width: 12px;
@@ -580,7 +580,7 @@ header .header-content p {
   .info-createdat {
     width: 17%;
   }
-  .store-type {
+  .stock-amount {
     left: -9px;
     top: -4px;
     width: 11px;
@@ -680,7 +680,7 @@ header .header-content p {
   .info-createdat {
     width: 19%;
   }
-  .store-type {
+  .stock-amount {
     left: -9px;
     top: -4px;
     width: 11px;
