@@ -4,6 +4,11 @@ const inputRangeEl = document.getElementById("dist-range");
 const distValueEl = document.getElementById("dist-value");
 const stockInfoEl = document.getElementById("stock-info");
 
+const plentyBtn = document.getElementById("plenty");
+const someBtn = document.getElementById("some");
+const fewBtn = document.getElementById("few");
+const emptyBtn = document.getElementById("empty");
+
 localStorage.clear();
 
 let lat = 37.5551834,
@@ -133,6 +138,8 @@ async function showMarker(lat, lng) {
     return b.lat - a.lat;
   });
 
+  localStorage.setItem("stores", JSON.stringify(sortedStores));
+
   stockInfoEl.style.display = "block";
 
   markerArr.forEach(mark => {
@@ -156,14 +163,15 @@ async function showMarker(lat, lng) {
     const marker = new kakao.maps.Marker({
       position: markerPosition,
       image: markerImg,
-      clickable: true
+      clickable: true.setVisible,
+      title: store.remain_stat
     });
 
     var content = `<div class="customoverlay">
     <span class="title">${store.name}</span>
     </div>`;
 
-    // 커스텀 오버레이를 생성합니다
+    // Overlay (name)
     var customOverlay = new kakao.maps.CustomOverlay({
       map: map,
       position: markerPosition,
@@ -210,6 +218,18 @@ function changeDist() {
   }
 }
 
+function storefilter() {
+  markerArr.forEach(store => {
+    if (store.getTitle() == this.id) {
+      store.setVisible(true)
+    } else {
+      store.setVisible(false)
+    }
+  });
+}
+
+// Event Listeners
+
 searchBtn.addEventListener("click", newSearch);
 addressInputEl.addEventListener("keypress", function(e) {
   if (e.key == "Enter") {
@@ -221,3 +241,8 @@ inputRangeEl.addEventListener("input", () => {
   distValueEl.innerHTML = `${inputRangeEl.value}m`;
   changeDist();
 });
+
+plentyBtn.addEventListener("click", storefilter);
+someBtn.addEventListener("click", storefilter);
+fewBtn.addEventListener("click", storefilter);
+emptyBtn.addEventListener("click", storefilter);
