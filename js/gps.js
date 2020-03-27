@@ -20,6 +20,7 @@ async function getLatLngFromAddress() {
   const data = await res.json();
   
   if (data.documents.length >1) {
+    inputDataListEl.innerHTML = ''
     data.documents.forEach(info => {
       inputDataListEl.innerHTML += `<option value="${info.address_name}"></option>`
     })
