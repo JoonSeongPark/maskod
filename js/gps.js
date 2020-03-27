@@ -1,4 +1,5 @@
 const addressInputEl = document.getElementById("address");
+const inputDataListEl = document.getElementById('duplicate-addr')
 
 getLocation();
 
@@ -17,6 +18,16 @@ async function getLatLngFromAddress() {
     }
   );
   const data = await res.json();
+  
+  if (data.documents.length >1) {
+    data.documents.forEach(info => {
+      inputDataListEl.innerHTML += `<option value="${info.address_name}"></option>`
+    })
+    addressInputEl.addEventListener('input', renderList)
+    return [-1,-1]
+  }
+
+  inputDataListEl.innerHTML = ''
   localStorage.setItem(
     "inputLatLng",
     JSON.stringify([data.documents[0].y, data.documents[0].x])

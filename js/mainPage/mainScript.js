@@ -171,6 +171,7 @@ async function getMaskTypeInfo() {
 async function renderList() {
   let maskInfos = "";
   let lat, lng;
+  
   if (this.id == "select-search") {
     let data = await getMaskSelectInfo();
     maskInfos = data.stores;
@@ -182,7 +183,7 @@ async function renderList() {
       lat = pos[0];
       lng = pos[1];
     }
-  } else if (this.id == "typing-search") {
+  } else if (this.id == "typing-search" || this.id == "address") {
     maskInfos = await getMaskTypeInfo();
     if (maskInfos == "") {
       return false;
@@ -191,6 +192,7 @@ async function renderList() {
       lng = JSON.parse(localStorage.getItem("inputLatLng"))[1];
     }
   }
+  
   if (maskInfos == "" || maskInfos == undefined) {
     stockInfoEl.style.display = "none";
     listContainer.innerHTML = "<h2>검색결과가 없습니다.</h2>";
