@@ -280,7 +280,6 @@ selectSearchBtn.addEventListener("click", renderList);
 
 typingSearchBtn.addEventListener("click", renderList);
 
-addressInputEl.addEventListener("input", autoComplete);
 addressInputEl.addEventListener("keypress", function(e) {
   if (e.key == "Enter") {
     typingSearchBtn.click();

@@ -232,7 +232,6 @@ function storefilter() {
 
 searchBtn.addEventListener("click", newSearch);
 
-addressInputEl.addEventListener("input", autoComplete);
 addressInputEl.addEventListener("keypress", function(e) {
   if (e.key == "Enter") {
     searchBtn.click();
