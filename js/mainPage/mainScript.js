@@ -269,6 +269,16 @@ function filterMaskStock() {
   }
 }
 
+function selectDuplicate() {
+  if (this.value == "title") {
+    return false;
+  }
+
+  addressInputEl.value = this.value;
+  duplicateSelectEl.style.display = "none";
+  typingSearchBtn.click();
+}
+
 // EventListners
 
 // search
@@ -279,6 +289,8 @@ thirdAreaEl.addEventListener("change", setSelectArea);
 selectSearchBtn.addEventListener("click", renderList);
 
 typingSearchBtn.addEventListener("click", renderList);
+
+duplicateSelectEl.addEventListener("change", selectDuplicate);
 
 addressInputEl.addEventListener("keypress", function(e) {
   if (e.key == "Enter") {

@@ -1,5 +1,5 @@
 const addressInputEl = document.getElementById("address");
-const inputDataListEl = document.getElementById('duplicate-addr')
+const duplicateSelectEl = document.getElementById('duplicate-address')
 
 getLocation();
 
@@ -18,16 +18,17 @@ async function getLatLngFromAddress() {
     }
   );
   const data = await res.json();
-  
+  duplicateSelectEl.innerHTML = `<option value="title">&nbsp&nbsp======&nbsp주소를 선택하세요.&nbsp======&nbsp&nbsp</option>`
   if (data.documents.length >1) {
-    inputDataListEl.innerHTML = ''
     data.documents.forEach(info => {
-      inputDataListEl.innerHTML += `<option value="${info.address_name}"></option>`
+      duplicateSelectEl.innerHTML += `<option value="${info.address_name}">${info.address_name}</option>`
     })
+    duplicateSelectEl.style.display = 'inline-block'
+
+    addressInputEl.focus()
     return [-1,-1]
   }
 
-  inputDataListEl.innerHTML = ''
   localStorage.setItem(
     "inputLatLng",
     JSON.stringify([data.documents[0].y, data.documents[0].x])

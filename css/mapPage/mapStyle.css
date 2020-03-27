@@ -71,6 +71,26 @@ body {
   outline: none;
 }
 
+.duplicate-address {
+  display: none;
+  font-size: 12px;
+  width: 220px;
+  max-width: 60vw;
+  height: 25px;
+  margin: 0 5px;
+  text-align-last: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: 0;
+  position: fixed;
+  top: 155px;
+  left: 20px;
+  z-index: 500;
+}
+.duplicate-address:focus {
+  box-shadow: 0 0 4px var(--main-color);
+}
+
 .stock-info {
   position: fixed;
   display: none;

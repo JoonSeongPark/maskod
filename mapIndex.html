@@ -50,24 +50,25 @@
         id="address"
         class="address"
         placeholder="도로명 또는 번지 주소를 입력하세요."
-        list="duplicate-addr"
       />
-      <datalist id='duplicate-addr'>
-      </datalist>
       <button id="search"><i class="fa fa-search"></i></button>
     </div>
+
     <div class="range-container">
       <input
         type="range"
         value="500"
         min="0"
         max="1000"
-        step = "50"
+        step="50"
         class="dist-range"
         id="dist-range"
       />
       <div class="dist-value" id="dist-value">500m</div>
     </div>
+
+    <select class="duplicate-address" id="duplicate-address"> </select>
+
     <div class="stock-info" id="stock-info">
       <ul>
         <li id="plenty">

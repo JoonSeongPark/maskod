@@ -202,7 +202,10 @@ async function newSearch() {
     return false;
   }
   const [lat, lng] = await getLatLngFromAddress();
-
+  if (lat == -1) {
+    stockInfoEl.style.display ='none'
+    return false;
+  }
   makeCircle(lat, lng);
   showMarker(lat, lng);
   moveCenter(lat, lng);
@@ -221,11 +224,21 @@ function changeDist() {
 function storefilter() {
   markerArr.forEach(store => {
     if (store.getTitle() == this.id) {
-      store.setVisible(true)
+      store.setVisible(true);
     } else {
-      store.setVisible(false)
+      store.setVisible(false);
     }
   });
+}
+
+function selectDuplicate() {
+  if (this.value == "title") {
+    return false;
+  }
+
+  addressInputEl.value = this.value;
+  duplicateSelectEl.style.display = "none";
+  searchBtn.click();
 }
 
 // Event Listeners
@@ -242,6 +255,8 @@ inputRangeEl.addEventListener("input", () => {
   distValueEl.innerHTML = `${inputRangeEl.value}m`;
   changeDist();
 });
+
+duplicateSelectEl.addEventListener("change", selectDuplicate);
 
 plentyBtn.addEventListener("click", storefilter);
 someBtn.addEventListener("click", storefilter);
