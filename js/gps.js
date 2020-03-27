@@ -92,7 +92,10 @@ async function autoComplete() {
     }
   );
   const data = await res.json();
-
+  if (data.documents.length == 1) {
+    inputDataListEl.innerHTML ==''
+    return false
+  }
   inputDataListEl.innerHTML = "";
   data.documents.forEach(info => {
     inputDataListEl.innerHTML += `<option value="${info.address_name}"></option>`;
