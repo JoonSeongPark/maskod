@@ -175,27 +175,6 @@ header .header-content p {
   background-color: var(--main-color);
 }
 
-.duplicate-ul {
-  list-style-type: none;
-  padding:0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.duplicate-addr {
-  padding: 3px 8px;
-  margin: 0 10px;
-  background-color: #fff;
-  border: 1px solid #0f4c81;
-  border-radius: 5px;
-}
-
-
-
-
-
 .stock-info {
   display: none;
   text-align: center;

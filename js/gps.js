@@ -24,7 +24,7 @@ async function getLatLngFromAddress() {
     data.documents.forEach(info => {
       inputDataListEl.innerHTML += `<option value="${info.address_name}"></option>`
     })
-    addressInputEl.addEventListener('input', renderList)
+    // addressInputEl.addEventListener('input', renderList)
     return [-1,-1]
   }
 
@@ -75,4 +75,26 @@ function getLocation() {
   } else {
     alert("위치정보를 제공하지 않습니다.");
   }
+}
+
+async function autoComplete() {
+  const addr = addressInputEl.value;
+  if (addr == "") {
+    return [-1, -1];
+  }
+  const res = await fetch(
+    `https://dapi.kakao.com/v2/local/search/address.json?query=${addr}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: "KakaoAK " + "f965a322d95b3d29f27e28b80af51c51"
+      }
+    }
+  );
+  const data = await res.json();
+
+  inputDataListEl.innerHTML = "";
+  data.documents.forEach(info => {
+    inputDataListEl.innerHTML += `<option value="${info.address_name}"></option>`;
+  });
 }
