@@ -1,5 +1,5 @@
 // Time expression
-const setTimeDiff = time => {
+function setTimeDiff(time) {
   const now = Date.parse(new Date());
   const date = Date.parse(`${time}`);
   const timeDiff = (now - date) / 1000;

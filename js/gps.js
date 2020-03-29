@@ -1,5 +1,5 @@
 const addressInputEl = document.getElementById("address");
-const duplicateSelectEl = document.getElementById('duplicate-address')
+const duplicateSelectEl = document.getElementById("duplicate-address");
 
 getLocation();
 
@@ -18,15 +18,15 @@ async function getLatLngFromAddress() {
     }
   );
   const data = await res.json();
-  duplicateSelectEl.innerHTML = `<option value="title">&nbsp&nbsp======&nbsp주소를 선택하세요.&nbsp======&nbsp&nbsp</option>`
-  if (data.documents.length >1) {
+  duplicateSelectEl.innerHTML = `<option value="title">&nbsp&nbsp======&nbsp주소를 선택하세요&nbsp======&nbsp&nbsp</option>`;
+  if (data.documents.length > 1) {
     data.documents.forEach(info => {
-      duplicateSelectEl.innerHTML += `<option value="${info.address_name}">${info.address_name}</option>`
-    })
-    duplicateSelectEl.style.display = 'inline-block'
+      duplicateSelectEl.innerHTML += `<option value="${info.address_name}">${info.address_name}</option>`;
+    });
+    duplicateSelectEl.style.display = "inline-block";
 
-    addressInputEl.focus()
-    return [-1,-1]
+    addressInputEl.focus();
+    return [-1, -1];
   }
 
   localStorage.setItem(
@@ -40,7 +40,7 @@ async function getLatLngFromAddress() {
   }
 }
 
-async function getAddressFromLatLng(lat,lng) {
+async function getAddressFromLatLng(lat, lng) {
   const res = await fetch(
     `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lng}&y=${lat}`,
     {
@@ -50,18 +50,23 @@ async function getAddressFromLatLng(lat,lng) {
       }
     }
   );
-  const data = await res.json()
-  return data.documents[0].address.address_name
+  const data = await res.json();
+  return data.documents[0].address.address_name;
 }
-
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       async function(position) {
-        localStorage.setItem("curLatLng", JSON.stringify([position.coords.latitude, position.coords.longitude]));
-        const addr = await getAddressFromLatLng(position.coords.latitude, position.coords.longitude);
-        addressInputEl.value = addr
+        localStorage.setItem(
+          "curLatLng",
+          JSON.stringify([position.coords.latitude, position.coords.longitude])
+        );
+        const addr = await getAddressFromLatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+        addressInputEl.value = addr;
       },
       function(error) {
         console.error(error);
