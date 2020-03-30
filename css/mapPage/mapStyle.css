@@ -25,7 +25,7 @@ select {
 }
 
 body {
-  font-family: "Do Hyeon", "Noto Sans KR", sans-serif;
+  font-family: "BMDOHYEON", "Noto Sans KR", sans-serif;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -59,6 +59,7 @@ body {
 
 .search-content button {
   cursor: pointer;
+  background-color: #006b6d;
   background-color: var(--submain-color);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-top-right-radius: 5px;
@@ -88,6 +89,7 @@ body {
   z-index: 500;
 }
 .duplicate-address:focus {
+  box-shadow: 0 0 4px #0f4c81;
   box-shadow: 0 0 4px var(--main-color);
 }
 
@@ -114,15 +116,19 @@ body {
 }
 
 #plenty {
+  background-color: #37bd6f;
   background-color: var(--plenty-color);
 }
 #some {
+  background-color: #f0c802;
   background-color: var(--some-color);
 }
 #few {
+  background-color: #e74c3c;
   background-color: var(--few-color);
 }
 #empty {
+  background-color: #999;
   background-color: var(--empty-color);
 }
 

@@ -49,7 +49,7 @@
       <h1>
         마스크 어디?
       </h1>
-      <p>< <strong>Mask O</strong>r <strong>D</strong>isease ></p>
+      <p><strong>Mask O</strong>r <strong>D</strong>isease ></p>
       <div class="header-content"></div>
 
       <div class="address-select">
@@ -82,7 +82,7 @@
             원하는 주소 입력도 가능합니다.
             <br />
             해당주소를 기준으로
-            <select class="circle-distance" id="circle-distance">
+            <select class="circle-distance" id="circle-distance" dir="auto">
               <option valuegi="100">100m</option>
               <option value="200">200m</option>
               <option value="300">300m</option>
@@ -106,14 +106,13 @@
           />
           <button id="typing-search"><i class="fa fa-search"></i></button>
         </div>
-        
-        <select class="duplicate-address" id="duplicate-address"> </select>
 
+        <select class="duplicate-address" id="duplicate-address"> </select>
       </div>
     </header>
-
-    <hr style="width: 90vw; max-width: 1200px;" />
-
+    <div>
+      <hr style="width: 90vw; max-width: 1200px;" />
+    </div>
     <div class="stock-info" id="stock-info">
       <p>마스크 개수 기준 정렬</p>
 
@@ -263,13 +262,14 @@
       </div>
     </footer>
 
-    <script src="js/constants.js"></script>
-    <script src="js/timeDiff.js"></script>
-    <script src="js/euclideanDist.js"></script>
-    <script src="js/gps.js"></script>
-    <script src="js/mainPage/footer.js"></script>
-    <script src="js/mainPage/fifthDays.js"></script>
-    <script src="js/mainPage/modals.js"></script>
-    <script src="js/mainPage/mainScript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+    <script type="text/babel" src="js/constants.js"></script>
+    <script type="text/babel" src="js/timeDiff.js"></script>
+    <script type="text/babel" src="js/euclideanDist.js"></script>
+    <script type="text/babel" src="js/gps.js"></script>
+    <script type="text/babel" src="js/mainPage/footer.js"></script>
+    <script type="text/babel" src="js/mainPage/fifthDays.js"></script>
+    <script type="text/babel" src="js/mainPage/modals.js"></script>
+    <script type="text/babel" src="js/mainPage/mainScript.js"></script>
   </body>
 </html>
