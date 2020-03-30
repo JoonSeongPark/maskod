@@ -347,13 +347,14 @@ header .header-content p {
   font-size: smaller;
   height: 70%;
   color: #999;
+  letter-spacing: 1px;
 }
-#sat-sun h3 {
+#sat-sun h4 {
   font-size: 16px;
   margin: 0;
 }
 
-.fifth-day-mask h3 {
+.fifth-day-mask h4 {
   margin: 0;
 }
 
@@ -516,6 +517,9 @@ header .header-content p {
   .days .days-header {
     font-size: 17px;
   }
+  #sat-sun h4 {
+    font-size: smaller;
+  }
 
   .list-container .fifth-explain {
     font-size: larger;
@@ -581,6 +585,11 @@ header .header-content p {
     min-width: 0;
     width: 60vw;
   }
+
+  .days .days-content {
+    letter-spacing: 0;
+  }
+
   .stock-info ul {
     margin: 6px 0;
   }

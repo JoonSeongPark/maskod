@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Do+Hyeon:Regular");
+
+@font-face {
+  font-family: "BMDOHYEON";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   box-sizing: border-box;
