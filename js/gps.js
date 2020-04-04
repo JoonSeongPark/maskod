@@ -81,3 +81,19 @@ function getLocation() {
     alert("위치정보를 제공하지 않습니다.");
   }
 }
+
+async function getJson(id){
+  const res = await fetch("https://maskod-7513f.firebaseio.com/mon.json", {
+    method: "GET"
+  });
+  const data = await res.json()
+  const resetTimes = []
+  if (data[id].start === null){
+    return "정보 없음"
+  }
+  data[id].start.map(time => {
+    resetTimes.push(time.slice(0,2)+':'+time.slice(2))
+  })
+  const times = resetTimes.join('/')
+  return times
+}

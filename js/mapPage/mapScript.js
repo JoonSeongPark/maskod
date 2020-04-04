@@ -191,7 +191,7 @@ async function showMarker(lat, lng) {
       customOverlay.setVisible(!customOverlay.getVisible());
       setTimeout(() => {
         customOverlay.setVisible(false);
-      }, 3000);
+      }, 2000);
     });
 
     markerArr.push(marker);

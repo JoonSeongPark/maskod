@@ -7,19 +7,6 @@ const mapCloseBtn = document.getElementById("map-close-btn");
 
 const circleDistanceEl = document.getElementById("circle-distance");
 
-
-async function getJson(id){
-  const res = await fetch("https://maskod-7513f.firebaseio.com/mon.json", {
-    method: "GET"
-  });
-  const data = await res.json()
-  const resetTimes = []
-  data[id].start.map(time => {
-    resetTimes.push(time.slice(0,2)+':'+time.slice(2))
-  })
-  const times = resetTimes.join('/')
-  return times
-}
 // See on a map
  openMap = () => {
   let targetEl;

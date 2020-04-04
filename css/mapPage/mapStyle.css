@@ -167,6 +167,10 @@ body {
   font-size: 12px;
   font-family: "Noto Sans KR", sans-serif;
   padding: 3px 8px;
+  text-align: center;
+}
+.customoverlay span {
+  font-size: smaller;
 }
 
 @media (max-width: 500px) {
