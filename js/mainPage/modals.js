@@ -7,10 +7,23 @@ const mapCloseBtn = document.getElementById("map-close-btn");
 
 const circleDistanceEl = document.getElementById("circle-distance");
 
+
+async function getJson(id){
+  const res = await fetch("https://maskod-7513f.firebaseio.com/mon.json", {
+    method: "GET"
+  });
+  const data = await res.json()
+  const resetTimes = []
+  data[id].start.map(time => {
+    resetTimes.push(time.slice(0,2)+':'+time.slice(2))
+  })
+  const times = resetTimes.join('/')
+  return times
+}
 // See on a map
-const openMap = () => {
+ openMap = () => {
   let targetEl;
-  listContainer.addEventListener("click", e => {
+  listContainer.addEventListener("click", async function(e) {
     if (e.target.tagName == "H3") {
       targetEl = e.target.parentElement;
     } else if (e.target.className == "go-map") {
@@ -20,8 +33,11 @@ const openMap = () => {
     const lat = targetEl.getAttribute("lat");
     const lng = targetEl.getAttribute("lng");
     const name = targetEl.getAttribute("name");
-    
-    mapHeader.innerHTML = `<h3>${name}</h3>`;
+    const id = targetEl.getAttribute("id")
+
+    const startTime = await getJson(id)
+
+    mapHeader.innerHTML = `<h4>${name} <span>(판매시작 - ${startTime})</span></h4>`;
     mapModalEl.classList.add("show-map-modal");
 
     const position = new kakao.maps.LatLng(lat, lng);

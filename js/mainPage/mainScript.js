@@ -128,7 +128,7 @@ function getInfoElinnerHTML(info) {
   </div>
   <div class="stock-amount">
   </div>
-  <div class="go-map" name="${info.name}" searchtext="${info.addr}, ${
+  <div class="go-map" id="${info.code}" name="${info.name}" searchtext="${info.addr}, ${
     info.name
   }" lat="${info.lat}" lng="${info.lng}" remainstat="${info.remain_stat}">
     <h3>지도에서 위치보기</h3>

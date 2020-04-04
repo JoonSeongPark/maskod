@@ -83,11 +83,15 @@
   background-color: #0f4c81;
   color: #fff;
   border: 1px solid #0f4c81;
-  padding: 12px;
+  padding: 8px;
 }
 
-.map-modal-container h3 {
+.map-modal-container h4 {
+  font-family: "Noto Sans KR", sans-serif;
   margin: 0;
+}
+.map-modal-container h4 span {
+  font-size:10px;
 }
 
 .map-modal-container .map-body {
@@ -103,7 +107,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  padding: 12px;
+  padding: 8px;
   background: transparent;
   font-size: 20px;
   color: #fff;
