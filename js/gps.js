@@ -18,6 +18,7 @@ async function getLatLngFromAddress() {
     }
   );
   const data = await res.json();
+  duplicateSelectEl.style.display = "none";
   duplicateSelectEl.innerHTML = `<option value="title">&nbsp&nbsp======&nbsp주소를 선택하세요&nbsp======&nbsp&nbsp</option>`;
   if (data.documents.length > 1) {
     data.documents.forEach(info => {
@@ -27,6 +28,10 @@ async function getLatLngFromAddress() {
 
     addressInputEl.focus();
     return [-1, -1];
+  }
+  // 존재하지않음.
+  if (data.documents.length== 0) {
+    return [-2,-2]
   }
 
   localStorage.setItem(

@@ -158,12 +158,17 @@ async function getMaskTypeInfo() {
   if (lat == -1) {
     return "";
   }
+  if (lat == -2) {
+    listContainer.innerHTML = "<h2>주소를 다시 입력하세요.</h2>";
+    setFooterPosition();
+    return ''
+  }
 
   const res = await fetch(
     `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${lat}&lng=${lng}&m=${circleDistanceEl.value}`
   );
   const data = await res.json();
-
+    
   return data.stores;
 }
 
@@ -185,6 +190,7 @@ async function renderList() {
     }
   } else if (this.id == "typing-search" || this.id == "address") {
     maskInfos = await getMaskTypeInfo();
+    
     if (maskInfos == "") {
       return false;
     } else {
