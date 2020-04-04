@@ -554,6 +554,13 @@ header .header-content p {
   header {
     margin-top: 40px;
   }
+  header h1 {
+    padding-top: 10px;
+    font-size: 35px;
+  }
+  header h3 {
+    font-size: 15px;
+  }
   header p {
     padding: 0 20px;
     letter-spacing: 0;
@@ -594,9 +601,9 @@ header .header-content p {
     margin: 6px 0;
   }
   .stock-info ul li {
-    font-size: 11px;
-    width: 65px;
-    margin: 0 4px;
+    font-size: 10px;
+    margin: 0 3px;
+    width: 70px;
     letter-spacing: 0;
   }
 
@@ -660,6 +667,9 @@ header .header-content p {
   header {
     margin-top: 35px;
   }
+  header h1 {
+    font-size: 30px;
+  }
   header div p {
     font-size: 12px;
   }
@@ -681,7 +691,7 @@ header .header-content p {
   }
 
   .search-box input {
-    font-size: 11px;
+    font-size: 10px;
     padding: 2px 10px;
   }
   .search-box button {
@@ -689,8 +699,8 @@ header .header-content p {
     font-size: 14px;
   }
   .stock-info ul li {
-    font-size: 11px;
-    width: 55px;
+    font-size: 7px;
+    width: 70px;
     margin: 0 3px;
     letter-spacing: 0;
   }
@@ -731,13 +741,12 @@ header .header-content p {
   .stock-info ul {
     margin: 4px 0;
   }
-  .stock-info ul li {
-    font-size: 8px;
-    letter-spacing: 0;
-  }
 }
 
 @media (max-width: 360px) {
+  header div p {
+    font-size: 10px;
+  }
   .info-list {
     padding: 4px 2px;
   }
@@ -753,6 +762,12 @@ header .header-content p {
     top: -4px;
     width: 11px;
     height: 31px;
+  }
+  .stock-info ul li {
+    font-size: 7px;
+    width: 65px;
+    margin: 0 1px;
+    letter-spacing: 0;
   }
 }
 

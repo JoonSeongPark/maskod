@@ -176,9 +176,8 @@ body {
   .stock-info {
     top: 135px;
   }
-}
-@media (max-width: 450px) {
   .stock-info ul li {
+    font-size: 10px;
     margin: 0 3px;
     width: 70px;
   }
