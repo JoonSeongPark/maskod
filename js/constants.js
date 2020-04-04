@@ -1,8 +1,3 @@
-const store_type = {
-  "01": "pharmacy.png",
-  "02": "post_office.png",
-  "03": "nonghyup.png"
-};
 const mask_stock = {
   plenty: "100개 이상",
   some: "30개 이상",

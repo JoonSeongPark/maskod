@@ -20,7 +20,7 @@ if (JSON.parse(localStorage.getItem("curLatLng"))) {
 
 const mapOption = {
   center: new kakao.maps.LatLng(lat, lng),
-  level: 4
+  level: 4,
 };
 
 let map = new kakao.maps.Map(mapContainer, mapOption);
@@ -47,7 +47,7 @@ function moveCenter(lat, lng) {
   }
   currentMarker = new kakao.maps.Marker({
     position: currentMarkerPosition,
-    image: currentMarkerImg
+    image: currentMarkerImg,
   });
 
   currentMarker.setMap(map);
@@ -68,7 +68,7 @@ function makeCircle(lat, lng) {
     strokeOpacity: 1,
     strokeStyle: "solid",
     fillColor: "#5b9bd5",
-    fillOpacity: 0.2
+    fillOpacity: 0.2,
   });
 
   if (window.innerWidth > 700) {
@@ -127,7 +127,7 @@ async function showMarker(lat, lng) {
     return false;
   }
   const onSellStores = stores.filter(
-    info => info.remain_stat !== "break" && info.remain_stat !== null
+    (info) => info.remain_stat !== "break" && info.remain_stat !== null
   );
   if (onSellStores.length == 0) {
     stockInfoEl.style.display = "none";
@@ -142,12 +142,12 @@ async function showMarker(lat, lng) {
 
   stockInfoEl.style.display = "block";
 
-  markerArr.forEach(mark => {
+  markerArr.forEach((mark) => {
     mark.setMap(null);
   });
   markerArr = [];
 
-  sortedStores.forEach(store => {
+  sortedStores.forEach((store) => {
     const stock = store.remain_stat;
     const imageSrc = `images/${stock}_marker.png`;
     const imageSize = new kakao.maps.Size(36, 56);
@@ -164,7 +164,7 @@ async function showMarker(lat, lng) {
       position: markerPosition,
       image: markerImg,
       clickable: true.setVisible,
-      title: store.remain_stat
+      title: store.remain_stat,
     });
 
     var content = `<div class="customoverlay">
@@ -176,7 +176,7 @@ async function showMarker(lat, lng) {
       map: map,
       position: markerPosition,
       content: content,
-      yAnchor: 3
+      yAnchor: 3,
     });
 
     customOverlay.setVisible(false);
@@ -189,6 +189,9 @@ async function showMarker(lat, lng) {
     });
     kakao.maps.event.addListener(marker, "click", () => {
       customOverlay.setVisible(!customOverlay.getVisible());
+      setTimeout(() => {
+        customOverlay.setVisible(false);
+      }, 3000);
     });
 
     markerArr.push(marker);
@@ -203,7 +206,7 @@ async function newSearch() {
   }
   const [lat, lng] = await getLatLngFromAddress();
   if (lat == -1) {
-    stockInfoEl.style.display ='none'
+    stockInfoEl.style.display = "none";
     return false;
   }
   makeCircle(lat, lng);
@@ -222,7 +225,7 @@ function changeDist() {
 }
 
 function storefilter() {
-  markerArr.forEach(store => {
+  markerArr.forEach((store) => {
     if (store.getTitle() == this.id) {
       store.setVisible(true);
     } else {
@@ -245,7 +248,7 @@ function selectDuplicate() {
 
 searchBtn.addEventListener("click", newSearch);
 
-addressInputEl.addEventListener("keypress", function(e) {
+addressInputEl.addEventListener("keypress", function (e) {
   if (e.key == "Enter") {
     searchBtn.click();
   }
