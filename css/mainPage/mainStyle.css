@@ -384,13 +384,14 @@ header .header-content p {
   align-items: flex-end;
   justify-content: space-between;
   position: relative;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 8px 20px;
   width: 80vw;
   max-width: 800px;
-  border: 1px solid;
-  background-color: rgba(0, 0, 0, 0.01);
+  border: 1px solid rgba(0,0,0,0.1);
   margin-bottom: 20px;
+  border-left: 7px solid;
+  background-color: #f4f4f4;
 }
 
 .go-map {
@@ -451,40 +452,21 @@ header .header-content p {
   text-align: center;
 }
 
-.stock-amount {
-  position: absolute;
-  left: -12px;
-  top: -4px;
-  border: 3px solid;
-  border-radius: 3px;
-  width: 14px;
-  height: 48px;
-  z-index: 50;
-}
-
 .plenty {
-  border-color: #37bd6f;
-  border-color: var(--plenty-color);
-  background-color: #37bd6f;
-  background-color: var(--plenty-color);
+  border-left-color: #37bd6f;
+  border-left-color: var(--plenty-color);
 }
 .some {
-  border-color: #f0c802;
-  border-color: var(--some-color);
-  background-color: #f0c802;
-  background-color: var(--some-color);
+  border-left-color: #f0c802;
+  border-left-color: var(--some-color);
 }
 .few {
-  border-color: #e74c3c;
-  border-color: var(--few-color);
-  background-color: #e74c3c;
-  background-color: var(--few-color);
+  border-left-color: #e74c3c;
+  border-left-color: var(--few-color);
 }
 .empty {
-  border-color: #999;
-  border-color: var(--empty-color);
-  background-color: #999;
-  background-color: var(--empty-color);
+  border-left-color: #999;
+  border-left-color: var(--empty-color);
 }
 
 @media (max-width: 900px) {
@@ -493,12 +475,6 @@ header .header-content p {
   }
   .info-category {
     letter-spacing: 2px;
-  }
-  .stock-amount {
-    left: -10px;
-    top: -4px;
-    width: 12px;
-    height: 44px;
   }
 }
 @media (max-width: 700px) {
@@ -541,12 +517,6 @@ header .header-content p {
     padding-left: 5px;
     width: 17%;
     margin-right: 15px;
-  }
-  .stock-amount {
-    left: -10px;
-    top: -4px;
-    width: 12px;
-    height: 42px;
   }
 }
 
@@ -655,12 +625,6 @@ header .header-content p {
   .info-createdat {
     width: 17%;
   }
-  .stock-amount {
-    left: -9px;
-    top: -4px;
-    width: 11px;
-    height: 35px;
-  }
 }
 
 @media (max-width: 400px) {
@@ -756,12 +720,6 @@ header .header-content p {
   }
   .info-createdat {
     width: 19%;
-  }
-  .stock-amount {
-    left: -9px;
-    top: -4px;
-    width: 11px;
-    height: 31px;
   }
   .stock-info ul li {
     font-size: 7px;

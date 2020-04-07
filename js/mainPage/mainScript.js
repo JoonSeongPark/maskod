@@ -126,8 +126,7 @@ function getInfoElinnerHTML(info) {
   <div class="info-createdat">
     <p>${setTimeDiff(info.created_at)}</p>
   </div>
-  <div class="stock-amount">
-  </div>
+
   <div class="go-map" id="${info.code}" name="${info.name}" searchtext="${info.addr}, ${
     info.name
   }" lat="${info.lat}" lng="${info.lng}" remainstat="${info.remain_stat}">
@@ -135,8 +134,7 @@ function getInfoElinnerHTML(info) {
   </div>
     `;
 
-  const circle = infoEl.querySelector(".stock-amount");
-  circle.classList.add(`${info.remain_stat}`);
+  infoEl.classList.add(`${info.remain_stat}`);
 
   listContainer.appendChild(infoEl);
 }
