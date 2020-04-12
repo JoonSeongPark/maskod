@@ -212,6 +212,8 @@ async function newSearch() {
   makeCircle(lat, lng);
   showMarker(lat, lng);
   moveCenter(lat, lng);
+
+  kakao.maps.event.addListener(map, "center_changed", changeCenter);
 }
 
 function changeDist() {
@@ -219,6 +221,7 @@ function changeDist() {
     const [lat, lng] = JSON.parse(localStorage.getItem("inputLatLng"));
     makeCircle(lat, lng);
     showMarker(lat, lng);
+    kakao.maps.event.addListener(map, "center_changed", changeCenter);
   } else {
     return false;
   }
@@ -244,6 +247,26 @@ function selectDuplicate() {
   searchBtn.click();
 }
 
+// Search based on Map Center Change
+function changeCenter() {
+  
+  const prevCenter = map.getCenter();
+
+  setTimeout(async () => {
+    const newCenter = map.getCenter();
+    if (prevCenter.Ga === newCenter.Ga && prevCenter.Ha === newCenter.Ha) {
+      
+      const [lat, lng] = [newCenter.Ha, newCenter.Ga]
+      makeCircle(lat, lng);
+      showMarker(lat, lng);
+      moveCenter(lat, lng);
+      kakao.maps.event.addListener(map, "center_changed", changeCenter);
+      addressInputEl.value = await getAddressFromLatLng(lat,lng)
+    }
+  }, 600);
+}
+
+
 // Event Listeners
 
 searchBtn.addEventListener("click", newSearch);
@@ -265,3 +288,5 @@ plentyBtn.addEventListener("click", storefilter);
 someBtn.addEventListener("click", storefilter);
 fewBtn.addEventListener("click", storefilter);
 emptyBtn.addEventListener("click", storefilter);
+
+kakao.maps.event.addListener(map, "center_changed", changeCenter);
