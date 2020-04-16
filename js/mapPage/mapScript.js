@@ -219,7 +219,7 @@ async function newSearch() {
 function changeDist() {
   if (localStorage.getItem("inputLatLng")) {
     const [lat, lng] = JSON.parse(localStorage.getItem("inputLatLng"));
-    console.log(lat,lng)
+    
     makeCircle(lat, lng);
     showMarker(lat, lng);
     moveCenter(lat, lng);
@@ -251,23 +251,23 @@ function selectDuplicate() {
 
 // Search based on Map Center Change
 function changeCenter() {
-  
   const prevCenter = map.getCenter();
 
   setTimeout(async () => {
     const newCenter = map.getCenter();
     if (prevCenter.Ga === newCenter.Ga && prevCenter.Ha === newCenter.Ha) {
-      
-      const [lat, lng] = [newCenter.Ha, newCenter.Ga]
+      const [lat, lng] = [newCenter.Ha, newCenter.Ga];
+
+      localStorage.setItem("inputLatLng", JSON.stringify([lat, lng]));
+
       makeCircle(lat, lng);
       showMarker(lat, lng);
       moveCenter(lat, lng);
       kakao.maps.event.addListener(map, "center_changed", changeCenter);
-      addressInputEl.value = await getAddressFromLatLng(lat,lng)
+      addressInputEl.value = await getAddressFromLatLng(lat, lng);
     }
   }, 600);
 }
-
 
 // Event Listeners
 
