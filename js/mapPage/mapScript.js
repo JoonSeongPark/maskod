@@ -217,10 +217,12 @@ async function newSearch() {
 }
 
 function changeDist() {
-  if (localStorage.inputLatLng) {
+  if (localStorage.getItem("inputLatLng")) {
     const [lat, lng] = JSON.parse(localStorage.getItem("inputLatLng"));
+    console.log(lat,lng)
     makeCircle(lat, lng);
     showMarker(lat, lng);
+    moveCenter(lat, lng);
     kakao.maps.event.addListener(map, "center_changed", changeCenter);
   } else {
     return false;
