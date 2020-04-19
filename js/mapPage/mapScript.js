@@ -25,9 +25,6 @@ const mapOption = {
 
 let map = new kakao.maps.Map(mapContainer, mapOption);
 
-const zoomControl = new kakao.maps.ZoomControl();
-map.addControl(zoomControl, kakao.maps.ControlPosition.BOTTOMRIGHT);
-
 let currentMarker;
 function moveCenter(lat, lng) {
   const moveLatLng = new kakao.maps.LatLng(lat, lng);
