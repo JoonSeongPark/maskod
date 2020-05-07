@@ -1,7 +1,8 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 
 module.exports = {
   entry: "./src/main.js",
@@ -32,6 +33,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.hbs$/,
+        use: ["handlebars-loader"],
+      },
     ],
   },
   plugins: [
@@ -39,10 +44,12 @@ module.exports = {
       filename: "[name].[contenthash].css",
     }),
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        "**/*"
-      ],
+      cleanOnceBeforeBuildPatterns: ["**/*"],
     }),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      title: "마스크 어디?",
+      filename: "index.html",
+    }),
+    
   ],
 };
