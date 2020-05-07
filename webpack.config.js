@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-
 module.exports = {
   entry: "./src/main.js",
   output: {
@@ -49,7 +48,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "마스크 어디?",
       filename: "index.html",
-    }),
-    
+      favicon: "logo.ico"
+    })
   ],
 };
