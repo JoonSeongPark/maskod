@@ -61,15 +61,13 @@ header .header-content p {
   box-shadow: 0 0 4px var(--main-color);
 }
 
-.second-area {
+.area {
   display: none;
 }
-.third-area {
-  display: none;
+.active-area {
+  display: block;
 }
-.fourth-area {
-  display: none;
-}
+
 .address-select button {
   margin: 0 5px;
   cursor: pointer;
