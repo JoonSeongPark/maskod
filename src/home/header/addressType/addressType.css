@@ -1,0 +1,67 @@
+header .address-type {
+  margin: 20px 0;
+}
+
+header .address-type select {
+  font-size: 14px;
+  width: 60px;
+  padding: 4px;
+  text-align-last: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: 0;
+}
+header .address-type select:focus {
+  box-shadow: 0 0 4px var(--main-color);
+}
+
+header .address-type .search-content {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0 10px 0;
+}
+
+header .address-type .search-content input {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 30vw;
+  min-width: 350px;
+  padding: 5px 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+header .address-type .search-content input:focus::placeholder {
+  color: transparent;
+}
+
+header .address-type .search-content button {
+  cursor: pointer;
+  background-color: var(--submain-color);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 15px;
+  font-weight: bold;
+  outline: none;
+}
+
+header .address-type .search-content button:active {
+  background-color: var(--main-color);
+}
+
+header .address-type .duplicate-address {
+  display: none;
+  font-size: 12px;
+  width: 220px;
+  max-width: 60vw;
+  height: 25px;
+  margin: 0 5px;
+  text-align-last: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: 0;
+}
+header .address-type .duplicate-address:focus {
+  box-shadow: 0 0 4px var(--main-color);
+}
