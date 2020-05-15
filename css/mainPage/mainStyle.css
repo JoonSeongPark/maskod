@@ -70,15 +70,6 @@ header p strong {
   color: var(--main-color);
 }
 
-header .header-content {
-  font-family: "Noto Sans KR", sans-serif;
-  font-size: larger;
-  color: #000;
-}
-header .header-content p {
-  margin: 0;
-}
-
 /* selector part */
 
 .address-select {
