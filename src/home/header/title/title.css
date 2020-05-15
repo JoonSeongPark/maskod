@@ -1,0 +1,19 @@
+header .title {
+  color: var(--main-color);
+}
+
+header .title h1 {
+  letter-spacing: 3px;
+  font-size: 50px;
+  margin-bottom: 0px;
+}
+
+header .title p {
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+header .title p strong {
+  color: var(--main-color);
+}
