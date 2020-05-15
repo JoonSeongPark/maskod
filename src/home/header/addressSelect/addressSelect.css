@@ -1,0 +1,43 @@
+header .address-select {
+  margin: 20px 0;
+}
+
+header .address-select .select-content {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+header .address-select select {
+  font-size: 12px;
+  width: 80px;
+  margin: 0 5px;
+  text-align-last: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: 0;
+}
+header .address-select select:focus {
+  box-shadow: 0 0 4px var(--main-color);
+}
+
+header .address-select button {
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: var(--submain-color);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 15px;
+  outline: none;
+}
+header .address-select button:active {
+  background-color: var(--main-color);
+}
+
+header .address-select .area {
+  display: none;
+}
+header .address-select .active-area {
+  display: block;
+}
