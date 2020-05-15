@@ -1,0 +1,66 @@
+main .stock-filter {
+  display: none;
+  text-align: center;
+}
+
+main .active{
+  display: block;
+}
+
+main .stock-filter p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+main .stock-filter ul {
+  padding: 0;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .stock-filter ul li {
+  color: #eceff1;
+  font-size: 12px;
+  display: inline-block;
+  margin: 0 8px;
+  border-radius: 20px;
+  width: 80px;
+}
+main #all {
+  background-color: #000;
+  border-color: #000;
+}
+main #plenty {
+  background-color: var(--plenty-color);
+  border-color: var(--plenty-color);
+}
+main #some {
+  background-color: var(--some-color);
+  border-color: var(--some-color);
+}
+main #few {
+  background-color: var(--few-color);
+  border-color: var(--few-color);
+}
+main #empty {
+  background-color: var(--empty-color);
+  border-color: var(--empty-color);
+}
+
+main .stock-box {
+  cursor: pointer;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+main .stock-box:active {
+  border: 2px solid rgba(0, 0, 0, 0.4);
+}
