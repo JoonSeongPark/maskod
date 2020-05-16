@@ -1,4 +1,4 @@
-const adArea = {
+export const adArea = {
   서울특별시: {
     강남구: {
       subArea: [
@@ -5829,5 +5829,3 @@ const adArea = {
     }
   }
 };
-
-export default { adArea }
