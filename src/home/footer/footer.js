@@ -53,3 +53,4 @@ class Footer {
 }
 
 export default Footer;
+export const { setFooterPosition } = new Footer()
