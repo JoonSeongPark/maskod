@@ -1,10 +1,10 @@
+import SearchResult from "../../main/searchResult/searchResult";
 import "./addressSelect.css";
 
-import { adArea } from "../../../constants";
+import { adArea } from "../../constants";
 
 class AddressSelect {
   render() {
-    const body = document.querySelector("body");
     const header = document.querySelector("header");
 
     const addressSelect = document.createElement("div");
@@ -36,21 +36,19 @@ class AddressSelect {
         `;
     addressSelect.appendChild(selectContent);
     header.appendChild(addressSelect);
-    body.appendChild(header);
   }
 
   // select option filled
   setTopArea() {
     const topAreaEl = document.getElementById("top-area");
     topAreaEl.innerHTML = "<option value=''>주소선택</option>";
-    for (let tArea in adArea) {
-      topAreaEl.innerHTML += `<option value="${tArea}" >${tArea}</option>`;
+    for (let topArea in adArea) {
+      topAreaEl.innerHTML += `<option value="${topArea}" >${topArea}</option>`;
     }
   }
 
   // select button render setting
   setSelectArea(e) {
-    console.log('act')
     const topAreaEl = document.getElementById("top-area");
     const secondAreaEl = document.getElementById("second-area");
     const thirdAreaEl = document.getElementById("third-area");
@@ -112,10 +110,13 @@ class AddressSelect {
     const topAreaEl = document.getElementById("top-area");
     const secondAreaEl = document.getElementById("second-area");
     const thirdAreaEl = document.getElementById("third-area");
-    
+
     topAreaEl.addEventListener("change", this.setSelectArea);
     secondAreaEl.addEventListener("change", this.setSelectArea);
     thirdAreaEl.addEventListener("change", this.setSelectArea);
+
+    const searchBtn = document.getElementById("select-search");
+    searchBtn.addEventListener("click", (e) => SearchResult.render(e));
   }
 }
 
