@@ -46,7 +46,7 @@ class Footer {
     }
   }
 
-  eventListener() {
+  footerEventListener() {
     this.setFooterPosition();
     window.addEventListener("resize", this.setFooterPosition);
   }
