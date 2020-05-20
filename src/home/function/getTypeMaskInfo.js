@@ -24,7 +24,7 @@ const getTypeMaskInfo = async () => {
   );
   const data = await res.json();
 
-  return data.stores;
+  return data;
 };
 
 export default getTypeMaskInfo;
