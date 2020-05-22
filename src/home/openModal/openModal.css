@@ -1,0 +1,64 @@
+.opening-modal-container {
+  display: none;
+  box-sizing: content-box;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+}
+
+.active {
+  display: block;
+}
+
+.opening-modal {
+  font-size: 12px;
+  padding: 25px 35px;
+  background-color: #eceff1;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 85%;
+  width: 400px;
+  height: 400px;
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+.opening-modal-container .opening-close-btn {
+  cursor: pointer;
+  border: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 25px;
+  width: 85%;
+  transform: translateX(-50%);
+  padding: 10px;
+  margin: auto;
+  background-color: #0f4c81;
+  font-size: 18px;
+  color: #fff;
+  outline: none;
+  letter-spacing: 5px;
+}
+
+.opening-modal-container .opening-close-btn:active {
+  font-size: 19px;
+  padding: 9.5px;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
