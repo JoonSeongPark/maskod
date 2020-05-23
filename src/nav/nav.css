@@ -49,8 +49,7 @@ nav .nav-right ul {
   justify-content: center;
 }
 nav .nav-right ul li {
-  list-style-type: none;
-  padding-left: 20px;
+  padding: 0 10px;
 }
 
 nav .nav-right ul li a {
