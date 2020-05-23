@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/main.js",
+  entry: ["babel-polyfill", "./src/home.js"],
   output: {
     filename: "bundle.[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
@@ -15,7 +15,12 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg|jpeg)$/,
-        use: ["file-loader"],
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+          },
+        },
       },
       {
         test: /\.css$/,
@@ -47,8 +52,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: "마스크 어디?",
-      filename: "index.html",
-      favicon: "logo.ico"
-    })
+      filename: "./index.html",
+      template: "./src/home.hbs",
+      favicon: "./images/favicon.ico",
+    }),
   ],
 };
