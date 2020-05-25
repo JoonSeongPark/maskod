@@ -1,8 +1,8 @@
+import SearchResult from "../../main/searchResult/searchResult";
 import "./addressType.css";
 
 class AddressType {
   render() {
-    const body = document.querySelector("body");
     const header = document.querySelector("header");
 
     // type search part
@@ -39,13 +39,42 @@ class AddressType {
     const searchContent = document.createElement("div");
     searchContent.classList.add("search-content");
     searchContent.innerHTML = `
-      <input type="text" id="address" class="address" placeholder="도로명 또는 번지 주소를 입력하세요."/>
-      <button id="typing-search"><i class="fa fa-search"></i></button>
+      <input type="text" id="address-input" placeholder="도로명 또는 번지 주소를 입력하세요."/>
+      <button id="type-search"><i class="fa fa-search"></i></button>
     `;
     addressType.appendChild(searchContent);
-    header.appendChild(addressType);
 
-    body.appendChild(header);
+    const duplicateAddress = document.createElement("select");
+    duplicateAddress.classList.add("duplicate-address");
+    duplicateAddress.id = "duplicate-address";
+
+    addressType.appendChild(duplicateAddress);
+
+    header.appendChild(addressType);
+  }
+
+  // duplicate address selected
+  static duplicateSelect(e, addressInput, searchBtn) {
+    addressInput.value = e.target.value;
+    
+    e.target.classList.remove("active");
+
+    searchBtn.click();
+  }
+
+  // address type event listener
+  static typeEventListener() {
+    const searchBtn = document.getElementById("type-search");
+    searchBtn.addEventListener("click", (e) => SearchResult.render(e));
+
+    const addressInput = document.getElementById("address-input");
+    addressInput.addEventListener(
+      "keypress",
+      (e) => e.key === "Enter" && searchBtn.click()
+    );
+
+    const duplicateAddress = document.getElementById("duplicate-address");
+    duplicateAddress.addEventListener("change", (e) => this.duplicateSelect(e, addressInput, searchBtn));
   }
 }
 
