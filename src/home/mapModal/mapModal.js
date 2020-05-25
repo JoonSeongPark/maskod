@@ -1,4 +1,5 @@
 import curMarker from "../../../images/current_marker.png";
+import euclideanDist from "../function/euclideanDist"
 
 import "./mapModal.css";
 
