@@ -11,21 +11,18 @@ import "./searchResult.css";
 
 class SearchResult {
   static async render(e) {
+    // set coordinate for gps or default
+    let [lat, lng] = JSON.parse(localStorage.getItem("curLatLng"))
+      ? JSON.parse(localStorage.getItem("curLatLng"))
+      : [0, 0];
+
     let dataObj;
-    let lat, lng;
     const clickedBtn = e.target.closest("button");
 
     switch (clickedBtn.id) {
       // address select case
       case "select-search":
         dataObj = await getSelectMaskInfo();
-
-        // lat, lng from local storage (current gps or selected)
-        if (JSON.parse(localStorage.getItem("curLatLng"))) {
-          [lat, lng] = JSON.parse(localStorage.getItem("curLatLng"));
-        } else {
-          [lat, lng] = await getLatLngFromAddress(dataObj.address)
-        }
         break;
 
       // address type case
@@ -70,7 +67,7 @@ class SearchResult {
     const infoLists = document.createElement("div");
     infoLists.id = "info-lists";
     infoLists.addEventListener("click", (e) => mapModal.mapRender(e));
-    
+
     sellDataArr.forEach((info) => {
       new this.resultList(info, infoLists);
     });
@@ -103,7 +100,7 @@ class SearchResult {
   // list element html part
   static resultList(info, infoLists) {
     const infoEl = document.createElement("div");
-    infoEl.classList.add(`info-list`,`${info.remain_stat}`);
+    infoEl.classList.add(`info-list`, `${info.remain_stat}`);
     infoEl.id = "info-list";
 
     infoEl.innerHTML = `
@@ -128,7 +125,6 @@ class SearchResult {
       `;
 
     infoLists.appendChild(infoEl);
-    
   }
 }
 
