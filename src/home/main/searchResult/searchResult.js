@@ -16,34 +16,27 @@ class SearchResult {
     const clickedBtn = e.target.closest("button");
 
     switch (clickedBtn.id) {
+      // address select case
       case "select-search":
         dataObj = await getSelectMaskInfo();
+
+        // lat, lng from local storage (current gps or selected)
+        if (JSON.parse(localStorage.getItem("curLatLng"))) {
+          [lat, lng] = JSON.parse(localStorage.getItem("curLatLng"));
+        } else {
+          [lat, lng] = await getLatLngFromAddress(dataObj.address)
+        }
         break;
+
+      // address type case
       case "type-search":
         dataObj = await getTypeMaskInfo();
         if (!dataObj) return;
-        console.log("else");
+
+        // lat, lng from local storage (input)
+        [lat, lng] = JSON.parse(localStorage.getItem("inputLatLng"));
         break;
     }
-    console.log(dataObj);
-
-    // if (JSON.parse(localStorage.getItem("curLatLng"))) {
-    //   lat = JSON.parse(localStorage.getItem("curLatLng"))[0];
-    //   lng = JSON.parse(localStorage.getItem("curLatLng"))[1];
-    // } else {
-    //   let pos = await getLatLngFromAddress();
-    //   lat = pos[0];
-    //   lng = pos[1];
-    // }
-    // } else if (clickedBtn.id == "typing-search" || clickedBtn.id == "address") {
-    //   dataArr = await getMaskTypeInfo();
-
-    //   if (dataArr == "") {
-    //     return false;
-    //   } else {
-    //     lat = JSON.parse(localStorage.getItem("inputLatLng"))[0];
-    //     lng = JSON.parse(localStorage.getItem("inputLatLng"))[1];
-    //   }
 
     const dataArr = dataObj.stores;
     const stockFilter = document.getElementById("stock-filter");
@@ -58,7 +51,6 @@ class SearchResult {
       container.innerHTML = "<h2>검색결과가 없습니다.</h2>";
       setFooterPosition();
       return false;
-    } else {
     }
 
     // sorted by distance
@@ -68,8 +60,6 @@ class SearchResult {
         euclideanDist(b.lat, b.lng, lat, lng)
       );
     });
-
-    // localStorage.setItem("searchedInfos", JSON.stringify(sellDataArr));
 
     // search result render part
     stockFilter.className = "stock-filter active";
@@ -88,10 +78,6 @@ class SearchResult {
     container.appendChild(infoLists);
 
     setFooterPosition();
-
-    // if (maskInfos != null) {
-    //   openMap();
-    // }
   }
 
   // list category render
