@@ -11,7 +11,6 @@ class AddressSelect {
     addressSelect.classList.add("address-select");
 
     const selectHead = document.createElement("div");
-    // selectHead.classList.add("sub-head");
     selectHead.innerHTML = `
           <h3><i class="fa fa-map-marker-alt fa-sm"></i>&nbsp주소 선택하여 마스크 찾기</h3>
           <p>: 선택한 행정구역을 현재 위치 기준으로 가까운 순 정보 제공.</p>
@@ -48,7 +47,7 @@ class AddressSelect {
   }
 
   // select button render setting
-  setSelectArea(e) {
+  static setSelectArea(e) {
     const topAreaEl = document.getElementById("top-area");
     const secondAreaEl = document.getElementById("second-area");
     const thirdAreaEl = document.getElementById("third-area");
@@ -106,7 +105,7 @@ class AddressSelect {
   }
 
   // address select event listener
-  eventListener() {
+  static selectEventListener() {
     const topAreaEl = document.getElementById("top-area");
     const secondAreaEl = document.getElementById("second-area");
     const thirdAreaEl = document.getElementById("third-area");
