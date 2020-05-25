@@ -91,18 +91,14 @@
 }
 
 .plenty {
-  border-left-color: #37bd6f;
   border-left-color: var(--plenty-color);
 }
 .some {
-  border-left-color: #f0c802;
   border-left-color: var(--some-color);
 }
 .few {
-  border-left-color: #e74c3c;
   border-left-color: var(--few-color);
 }
 .empty {
-  border-left-color: #999;
   border-left-color: var(--empty-color);
 }
