@@ -47,10 +47,9 @@ class Footer {
   }
 
   footerEventListener() {
-    this.setFooterPosition();
     window.addEventListener("resize", this.setFooterPosition);
   }
 }
 
 export default Footer;
-export const { setFooterPosition } = new Footer()
+export const { setFooterPosition } = new Footer();
