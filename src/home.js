@@ -22,7 +22,7 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
-require.context('../images', true);
+require.context("../images", true);
 
 library.add(faMapMarkerAlt, faSearch, faTimes);
 dom.watch();
@@ -54,7 +54,7 @@ MapModal.mapEventlistener();
 const footer = new Footer();
 footer.render();
 footer.footerEventListener();
-footer.setFooterPosition()
+setTimeout(() => footer.setFooterPosition(), 100);
 
 // get current Location with gps
 getLocation();
