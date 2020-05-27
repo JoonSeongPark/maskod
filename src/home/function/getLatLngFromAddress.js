@@ -10,12 +10,17 @@ const getLatLngFromAddress = async (addr) => {
   );
   const data = await res.json();
   const addArr = data.documents;
-  
+
   switch (addArr.length) {
     case 0:
       return "nothing";
 
     case 1:
+      // lat, lng to localStorage
+      localStorage.setItem(
+        "inputLatLng",
+        JSON.stringify([addArr[0].y, addArr[0].x])
+      );
       return [addArr[0].y, addArr[0].x];
 
     // more than two
@@ -29,10 +34,6 @@ const getLatLngFromAddress = async (addr) => {
       duplicateAddress.focus();
       return "duplicate";
   }
-  // localStorage.setItem(
-  //   "inputLatLng",
-  //   JSON.stringify([data.documents[0].y, data.documents[0].x])
-  // );
 };
 
 export default getLatLngFromAddress;
