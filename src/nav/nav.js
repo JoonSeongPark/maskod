@@ -6,7 +6,7 @@ const nav = () => {
 
   const nav = document.createElement("nav");
   const logoATag = document.createElement("a");
-  logoATag.setAttribute("href", "main.html");
+  logoATag.setAttribute("href", "index.html");
   const leftDiv = document.createElement("div");
   leftDiv.classList.add("nav-left");
   leftDiv.id = "nav-left";
@@ -20,7 +20,7 @@ const nav = () => {
   const rightDiv = document.createElement("div");
   rightDiv.classList.add("nav-right");
   const ul = document.createElement("ul");
-  ul.innerHTML = "<li><a href='main.html'><p>HOME</p></a></li>";
+  ul.innerHTML = "<li><a href='index.html'><p>HOME</p></a></li>";
   ul.innerHTML += "<li><a href='map.html'><p>MAP</p></a></li>";
 
   leftDiv.appendChild(logoImg);
