@@ -1,30 +1,60 @@
-import nav from './nav/nav';
-import header from './main/header/header'
-import AddressSelect from './main/header/addressSelect/addressSelect'
-import Footer from './main/footer/footer'
-import './home.css'
+import nav from "./nav/nav";
+
+import header from "./home/header/header";
+import AddressSelect from "./home/header/addressSelect/addressSelect";
+import AddressType from "./home/header/addressType/addressType";
+
+import main from "./home/main/main";
+
+import OpeningModal from "./home/openModal/openModal";
+import MapModal from "./home/mapModal/mapModal";
+
+import Footer from "./home/footer/footer";
+
+import getLocation from "./home/function/getLocation";
+
+import "./home.css";
 
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import { faMapMarkerAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMapMarkerAlt,
+  faSearch,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faMapMarkerAlt, faSearch);
+require.context('../images', true);
+
+library.add(faMapMarkerAlt, faSearch, faTimes);
 dom.watch();
 
 // nav part
-nav()
+nav();
 
 // header part
-header()
+header();
 
 // select event listener
-const addressSelect = new AddressSelect()
-addressSelect.eventListener()
+AddressSelect.selectEventListener();
 
-const footer = new Footer()
-footer.render()
-// footer.setFooterPosition()
+// type event listener
+AddressType.typeEventListener();
 
+// main part
+main();
 
+// opening modal
+OpeningModal.render();
+OpeningModal.OpeningEventListener();
 
-// footer
-// window.addEventListener("resize", footer.setFooterPosition);
+// map modal
+MapModal.render();
+MapModal.mapEventlistener();
+
+// footer part
+const footer = new Footer();
+footer.render();
+footer.footerEventListener();
+footer.setFooterPosition()
+
+// get current Location with gps
+getLocation();
