@@ -1,0 +1,127 @@
+main {
+  padding: 20px 0;
+}
+
+main .container {
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+main .container .search-result {
+  font-size: larger;
+  padding-bottom: 10px;
+}
+main .container .search-result span {
+  color: #0f4c81;
+  color: var(--main-color);
+}
+
+.info-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px 18px;
+  margin-bottom: 30px;
+  width: 80vw;
+  max-width: 800px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 3px;
+  border-bottom: 1px solid #000;
+}
+
+.info-list {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 8px 20px;
+  width: 80vw;
+  max-width: 800px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border-left: 7px solid;
+  background-color: #f4f4f4;
+}
+
+.go-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease-in;
+  opacity: 0;
+  color: #eceff1;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.info-list:hover .go-map {
+  border: 1px solid #fff;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.info-name {
+  width: 18%;
+  padding: 0 3px;
+  margin-right: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.info-list .info-name {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.info-address {
+  width: 50%;
+  padding: 0 3px;
+  margin-right: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.info-list .info-address {
+  text-align: left;
+}
+.info-stockat {
+  width: 15%;
+  margin-right: 20px;
+  text-align: center;
+}
+.info-createdat {
+  width: 15%;
+  text-align: center;
+}
+
+.plenty {
+  border-left-color: #37bd6f;
+  border-left-color: var(--plenty-color);
+}
+.some {
+  border-left-color: #f0c802;
+  border-left-color: var(--some-color);
+}
+.few {
+  border-left-color: #e74c3c;
+  border-left-color: var(--few-color);
+}
+.empty {
+  border-left-color: #999;
+  border-left-color: var(--empty-color);
+}
