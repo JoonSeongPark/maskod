@@ -14,7 +14,6 @@ const header = () => {
   const addressSelect = new AddressSelect();
   addressSelect.render();
   addressSelect.setTopArea();
-  // addressSelect.eventListener();
 
   const addressType = new AddressType();
   addressType.render();
